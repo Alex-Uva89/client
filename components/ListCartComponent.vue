@@ -6,6 +6,7 @@
           :key="product.id"
           class="product-item"
         >
+        <template v-if="getQuantity(product) > 0">
           <div class="row-item">
             {{ product.name }}
             <span v-if="product.vigneto"> - {{ product.vigneto }} </span>
@@ -30,7 +31,15 @@
             </span>
             <span class="counter">
               <span @click="decreaseQuantity(product)">-</span>
-              <span>{{ getQuantity(product) }}</span>
+              <span>
+                <input 
+                  type="number" 
+                  :value="getQuantity(product)" 
+                  @input="updateQuantity(product, $event.target.value)" 
+                  @blur="validateQuantity(product)" 
+                  class="input-quantity"
+                />
+              </span>
               <span @click="increaseQuantity(product)">+</span>
             </span>
           </div>
@@ -43,6 +52,7 @@
               alt="icona che indica la rimozione del prodotto totale dal carrello"
             />
           </span>
+        </template>
         </li>
       </ul>
   
@@ -65,6 +75,20 @@
               <span>Procedi all'acquisto</span>
             </ButtonComponent>
           </router-link>
+        </div>
+      </div>
+
+      <!-- Modale di conferma -->
+      <div v-if="isModalOpen" class="modal-overlay">
+        <div class="modal-content">
+          <p>
+            Sei sicuro di voler rimuovere tutte le unità ( {{ productToDelete.quantity }} ) di "{{ productToDelete.name }}" dal
+            carrello?
+          </p>
+          <div class="modal-buttons">
+            <button @click="confirmDeleteProduct">Conferma</button>
+            <button @click="closeDeleteModal">Annulla</button>
+          </div>
         </div>
       </div>
     </div>
@@ -100,6 +124,7 @@
   
   const increaseQuantity = (product) => {
     cartStore.addProductToCart(product);
+    cartTotal = cartStore.getCartTotal;
   };
   
   const decreaseQuantity = (product) => {
@@ -108,10 +133,26 @@
   
     if (existingProduct && existingProduct.quantity > 1) {
       cartStore.updateQuantity(productId, existingProduct.quantity - 1);
-    } else {
-      openDeleteModal(product);
+      cartTotal = cartStore.getCartTotal;
+    } 
+  };
+
+  const updateQuantity = (product, value) => {
+    const quantity = parseInt(value, 10);
+    if (!isNaN(quantity) && quantity > 0) {
+      cartStore.updateQuantity(product.id, quantity);
+      cartTotal = cartStore.getCartTotal;
     }
   };
+
+  const validateQuantity = (product) => {
+    const existingProduct = cartStore.cart.find((item) => item.id === product.id);
+    if (!existingProduct || existingProduct.quantity <= 0) {
+      cartStore.updateQuantity(product.id, 1);
+      cartTotal = cartStore.getCartTotal;
+    }
+  };
+
   
   const getQuantity = (product) => {
     const productId = product.id;
@@ -124,7 +165,7 @@
   });
   
   const cartWithDetails = cartStore.getCartWithDetails;
-  const cartTotal = cartStore.getCartTotal;
+  let cartTotal = cartStore.getCartTotal;
 
   defineProps({
   cartActions: {
@@ -158,7 +199,7 @@
   font-size: var(--font-size-medium);
 }
 
-.product-item {
+.product-item:has(.row-item) {
   width: 100%;
   list-style-type: none;
   display: flex;
@@ -167,6 +208,14 @@
   padding: 12px 0;
   gap: 4px;
   position: relative;
+}
+
+.product-item:has(.row-item):last-child {
+  margin-block: 20px;
+}
+
+li{
+  list-style-type: none;
 }
 
 .row-item{
@@ -215,6 +264,14 @@
   border-radius: 20px;
 }
 
+.counter .input-quantity{
+    background-color: var(--background);
+    width: 100%;
+    height: inherit;
+    text-align: center;
+    border: none;
+}
+
 .counter span{
   height: 100%;
   display: flex;
@@ -258,5 +315,54 @@
 
 .cart-actions{
    margin:0 20px;
+}
+
+/* MODAL */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  font-family: var(--font-secondary);
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  margin: 0 10px;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.modal-buttons button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-buttons button:first-child {
+  background-color: var(--primary);
+  color: white;
+}
+
+.modal-buttons button:last-child {
+  background-color: #bdc3c7;
+  color: white;
 }
 </style>

@@ -553,12 +553,12 @@ const _routes = [
   {
     name: "cart",
     path: "/cart",
-    component: () => import('./cart-C5D6S7Tf.mjs')
+    component: () => import('./cart-DLDnmbtG.mjs')
   },
   {
     name: "checkout",
     path: "/checkout",
-    component: () => import('./checkout-BNscAcd1.mjs')
+    component: () => import('./checkout-CZxBj2S3.mjs')
   },
   {
     name: "confirm",
@@ -568,7 +568,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-CwgwzJRV.mjs')
+    component: () => import('./index-WD-76i_b.mjs')
   },
   {
     name: "login",

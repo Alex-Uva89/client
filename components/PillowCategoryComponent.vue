@@ -74,7 +74,7 @@
   }
   
   .btn {
-      width: 100px;
+      max-width: 200px;
       height: 40px;
       border-radius: 5px;
       background-color: var(--background);

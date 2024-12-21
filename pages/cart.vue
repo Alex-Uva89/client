@@ -15,19 +15,7 @@
         </router-link>
       </div>
   
-      <!-- Modale di conferma -->
-      <div v-if="isModalOpen" class="modal-overlay">
-        <div class="modal-content">
-          <p>
-            Sei sicuro di voler rimuovere tutte le unità ( {{ productToDelete.quantity }} ) di "{{ productToDelete.name }}" dal
-            carrello?
-          </p>
-          <div class="modal-buttons">
-            <button @click="confirmDeleteProduct">Conferma</button>
-            <button @click="closeDeleteModal">Annulla</button>
-          </div>
-        </div>
-      </div>
+      
     </div>
   </template>
   
@@ -94,55 +82,6 @@
     justify-content: space-between;
     max-height: 3000px;
     margin-bottom: 150px;
-}
-
-/* MODAL */
-
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-  font-family: var(--font-secondary);
-}
-
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  margin: 0 10px;
-}
-
-.modal-buttons {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-.modal-buttons button {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.modal-buttons button:first-child {
-  background-color: var(--primary);
-  color: white;
-}
-
-.modal-buttons button:last-child {
-  background-color: #bdc3c7;
-  color: white;
 }
 
 .cart-empty{

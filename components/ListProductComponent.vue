@@ -29,7 +29,15 @@
             </span>
             <span class="counter">
               <span @click="decreaseQuantity(product)">-</span>
-              <span>{{ getQuantity(product) }}</span>
+              <span>
+                <input 
+                  type="number" 
+                  :value="getQuantity(product)" 
+                  @input="updateQuantity(product, $event.target.value)" 
+                  @blur="validateQuantity(product)" 
+                  class="input-quantity"
+                />
+              </span>
               <span @click="increaseQuantity(product)">+</span>
             </span>
           </div>
@@ -98,11 +106,27 @@ export default defineComponent({
       }
     };
 
-const getQuantity = (product) => {
-  const productId = product.id;  // Recuperiamo l'ID del prodotto
-  const existingProduct = cartStore.cart.find((item) => item.id === productId);
-  return existingProduct ? existingProduct.quantity : 0;
-};
+    const updateQuantity = (product, value) => {
+    const quantity = parseInt(value, 10);
+    if (!isNaN(quantity) && quantity > 0) {
+      cartStore.updateQuantity(product.id, quantity);
+      cartTotal = cartStore.getCartTotal;
+    }
+  };
+
+  const validateQuantity = (product) => {
+    const existingProduct = cartStore.cart.find((item) => item.id === product.id);
+    if (!existingProduct || existingProduct.quantity <= 0) {
+      cartStore.updateQuantity(product.id, 1);
+      cartTotal = cartStore.getCartTotal;
+    }
+  };
+
+  const getQuantity = (product) => {
+    const productId = product.id;  // Recuperiamo l'ID del prodotto
+    const existingProduct = cartStore.cart.find((item) => item.id === productId);
+    return existingProduct ? existingProduct.quantity : 0;
+  };
 
 onMounted(() => {
   cartStore.loadCartFromStorage();
@@ -113,6 +137,8 @@ onMounted(() => {
       filteredProducts,
       increaseQuantity,
       decreaseQuantity,
+      updateQuantity,
+      validateQuantity,
       getQuantity
     }
   }
@@ -189,6 +215,14 @@ onMounted(() => {
   align-items: center;
   width: calc(100% / 3);
   border: 1px solid var(--primary);
+}
+
+.counter .input-quantity{
+    background-color: var(--background);
+    width: 100%;
+    height: inherit;
+    text-align: center;
+    border: none;
 }
 
 .counter span:first-child{
