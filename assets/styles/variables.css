@@ -1,0 +1,37 @@
+@font-face {
+    font-family: 'Decima';
+    src: url('../fonts/Decima.ttf') format('truetype'),
+         url('../fonts/Decima_Bold.ttf') format('truetype');
+    font-style: normal;
+}
+
+
+
+:root {
+
+    /* COLORS */
+    --primary: #74121D;
+    --background: #F4F1EC;
+    --banner: #e7d7c0;
+    --text: #372C43;
+    --text-secondary: #757373;
+    --label: #E7D7C1;
+    --disabled: #afadad;
+
+    /* FONTS */
+    --font-primary: 'Decima', sans-serif;
+    --font-secondary: 'Barlow', sans-serif;
+
+    /* WEIGHT-FONT */
+    --font-weight-primary: regular;
+    --font-weight-secondary: semibold;
+
+    /* FONT SIZE */
+    --font-size-xsmall: 12px;
+    --font-size-small: 14px;
+    --font-size-medium: 16px;
+    --font-size-large: 18px;
+    --font-size-xlarge: 20px;
+    --font-size-xxlarge: 24px;
+    --font-size-xxxlarge: 26px;
+}

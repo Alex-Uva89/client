@@ -1,0 +1,4 @@
+const SearchComponent_vue_vue_type_style_index_0_scoped_077e19b2_lang = ".search-bar-container[data-v-077e19b2]{display:flex;justify-content:center;margin:27px auto 20px;position:relative}.search-bar-container .search-text-icon[data-v-077e19b2]{left:30px;position:absolute;top:20px;transform:translateY(-50%);width:15px}.search-bar[data-v-077e19b2]{border:1px solid #000;border-radius:5px;height:40px;margin:0 20px;padding:0 31px;width:100%}.search-bar[data-v-077e19b2]:focus-visible{outline:3px solid var(--primary);outline-offset:.5px}.voice-search[data-v-077e19b2]{background-color:transparent;border:none;cursor:pointer;height:20px;position:absolute;right:30px;top:50%;transform:translateY(-50%);width:20px}.voice-search img[data-v-077e19b2]{height:100%;width:100%}";
+
+export { SearchComponent_vue_vue_type_style_index_0_scoped_077e19b2_lang as S };
+//# sourceMappingURL=SearchComponent-styles-1.mjs-Bb4Bhhhv.mjs.map

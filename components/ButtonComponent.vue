@@ -1,0 +1,81 @@
+<template>
+  <div>
+    <button 
+    v-if="!isLink" 
+    :type="type" 
+    :disabled="disabled" 
+    class="btn" 
+    :style="{
+        width: width, 
+        backgroundColor: disabled ? 'var(--disabled)' : color,
+        color: color === 'var(--primary)' ? 'var(--label)' : 'var(--primary)', 
+        border: color === 'var(--primary)' ? 'none' : '1px solid var(--primary)',
+        fontSize: fontSize
+    }">
+  <slot></slot>
+</button>
+    <router-link v-else :to="link" class="btn" :style="{ backgroundColor: color, width: width, color: color === 'var(--primary)' ? 'var(--label)' : 'var(--primary)', border: color === 'var(--primary)' ? 'none' : '1px solid var(--primary)'}">
+        <slot></slot>
+    </router-link>
+  </div>
+</template>
+
+<script>
+export default {
+    name: 'ButtonComponent',
+    props: {
+        color: {
+            type: String,
+            default: 'var(--primary)',
+        },
+        width: {
+            type: String,
+            default: '90vw',
+        },
+        isLink: {
+            type: Boolean,
+            default: false,
+        },
+        link: {
+            type: String,
+            default: '/',
+        },
+        type: {
+            type: String,
+            default: 'button',
+        },
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
+        fontSize: {
+            type: String,
+            default: '1rem',
+        }
+    }
+}
+</script>
+
+<style scoped>
+
+.btn{
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: var(--font-secondary);
+    font-weight: var(--font-weight-secondary);
+}
+
+.btn:disabled{
+    cursor: not-allowed;
+}
+
+
+</style>
