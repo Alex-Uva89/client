@@ -1,4 +1,0 @@
-const menu_vue_vue_type_style_index_0_scoped_ae200ae0_lang = ".menu-container[data-v-ae200ae0]{margin-bottom:120px;overflow:scroll;padding-top:120px;width:100vw}.container-fix-header[data-v-ae200ae0]{position:fixed;width:100%;z-index:100}.accordion-group-container[data-v-ae200ae0]{margin:27px 0}.menu-main-container[data-v-ae200ae0]{display:flex;flex-direction:column;height:100%;justify-content:start;width:100%}.accordion-icon[data-v-ae200ae0]{align-self:start;height:30px;margin-top:5px;width:30px}.accordion-container[data-v-ae200ae0]{align-items:center;border-bottom:1px solid var(--primary);border-top:1px solid var(--primary);display:flex;gap:20px;padding:20px}.footer[data-v-ae200ae0]{background-color:var(--background);padding:20px;text-align:center;width:100%}.footer .login[data-v-ae200ae0]{color:var(--primary)}";
-
-export { menu_vue_vue_type_style_index_0_scoped_ae200ae0_lang as m };
-//# sourceMappingURL=menu-styles-1.mjs-CpWtsXaG.mjs.map

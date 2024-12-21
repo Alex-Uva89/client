@@ -122,6 +122,8 @@
     }
   };
   
+
+  // COUNTER
   const increaseQuantity = (product) => {
     cartStore.addProductToCart(product);
     cartTotal = cartStore.getCartTotal;
@@ -159,7 +161,10 @@
     const existingProduct = cartStore.cart.find((item) => item.id === productId);
     return existingProduct ? existingProduct.quantity : 0;
   };
+  // END COUNTER
+
   
+  // RICHIAMO IL CARRELLO
   onMounted(() => {
     cartStore.loadCartFromStorage();
   });
@@ -253,9 +258,11 @@ li{
     right: 0;
 }
 
+/* COUNTER */
+
 .counter{
   display: flex;
-  width: 80px;
+  width: 100px;
   height: 27px;
   align-items: center;
   font-size: var(--font-size-medium);
@@ -266,7 +273,7 @@ li{
 
 .counter .input-quantity{
     background-color: var(--background);
-    width: 100%;
+    width: 35px;
     height: inherit;
     text-align: center;
     border: none;
@@ -277,7 +284,7 @@ li{
   display: flex;
   justify-content: center;
   align-items: center;
-  width: calc(100% / 3);
+  width: 100%;
   border: 1px solid var(--primary);
 }
 
@@ -292,6 +299,8 @@ li{
   border-bottom-right-radius: 5px;
   box-shadow: -2px 0 4px rgba(0, 0, 0, 0.3);
 }
+
+/* END COUNTER */
 
 .cart-total-container{
     display: flex;

@@ -8,7 +8,7 @@
     :style="{
         width: width, 
         backgroundColor: disabled ? 'var(--disabled)' : color,
-        color: color === 'var(--primary)' ? 'var(--label)' : 'var(--primary)', 
+        color: color === 'var(--primary)' ? 'var(--primary)' : 'var(--label)', 
         border: color === 'var(--primary)' ? 'none' : '1px solid var(--primary)',
         fontSize: fontSize
     }">
@@ -45,7 +45,7 @@ export default {
             default: 'button',
         },
         disabled: {
-            type: Boolean,
+            type: Boolean || String,
             default: false,
         },
         fontSize: {

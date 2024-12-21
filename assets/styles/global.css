@@ -6,7 +6,6 @@
 }
 
 img{
-    max-width: 30px;
     height: auto;
 }
 
@@ -17,4 +16,8 @@ button{
 
 body{
     background-color: var(--background);
+}
+
+a{
+    text-decoration: none;
 }

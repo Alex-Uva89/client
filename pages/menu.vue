@@ -7,7 +7,7 @@
       <div class="menu-main-container">
 
         <div class="accordion-container">
-          <img src="../assets/icons/basket.svg" alt="icona cestino della spesa">
+          <img src="../assets/icons/basket.svg" alt="icona cestino della spesa"  class="accordion-icon">
           <Accordion title="La mia lista" isLink="true" link="/cart" icon="basket" />
         </div>
 

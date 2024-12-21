@@ -3,44 +3,47 @@
     <div class="list-product-container">
       <ul>
         <li v-for="product in filteredProducts" :key="product.id" class="product-item">
-          <div class="row-item">
-            {{ product.name }} 
-            <span v-if="product.vigneto">
-              - {{ product.vigneto }}
-            </span>
-          </div>
-          
-          <div class="row-item">
-            <span v-if="product.annata">
-                {{ product.annata }}
-            </span>
-            <span v-if="product.annata && product.grado_alcolico">
-              - 
-            </span>
-            <span v-if="product.grado_alcolico">
-                {{ product.grado_alcolico }}% vol.
-            </span>
-          </div>
-
-          <div class="row-item">
-            <span class="row-item">
-              <img class="icon-price" src="../assets/icons/price.svg" alt="icona che indica il prezzo">
-              {{ product.price }}
-            </span>
-            <span class="counter">
-              <span @click="decreaseQuantity(product)">-</span>
-              <span>
-                <input 
-                  type="number" 
-                  :value="getQuantity(product)" 
-                  @input="updateQuantity(product, $event.target.value)" 
-                  @blur="validateQuantity(product)" 
-                  class="input-quantity"
-                />
+          <router-link :to="`/product/${product.id}`">
+            
+            <div class="row-item">
+              {{ product.name }} 
+              <span v-if="product.vigneto">
+                - {{ product.vigneto }}
               </span>
-              <span @click="increaseQuantity(product)">+</span>
-            </span>
-          </div>
+            </div>
+            
+            <div class="row-item">
+              <span v-if="product.annata">
+                  {{ product.annata }}
+              </span>
+              <span v-if="product.annata && product.grado_alcolico">
+                - 
+              </span>
+              <span v-if="product.grado_alcolico">
+                  {{ product.grado_alcolico }}% vol.
+              </span>
+            </div>
+
+          </router-link>
+            <div class="row-item">
+              <span class="row-item">
+                <img class="icon-price" src="../assets/icons/price.svg" alt="icona che indica il prezzo">
+                {{ product.price }}
+              </span>
+              <span class="counter">
+                <span @click="decreaseQuantity(product)">-</span>
+                <span>
+                  <input 
+                    type="number" 
+                    :value="getQuantity(product)" 
+                    @input="updateQuantity(product, $event.target.value)" 
+                    @blur="validateQuantity(product)" 
+                    class="input-quantity"
+                  />
+                </span>
+                <span @click="increaseQuantity(product)">+</span>
+              </span>
+            </div>
         </li>
       </ul>
     </div>
@@ -178,6 +181,12 @@ onMounted(() => {
   color: var(--text-secondary);
 }
 
+.row-item:first-child{
+  color: var(--text);
+  font-size: var(--font-size-medium);
+  font-weight: bold;
+}
+
 .row-item span {
   font-size: var(--font-size-small);
 }
@@ -199,7 +208,7 @@ onMounted(() => {
 
 .counter{
   display: flex;
-  width: 80px;
+  width: 100px;
   height: 27px;
   align-items: center;
   font-size: var(--font-size-medium);
@@ -213,13 +222,13 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: calc(100% / 3);
+  width: 100%;
   border: 1px solid var(--primary);
 }
 
 .counter .input-quantity{
     background-color: var(--background);
-    width: 100%;
+    width: 35px;
     height: inherit;
     text-align: center;
     border: none;
