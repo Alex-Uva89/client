@@ -13,7 +13,7 @@ export default {
 <style scoped>
 
 .logo {
-    font-family: var(--font-primary);
+    font-family: var(--font-secondary);
     font-weight: var(--font-weight-secondary);
     font-size: var(--font-size-xxxlarge);
     text-transform: uppercase;

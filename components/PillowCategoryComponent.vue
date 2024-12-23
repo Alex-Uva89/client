@@ -66,15 +66,20 @@
   
   <style scoped>
   .categories-container {
+      max-width: 1000px;
       display: flex;
       justify-content: start;
       flex-wrap: nowrap;
       gap: 10px;
-      margin: 20px;
+      padding: 0 20px;
+      margin: 20px auto;
+      overflow-x: scroll;
+      scrollbar-width: none;
   }
   
   .btn {
-      max-width: 200px;
+      min-width: 120px;
+      max-width: 300px;
       height: 40px;
       border-radius: 5px;
       background-color: var(--background);

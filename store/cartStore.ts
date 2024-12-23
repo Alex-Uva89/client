@@ -45,25 +45,25 @@ export const useCartStore = defineStore('cartStore', {
         } else {
           this.removeProductFromCart(productId);
         }
-        this.saveCartToStorage(); // Salva il carrello in localStorage
+        this.saveCartToStorage(); 
       }
     },
 
     removeProductFromCart(productId) {
       this.cart = this.cart.filter((item) => item.id !== productId);
-      this.saveCartToStorage(); // Salva il carrello in localStorage
+      this.saveCartToStorage(); 
     },
   
 
     clearCart() {
       this.cart = [];
-      this.saveCartToStorage(); // Salva il carrello in localStorage
+      this.saveCartToStorage(); 
     },
 
     // Metodo per salvare il carrello in localStorage
     saveCartToStorage() {
-      if (typeof window !== 'undefined') { // Verifica che siamo nel browser
-        localStorage.setItem('cart', JSON.stringify(this.cart)); // Salva il carrello in localStorage
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('cart', JSON.stringify(this.cart)); 
       }
     },
 
@@ -86,6 +86,7 @@ export const useCartStore = defineStore('cartStore', {
         orderNumber: this.order.orderNumber,
         cart: this.cart,
         total: this.cart.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2),
+        totalItems: this.cart.reduce((total, item) => total + item.quantity, 0),
       };
 
       localStorage.setItem('orderData', JSON.stringify(orderData));
@@ -113,5 +114,6 @@ export const useCartStore = defineStore('cartStore', {
   getters: {
     getCartWithDetails: (state) => state.cart,
     getCartTotal: (state) => state.cart.reduce((total, item) => total + item.price * item.quantity, 0),
+    getCartTotalItems: (state) => state.cart.reduce((total, item) => total + item.quantity, 0),
   },
 });

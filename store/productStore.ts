@@ -40,7 +40,9 @@ export const useProductStore = defineStore('product', {
       { id: 32, name: 'Grenache', category: 'Vini', subcategory: 'Rosso', price: 12, vigneto: 'Vigneto Spagna', annata: 2020, grado_alcolico: 12.5, img: '/images/vino.jpeg', status: 'true' },
       { id: 33, name: 'Hefeweizen', category: 'Birre', subcategory: 'Bionda', price: 6.2, vigneto: '', annata: '', grado_alcolico: 5.5, img: '/images/vino.jpeg', status: 'true' },
       { id: 34, name: 'Imperial Stout', category: 'Birre', subcategory: 'Scura', price: 8, vigneto: '', annata: '', grado_alcolico: 8, img: '/images/vino.jpeg', status: 'true' },
-      { id: 35, name: 'Pomerol', category: 'Vini', subcategory: 'Rosso', price: 20, vigneto: 'Vigneto Bordeaux', annata: 2019, grado_alcolico: 13, img: '/images/vino.jpeg', status: 'true'  }
+      { id: 35, name: 'Pomerol', category: 'Vini', subcategory: 'Rosso', price: 20, vigneto: 'Vigneto Bordeaux', annata: 2019, grado_alcolico: 13, img: '/images/vino.jpeg', status: 'true'  },
+      { id: 36, name: 'Sancerre', category: 'Vini', subcategory: 'Champagne', price: 18, vigneto: 'Vigneto Francia', annata: 2020, grado_alcolico: 12.5, img: '/images/vino.jpeg', status: 'true' },
+      { id: 37, name: 'SanPio', category: 'Vini', subcategory: 'Spumante', price: 18, vigneto: 'Vigneto Italia', annata: 2020, grado_alcolico: 12.5, img: '/images/vino.jpeg', status: 'true' },
     ],
     searchQuery: ref(''),
     filteredProductsState: ref([]),

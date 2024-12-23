@@ -16,14 +16,28 @@
             <span>
                 La mia spesa
             </span>
+            <span v-if="cartStore.getCartTotalItems != 0" class="cart-counter">
+                {{ cartStore.getCartTotalItems }}
+            </span>
         </router-link>
     </nav>
 
 </template>
 
 <script>
+import { useCartStore } from '@/store/cartStore';
+
+
+
 export default {
-    name: 'navigation'
+    name: 'navigation',
+    setup() {
+        const cartStore = useCartStore();
+
+        return {
+            cartStore
+        }
+    }
 }
 </script>
 
@@ -55,7 +69,25 @@ export default {
                 width: 30px;
                 height: 30px;
             }
+            &:last-child{
+                position: relative;
+            }
         }
+    }
+
+    .cart-counter{
+        position: absolute;
+        bottom: 50px;
+        right: 30px;
+        background-color: #74121D;
+        color: #fff;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: var(--font-size-small);
     }
 
 </style>

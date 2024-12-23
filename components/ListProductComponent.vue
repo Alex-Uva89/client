@@ -110,12 +110,20 @@ export default defineComponent({
     };
 
     const updateQuantity = (product, value) => {
-    const quantity = parseInt(value, 10);
-    if (!isNaN(quantity) && quantity > 0) {
-      cartStore.updateQuantity(product.id, quantity);
-      cartTotal = cartStore.getCartTotal;
-    }
-  };
+        const quantity = parseInt(value, 10);
+        if (!isNaN(quantity) && quantity > 0) {
+            const existingItem = cartStore.cart.find((item) => item.id === product.id);
+            if (existingItem) {
+                cartStore.updateQuantity(product.id, quantity);
+            } else {
+                cartStore.addProductToCart({ ...product, quantity });
+            }
+        } else if (quantity === 0) {
+            cartStore.removeProductFromCart(product.id);
+        }
+
+        cartTotal = cartStore.getCartTotal;
+    };
 
   const validateQuantity = (product) => {
     const existingProduct = cartStore.cart.find((item) => item.id === product.id);
@@ -131,6 +139,8 @@ export default defineComponent({
     return existingProduct ? existingProduct.quantity : 0;
   };
 
+  let cartTotal = cartStore.getCartTotal;
+
 onMounted(() => {
   cartStore.loadCartFromStorage();
 });
@@ -142,7 +152,8 @@ onMounted(() => {
       decreaseQuantity,
       updateQuantity,
       validateQuantity,
-      getQuantity
+      getQuantity,
+      cartTotal
     }
   }
 });

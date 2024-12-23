@@ -28,6 +28,11 @@ export default {
 
 <style scoped>
 
+header{
+    width: 100%;
+    overflow-x: hidden;
+}
+
 .logo-container {
     width: 100%;
     display: flex;

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app">
     <router-view></router-view>
     
     <navigation />
@@ -18,3 +18,11 @@ export default {
   }
 }
 </script>
+
+<style>
+  .app {
+    width: 100vw;
+    height: 100%;
+    overflow: hidden;
+  }
+</style>

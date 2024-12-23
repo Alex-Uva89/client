@@ -1,11 +1,11 @@
-import { version, unref, inject, hasInjectionContext, getCurrentInstance, useSSRContext, createApp, effectScope, shallowReactive, reactive, getCurrentScope, provide, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, toRef, defineAsyncComponent, mergeProps, shallowRef, isReadonly, resolveComponent, withCtx, isRef, isShallow, isReactive, toRaw } from 'vue';
+import { version, unref, inject, hasInjectionContext, getCurrentInstance, useSSRContext, createApp, effectScope, shallowReactive, reactive, getCurrentScope, provide, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, toRef, defineAsyncComponent, mergeProps, shallowRef, isReadonly, resolveComponent, withCtx, openBlock, createBlock, toDisplayString, createCommentVNode, isRef, isShallow, isReactive, toRaw } from 'vue';
 import { $ as $fetch, k as hasProtocol, l as isScriptProtocol, m as joinURL, w as withQuery, n as sanitizeStatusCode, o as getContext, p as createHooks, e as createError$1, q as toRouteMatcher, r as createRouter$1, v as defu } from '../_/nitro.mjs';
 import { b as baseURL } from '../routes/renderer.mjs';
 import { getActiveHead, CapoPlugin } from 'unhead';
 import { defineHeadPlugin } from '@unhead/shared';
 import { createMemoryHistory, createRouter, START_LOCATION } from 'vue-router';
-import { createPinia } from 'pinia';
-import { ssrRenderSuspense, ssrRenderComponent, ssrRenderVNode, ssrRenderAttrs, ssrRenderAttr, ssrRenderSlot } from 'vue/server-renderer';
+import { defineStore, createPinia } from 'pinia';
+import { ssrRenderSuspense, ssrRenderComponent, ssrRenderVNode, ssrRenderAttrs, ssrRenderAttr, ssrInterpolate, ssrRenderSlot } from 'vue/server-renderer';
 import 'node:http';
 import 'node:https';
 import 'node:fs';
@@ -553,22 +553,22 @@ const _routes = [
   {
     name: "cart",
     path: "/cart",
-    component: () => import('./cart-CVsNKS2l.mjs')
+    component: () => import('./cart-DKTulL3U.mjs')
   },
   {
     name: "checkout",
     path: "/checkout",
-    component: () => import('./checkout-DIy-vUBW.mjs')
+    component: () => import('./checkout-EiUOaAqY.mjs')
   },
   {
     name: "confirm",
     path: "/confirm",
-    component: () => import('./confirm-tGKubiMN.mjs')
+    component: () => import('./confirm-9Y_9LqJW.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-34gU0qaF.mjs')
+    component: () => import('./index-Qq_51eCf.mjs')
   },
   {
     name: "login",
@@ -578,12 +578,12 @@ const _routes = [
   {
     name: "menu",
     path: "/menu",
-    component: () => import('./menu-CWYT7zlS.mjs')
+    component: () => import('./menu-rmoDrx6m.mjs')
   },
   {
     name: "product-id",
     path: "/product/:id()",
-    component: () => import('./_id_-BdqbW9Sw.mjs')
+    component: () => import('./_id_-BmFdeds5.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -927,6 +927,103 @@ const plugins = [
   components_plugin_KR1HBZs4kY,
   pinia_Uphuq97G1L
 ];
+const useCartStore = defineStore("cartStore", {
+  state: () => ({
+    cart: [],
+    order: {
+      form: {
+        fullName: "",
+        address: "",
+        deliveryDate: "",
+        email: "",
+        phone: "",
+        additionalInfo: "",
+        acceptTerms: false
+      },
+      orderNumber: null
+    }
+  }),
+  actions: {
+    // Metodo per caricare il carrello da localStorage (se esiste)
+    loadCartFromStorage() {
+    },
+    addProductToCart(product) {
+      const existingItem = this.cart.find((item) => item.id === product.id);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        this.cart.push({ ...product, quantity: 1 });
+      }
+      this.saveCartToStorage();
+    },
+    updateQuantity(productId, newQuantity) {
+      const item = this.cart.find((item2) => item2.id === productId);
+      if (item) {
+        if (newQuantity > 0) {
+          item.quantity = newQuantity;
+        } else {
+          this.removeProductFromCart(productId);
+        }
+        this.saveCartToStorage();
+      }
+    },
+    removeProductFromCart(productId) {
+      this.cart = this.cart.filter((item) => item.id !== productId);
+      this.saveCartToStorage();
+    },
+    clearCart() {
+      this.cart = [];
+      this.saveCartToStorage();
+    },
+    // Metodo per salvare il carrello in localStorage
+    saveCartToStorage() {
+    },
+    updateOrderForm(field, value) {
+      this.order.form[field] = value;
+    },
+    // Metodo per generare un numero ordine
+    generateOrderNumber() {
+      const timestamp = Date.now();
+      const randomPart = Math.floor(Math.random() * 1e4);
+      this.order.orderNumber = `ORD-${timestamp}-${randomPart}`;
+    },
+    // Metodo per salvare l'ordine
+    saveOrder() {
+      this.generateOrderNumber();
+      const orderData = {
+        ...this.order.form,
+        orderNumber: this.order.orderNumber,
+        cart: this.cart,
+        total: this.cart.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2),
+        totalItems: this.cart.reduce((total, item) => total + item.quantity, 0)
+      };
+      localStorage.setItem("orderData", JSON.stringify(orderData));
+      return orderData;
+    },
+    // Metodo per resettare l'ordine e il carrello
+    clearOrderAndCart() {
+      this.cart = [];
+      this.order = {
+        form: {
+          fullName: "",
+          address: "",
+          deliveryDate: "",
+          email: "",
+          phone: "",
+          additionalInfo: "",
+          acceptTerms: false
+        },
+        orderNumber: null
+      };
+      this.saveCartToStorage();
+    }
+  },
+  getters: {
+    getCartWithDetails: (state) => state.cart,
+    getCartTotal: (state) => state.cart.reduce((total, item) => total + item.price * item.quantity, 0),
+    getCartTotalItems: (state) => state.cart.reduce((total, item) => total + item.quantity, 0)
+  }
+});
 const _imports_0$1 = "data:image/svg+xml,%3csvg%20width='25'%20height='26'%20viewBox='0%200%2025%2026'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M19.168%2019.245C21.2279%2017.2026%2022.5103%2014.3759%2022.5103%2011.2524C22.5062%205.04839%2017.4605%200%2011.2551%200C5.04839%200%200%205.04839%200%2011.2551C0%2017.4619%205.04839%2022.5065%2011.2513%2022.5065C13.5879%2022.5065%2015.7572%2021.791%2017.5579%2020.568L22.8036%2026L24.2966%2024.5583L19.168%2019.245ZM2.07309%2011.2551C2.07309%206.19326%206.19156%202.0734%2011.2548%202.0734C16.3167%202.0734%2020.4327%206.19326%2020.4327%2011.2551C20.4327%2016.317%2016.3129%2020.433%2011.2548%2020.433C6.19537%2020.433%202.07309%2016.3146%202.07309%2011.2551Z'%20fill='%2374121D'/%3e%3c/svg%3e";
 const _imports_1 = "" + __buildAssetsURL("mamma-elvira.FdGqdhVm.svg");
 const _imports_0 = "" + __buildAssetsURL("basket.Bdgk0gwp.svg");
@@ -938,18 +1035,24 @@ const _export_sfc = (sfc, props) => {
   return target;
 };
 const _sfc_main$4 = {
-  name: "navigation"
+  name: "navigation",
+  setup() {
+    const cartStore = useCartStore();
+    return {
+      cartStore
+    };
+  }
 };
 function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_router_link = resolveComponent("router-link");
-  _push(`<nav${ssrRenderAttrs(mergeProps({ class: "nav" }, _attrs))} data-v-554fcc84>`);
+  _push(`<nav${ssrRenderAttrs(mergeProps({ class: "nav" }, _attrs))} data-v-8e6411da>`);
   _push(ssrRenderComponent(_component_router_link, {
     to: "/",
     class: "item-nav"
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<img${ssrRenderAttr("src", _imports_0$1)} alt="logo della lente d&#39;ingrandimento" data-v-554fcc84${_scopeId}><span data-v-554fcc84${_scopeId}> Cerca </span>`);
+        _push2(`<img${ssrRenderAttr("src", _imports_0$1)} alt="logo della lente d&#39;ingrandimento" data-v-8e6411da${_scopeId}><span data-v-8e6411da${_scopeId}> Cerca </span>`);
       } else {
         return [
           createVNode("img", {
@@ -968,7 +1071,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<img${ssrRenderAttr("src", _imports_1)} alt="logo aziendale, raffigurante volto di mamma elvira" data-v-554fcc84${_scopeId}><span data-v-554fcc84${_scopeId}>Menù</span>`);
+        _push2(`<img${ssrRenderAttr("src", _imports_1)} alt="logo aziendale, raffigurante volto di mamma elvira" data-v-8e6411da${_scopeId}><span data-v-8e6411da${_scopeId}>Menù</span>`);
       } else {
         return [
           createVNode("img", {
@@ -987,14 +1090,23 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<img${ssrRenderAttr("src", _imports_0)} alt="logo del carrello" data-v-554fcc84${_scopeId}><span data-v-554fcc84${_scopeId}> La mia spesa </span>`);
+        _push2(`<img${ssrRenderAttr("src", _imports_0)} alt="logo del carrello" data-v-8e6411da${_scopeId}><span data-v-8e6411da${_scopeId}> La mia spesa </span>`);
+        if ($setup.cartStore.getCartTotalItems != 0) {
+          _push2(`<span class="cart-counter" data-v-8e6411da${_scopeId}>${ssrInterpolate($setup.cartStore.getCartTotalItems)}</span>`);
+        } else {
+          _push2(`<!---->`);
+        }
       } else {
         return [
           createVNode("img", {
             src: _imports_0,
             alt: "logo del carrello"
           }),
-          createVNode("span", null, " La mia spesa ")
+          createVNode("span", null, " La mia spesa "),
+          $setup.cartStore.getCartTotalItems != 0 ? (openBlock(), createBlock("span", {
+            key: 0,
+            class: "cart-counter"
+          }, toDisplayString($setup.cartStore.getCartTotalItems), 1)) : createCommentVNode("", true)
         ];
       }
     }),
@@ -1008,7 +1120,7 @@ _sfc_main$4.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/Navigation.vue");
   return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
 };
-const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["ssrRender", _sfc_ssrRender$2], ["__scopeId", "data-v-554fcc84"]]);
+const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["ssrRender", _sfc_ssrRender$2], ["__scopeId", "data-v-8e6411da"]]);
 const _sfc_main$3 = {};
 function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<div${ssrRenderAttrs(_attrs)}><div> HEADER `);
@@ -1031,7 +1143,7 @@ const _sfc_main$2 = {
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_router_view = resolveComponent("router-view");
   const _component_navigation = __nuxt_component_0;
-  _push(`<div${ssrRenderAttrs(_attrs)}>`);
+  _push(`<div${ssrRenderAttrs(mergeProps({ class: "app" }, _attrs))}>`);
   _push(ssrRenderComponent(_component_router_view, null, null, _parent));
   _push(ssrRenderComponent(_component_navigation, null, null, _parent));
   _push(`</div>`);
@@ -1146,5 +1258,5 @@ let entry;
 }
 const entry$1 = (ssrContext) => entry(ssrContext);
 
-export { _export_sfc as _, navigateTo as a, useNuxtApp as b, useRuntimeConfig as c, resolveUnrefHeadInput as d, entry$1 as default, _imports_0 as e, injectHead as i, nuxtLinkDefaults as n, resolveRouteObject as r, useRouter as u };
+export { _export_sfc as _, navigateTo as a, useNuxtApp as b, useRuntimeConfig as c, resolveUnrefHeadInput as d, entry$1 as default, useCartStore as e, _imports_0 as f, injectHead as i, nuxtLinkDefaults as n, resolveRouteObject as r, useRouter as u };
 //# sourceMappingURL=server.mjs.map
