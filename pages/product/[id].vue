@@ -43,12 +43,20 @@ const shareProduct = () => {
   };
 
   const updateQuantity = (product, value) => {
-    const quantity = parseInt(value, 10);
-    if (!isNaN(quantity) && quantity > 0) {
-      cartStore.updateQuantity(product.id, quantity);
-      cartTotal = cartStore.getCartTotal;
-    }
-  };
+        const quantity = parseInt(value, 10);
+        if (!isNaN(quantity) && quantity > 0) {
+            const existingItem = cartStore.cart.find((item) => item.id === product.id);
+            if (existingItem) {
+                cartStore.updateQuantity(product.id, quantity);
+            } else {
+                cartStore.addProductToCart({ ...product, quantity });
+            }
+        } else if (quantity === 0) {
+            cartStore.removeProductFromCart(product.id);
+        }
+
+        cartTotal = cartStore.getCartTotal;
+    };
 
   const validateQuantity = (product) => {
     const existingProduct = cartStore.cart.find((item) => item.id === product.id);
@@ -65,6 +73,7 @@ const shareProduct = () => {
     return existingProduct ? existingProduct.quantity : 0;
   };
 
+  let cartTotal = cartStore.getCartTotal;
   
 
 </script>
@@ -150,6 +159,8 @@ const shareProduct = () => {
         <AccordionComponent title="Scheda tecnica" content="Qui andranno i dati del vino" />
       </div>
 
+
+      <!-- OTHER PRODUCTS -->
       <div v-if="productStore.products.filter(p => p.price < product.price && p.category === product.category)" >
         <h3 class="title-other-products">Guarda Anche:</h3>
         <ul class="other-products">
@@ -167,6 +178,21 @@ const shareProduct = () => {
                     <img src="~/assets/icons/price.svg" alt="" class="icon">
                     <p>{{ filteredProduct.price }}</p>
                   </div>
+
+                  <span class="counter">
+                  <span @click="decreaseQuantity(product)">-</span>
+                  <span>
+                    <input 
+                      type="number" 
+                      :value="getQuantity(product)" 
+                      @input="updateQuantity(product, $event.target.value)" 
+                      @blur="validateQuantity(product)" 
+                      class="input-quantity"
+                    />
+                  </span>
+                  <span @click="increaseQuantity(product)">+</span>
+                </span>
+
                 </div>
             </router-link>
           </li>

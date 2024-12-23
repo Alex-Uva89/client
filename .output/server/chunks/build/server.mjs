@@ -583,7 +583,7 @@ const _routes = [
   {
     name: "product-id",
     path: "/product/:id()",
-    component: () => import('./_id_-Cf6-ITo2.mjs')
+    component: () => import('./_id_-CSW5yOSw.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
