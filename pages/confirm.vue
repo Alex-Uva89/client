@@ -57,7 +57,7 @@
         </div>
     
             <div class="container-actions">
-                <ButtonComponent fontSize="18px" @click="downloadOrder">
+                <ButtonComponent fontSize="18px" @click="downloadOrder" color="var(--background)">
                     Scarica l'ordine
                 </ButtonComponent>
             </div>

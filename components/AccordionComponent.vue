@@ -1,6 +1,6 @@
 <template>
     <div class="accordion">
-      <!-- Header -->
+      <!-- LINK -->
       <div v-if="isLink" class="accordion-header">
         <router-link :to="link" class="accordion-title">
             <span>
@@ -10,6 +10,7 @@
             <img src="../assets/icons/close-arrow.svg" alt="icona a freccia" class="arrow">
         </router-link>
       </div>
+      <!-- NOT LINK - CONTENT VARIABLE -->
       <div v-else class="accordion-header" @click="toggleAccordion">
         <h2 class="accordion-title" :class="{'open-title': isOpen}" >
             <span>
@@ -22,7 +23,9 @@
       <!-- Content -->
       <transition name="accordion">
         <div v-if="isOpen && !isLink" class="accordion-content">
-          <p>{{ content }}</p>
+          <p>
+            <slot></slot>
+          </p>
   
           <!-- Optional Input -->
             <div v-if="hasInput" class="accordion-input">
@@ -31,7 +34,7 @@
                 :placeholder="placeholder"
                 v-model="email"
                 />
-                <button>Invia</button>
+                <ButtonComponent width="100%">Invia</ButtonComponent>
             </div>
 
             <!-- Optional Mail -->
@@ -46,7 +49,7 @@
                     placeholder="Inserisci il tuo messaggio" 
                     v-model="email" 
                     />
-                    <button @click="sendEmail">Invia</button>
+                    <ButtonComponent width="100%" @click="sendEmail">Invia</ButtonComponent>
                 </form>
             </div>
         </div>
@@ -56,6 +59,7 @@
   
   <script lang="ts">
   import { defineComponent, ref } from "vue";
+  import ButtonComponent from "./ButtonComponent.vue";
   
   export default defineComponent({
     name: "Accordion",
@@ -68,6 +72,9 @@
       hasMail: { type: Boolean, default: false },
       isLink: { type: Boolean, default: false },
       link: { type: String, default: "#" },
+    },
+    components: {
+      ButtonComponent,
     },
     setup(props) {
       const isOpen = ref(false); 
@@ -123,24 +130,24 @@
         transform: translateY(-50%) rotate(90deg);
     }
   
-  .accordion-content {
-  }
-  
-  .accordion-input {
-  
-  }
-  
-  .accordion-input input {
-  
-  }
-  
-  .accordion-input button {
-    
+  .accordion-content p{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
   }
   
   .accordion-enter-active,
   .accordion-leave-active {
     transition: all 0.3s ease;
+  }
+
+  .accordion-input input {
+    width: 100%;
+    padding: 5px;
+    margin: 10px 0;
+    border: 1px solid var(--text);
+    border-radius: 5px;
   }
   
   .accordion-enter-from,

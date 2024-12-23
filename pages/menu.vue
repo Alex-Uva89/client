@@ -17,22 +17,45 @@
             <img src="../assets/icons/delivery.svg" alt="iconsa pacco delivery" class="accordion-icon">
             <Accordion
               title="Dove spediamo"
-              content="Digita il tuo indirizzo, scopriamo assieme se inviamo da te"
               :hasInput="true"
               :type="'text'"
               :placeholder="'Inserisci il tuo indirizzo'"
               :isLink="false"
-            />
+            >
+            <span>
+              In Cambusa troverai un’ampia selezione di vino, bevande e cibo di qualità. Offriamo servizio
+              di consegna a domicilio presso la location del tuo soggiorno nel Salento.
+            </span>
+            <span>
+              La consegna è gratuita per gli ordini superiori a 79 euro.
+            </span>
+            <span>
+              Inserisci qui sotto un indirizzo valido e scopri se la tua zona è coperta dal nostro servizio.
+            </span>
+            </Accordion>
           </div>
   
           <div class="accordion-container">
             <img src="../assets/icons/mail.svg" alt=""  class="accordion-icon">
             <Accordion
               title="Chi siamo"
-              content="Inserisci la tua email per iscriverti alla nostra newsletter."
               :hasInput="false"
               :isLink="false"
-            />
+            >
+            <p>
+              Cambusa è un servizio di consegna a domicilio per il tuo soggiorno nel Salento. 
+            </p>
+            <p>
+              Hai in programma una festa o aperitivo a casa, in masseria o in villa? Ordina dall’app Cambusa e
+            ricevi comodamente tutta la spesa in tempi rapidissimi.
+            </p> 
+            
+            <p>
+            Inserisci l’indirizzo di consegna nella sezione <strong>“Indirizzi”</strong> e verifica subito la copertura del nostro servizio (garantiamo la consegna
+            in tutto il territorio salentino)!
+            </p>
+            </Accordion>
+
           </div>
         </div>
 
@@ -41,31 +64,59 @@
             <img src="../assets/icons/privacy.svg" alt=""  class="accordion-icon">
             <Accordion
               title="Altre info"
-              content="Inserisci la tua email per iscriverti alla nostra newsletter."
               :hasInput="false"
               :isLink="false"
-            />
+            >
+            <p>
+              La tua privacy è importante per noi. I dati che raccogliamo vengono utilizzati esclusivamente per:
+            </p>
+
+              <ul class="list-info">
+                <li>
+                  Analisi di mercato, al fine di migliorare i nostri servizi e offrirti un'esperienza personalizzata.
+                </li>
+                <li>
+                  Ricordare le tue preferenze e fornirti un servizio più efficiente.
+                </li>
+                <li>
+                  Non condividiamo i tuoi dati con terze parti non autorizzate e li conserviamo in conformità con le normative vigenti sulla protezione dei dati personali.
+                </li>
+              </ul>
+
+            </Accordion>
           </div>
 
           <div class="accordion-container">
             <img src="../assets/icons/clock.svg" alt=""  class="accordion-icon">
             <Accordion
-              title="Orari assistenza clienti"
-              content="Inserisci la tua email per iscriverti alla nostra newsletter."
+              title="Assistenza clienti"
               :hasInput="false"
               :isLink="false"
-            />
+            >
+            <p>
+              Contattaci per qualsiasi dubbio riguardante ordini, disponibilità e istruzioni di consegna.
+            </p>
+            </Accordion>
           </div>
 
           <div class="accordion-container">
             <img src="../assets/icons/help-us.svg" alt=""  class="accordion-icon">
             <Accordion
               title="Aiutaci a migliorare l'app"
-              content="Inviaci una mail con i tuoi feedback"
               :hasInput="false"
               :isLink="false"
               :hasMail="true"
-            />
+            >
+            <h2>
+              Aiutaci a migliorare!!
+            </h2>
+            <p>
+              Cosa ne pensi del servizio CAMBUSA e del funzionamento di questa app?
+            </p>
+            <p>
+              Scrivici e segnala tutto quello che vuoi rispetto alla tua esperienza con noi.
+            </p>
+            </Accordion>
           </div>
         </div>
 
@@ -137,6 +188,19 @@ export default defineComponent({
   border-bottom: 1px solid var(--primary);
   padding: 20px;
   gap: 20px;
+}
+
+.list-info{
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.list-info li{
+  margin-bottom: 10px;
+}
+
+.list-info li::marker{
+  color: var(--primary);
 }
 
 

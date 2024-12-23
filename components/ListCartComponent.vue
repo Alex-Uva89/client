@@ -65,7 +65,7 @@
   
         <div v-if="cartActions" class="cart-actions">
           <router-link to="/">
-            <ButtonComponent color="var(--background)">
+            <ButtonComponent color="var(--primary)">
               <span>Aggiungi altro al carrello</span>
             </ButtonComponent>
           </router-link>

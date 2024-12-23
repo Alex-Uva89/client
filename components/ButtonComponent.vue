@@ -7,9 +7,9 @@
     class="btn" 
     :style="{
         width: width, 
-        backgroundColor: disabled ? 'var(--disabled)' : color,
-        color: color === 'var(--primary)' ? 'var(--primary)' : 'var(--label)', 
-        border: color === 'var(--primary)' ? 'none' : '1px solid var(--primary)',
+        backgroundColor: !disabled? (color === 'var(--primary)' ? 'var(--background)' : 'var(--primary)') : 'var(--disabled)',
+        color: !disabled? (color === 'var(--primary)' ? 'var(--primary)' : 'var(--label)') : 'var(--text-secondary)', 
+        border: !disabled? (color === 'var(--primary)' ? '1px solid var(--primary)' : 'none') : 'none',
         fontSize: fontSize
     }">
   <slot></slot>
@@ -75,6 +75,12 @@ export default {
 
 .btn:disabled{
     cursor: not-allowed;
+}
+
+p{
+    height: 100px;
+    display:flex;
+    gap: 10px;
 }
 
 
