@@ -18,16 +18,19 @@ body{
     background-color: var(--background);
 }
 
-a{
+a, router-link{
     text-decoration: none;
     color: var(--text);
     -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    user-select: none;
+    appearance: none;
 }
 
-a:visited {
+a:visited, router-link:visited  {
     color: var(--text);
 }
 
-a:active {
+a:active, router-link:active  {
     color: var(--text);
 }
