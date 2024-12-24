@@ -6,7 +6,13 @@
             :class="{ 'btn-selected': !categoryStore.selectedCategory }"
             @click="categoryStore.resetCategory"
           >
-            {{ categoryStore.selectedCategory ? '← Indietro' : 'TUTTI' }}
+          <template v-if="categoryStore.selectedCategory">
+            <!-- Icona SVG per "Indietro" -->
+            <img src="@/assets/icons/back_red.svg" alt="Indietro" />
+          </template>
+          <template v-else>
+            TUTTI
+          </template>
           </button>
         <button 
           v-for="item in displayedCategories" 
@@ -89,6 +95,14 @@
   .btn-selected {
       background-color: var(--primary);
       color: white;
+  }
+
+  .btn:has(img) {
+    min-width: 30px;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
   }
   </style>
   

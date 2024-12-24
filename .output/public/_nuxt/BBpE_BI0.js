@@ -1,1 +1,0 @@
-import{_ as o,t as e,v as s}from"./DdxL6ztF.js";const t={name:"LogoSection"},c={class:"logo"};function a(n,_,r,p,d,i){return e(),s("div",c," Cambusa ")}const f=o(t,[["render",a],["__scopeId","data-v-d71b4127"]]);export{f as L};

@@ -202,7 +202,7 @@ onMounted(() => {
   font-size: var(--font-size-small);
 }
 
-.row-item:last-child{
+.product-item > .row-item{
   justify-content: space-between;
 }
 

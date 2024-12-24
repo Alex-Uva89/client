@@ -21,4 +21,13 @@ body{
 a{
     text-decoration: none;
     color: var(--text);
+    -webkit-tap-highlight-color: transparent;
+}
+
+a:visited {
+    color: var(--text);
+}
+
+a:active {
+    color: var(--text);
 }

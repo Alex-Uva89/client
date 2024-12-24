@@ -60,6 +60,8 @@ export default {
 
 .btn{
     border: none;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
     color: white;
     padding: 15px 32px;
     text-align: center;

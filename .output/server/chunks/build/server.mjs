@@ -553,22 +553,22 @@ const _routes = [
   {
     name: "cart",
     path: "/cart",
-    component: () => import('./cart-CGTXfV6O.mjs')
+    component: () => import('./cart-CTjY5bfG.mjs')
   },
   {
     name: "checkout",
     path: "/checkout",
-    component: () => import('./checkout-B_bqgQ3v.mjs')
+    component: () => import('./checkout-fV9OpCU9.mjs')
   },
   {
     name: "confirm",
     path: "/confirm",
-    component: () => import('./confirm-dFafCMwr.mjs')
+    component: () => import('./confirm-m4bMfB2F.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-Z8LeQi4-.mjs')
+    component: () => import('./index-Bkxopsy_.mjs')
   },
   {
     name: "login",
@@ -578,12 +578,12 @@ const _routes = [
   {
     name: "menu",
     path: "/menu",
-    component: () => import('./menu-3T7oMJw6.mjs')
+    component: () => import('./menu-BVyF_J5r.mjs')
   },
   {
     name: "product-id",
     path: "/product/:id()",
-    component: () => import('./_id_-Dps975wL.mjs')
+    component: () => import('./_id_-B6qDjCfW.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -1045,14 +1045,14 @@ const _sfc_main$4 = {
 };
 function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_router_link = resolveComponent("router-link");
-  _push(`<nav${ssrRenderAttrs(mergeProps({ class: "nav" }, _attrs))} data-v-8e6411da>`);
+  _push(`<nav${ssrRenderAttrs(mergeProps({ class: "nav" }, _attrs))} data-v-3c47f9e8>`);
   _push(ssrRenderComponent(_component_router_link, {
     to: "/",
     class: "item-nav"
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<img${ssrRenderAttr("src", _imports_0$1)} alt="logo della lente d&#39;ingrandimento" data-v-8e6411da${_scopeId}><span data-v-8e6411da${_scopeId}> Cerca </span>`);
+        _push2(`<img${ssrRenderAttr("src", _imports_0$1)} alt="logo della lente d&#39;ingrandimento" data-v-3c47f9e8${_scopeId}><span data-v-3c47f9e8${_scopeId}> Cerca </span>`);
       } else {
         return [
           createVNode("img", {
@@ -1071,7 +1071,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<img${ssrRenderAttr("src", _imports_1)} alt="logo aziendale, raffigurante volto di mamma elvira" data-v-8e6411da${_scopeId}><span data-v-8e6411da${_scopeId}>Menù</span>`);
+        _push2(`<img${ssrRenderAttr("src", _imports_1)} alt="logo aziendale, raffigurante volto di mamma elvira" data-v-3c47f9e8${_scopeId}><span data-v-3c47f9e8${_scopeId}>Menù</span>`);
       } else {
         return [
           createVNode("img", {
@@ -1090,9 +1090,9 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<img${ssrRenderAttr("src", _imports_0)} alt="logo del carrello" data-v-8e6411da${_scopeId}><span data-v-8e6411da${_scopeId}> La mia spesa </span>`);
+        _push2(`<img${ssrRenderAttr("src", _imports_0)} alt="logo del carrello" data-v-3c47f9e8${_scopeId}><span data-v-3c47f9e8${_scopeId}> La mia Cambusa </span>`);
         if ($setup.cartStore.getCartTotalItems != 0) {
-          _push2(`<span class="cart-counter" data-v-8e6411da${_scopeId}>${ssrInterpolate($setup.cartStore.getCartTotalItems)}</span>`);
+          _push2(`<span class="cart-counter" data-v-3c47f9e8${_scopeId}>${ssrInterpolate($setup.cartStore.getCartTotalItems)}</span>`);
         } else {
           _push2(`<!---->`);
         }
@@ -1102,7 +1102,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
             src: _imports_0,
             alt: "logo del carrello"
           }),
-          createVNode("span", null, " La mia spesa "),
+          createVNode("span", null, " La mia Cambusa "),
           $setup.cartStore.getCartTotalItems != 0 ? (openBlock(), createBlock("span", {
             key: 0,
             class: "cart-counter"
@@ -1120,7 +1120,7 @@ _sfc_main$4.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/Navigation.vue");
   return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
 };
-const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["ssrRender", _sfc_ssrRender$2], ["__scopeId", "data-v-8e6411da"]]);
+const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["ssrRender", _sfc_ssrRender$2], ["__scopeId", "data-v-3c47f9e8"]]);
 const _sfc_main$3 = {};
 function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<div${ssrRenderAttrs(_attrs)}><div> HEADER `);

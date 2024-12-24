@@ -14,7 +14,7 @@
         <router-link to="/cart" class="item-nav">
             <img src="../assets/icons/basket.svg" alt="logo del carrello">
             <span>
-                La mia spesa
+                La mia Cambusa
             </span>
             <span v-if="cartStore.getCartTotalItems != 0" class="cart-counter">
                 {{ cartStore.getCartTotalItems }}

@@ -1,6 +1,6 @@
 <template>
     <div>
-      <Header title="La mia lista della spesa" />
+      <Header title="La mia Cambusa" />
   
       <div v-if="cartStore.getCartTotal.toFixed(2) > 0" class="container-cart">
         <CartComponent />

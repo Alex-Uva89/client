@@ -13,9 +13,6 @@ const cartStore = useCartStore();
 const productStore = useProductStore();
 const product = productStore.products.find(p => p.id === parseInt(productId));
 
-const shareProduct = () => {
-
-}
 
  // COUNTER
  const increaseQuantity = (product) => {
@@ -74,7 +71,23 @@ const shareProduct = () => {
   };
 
   let cartTotal = cartStore.getCartTotal;
-  
+
+// SHARING URL
+const isCopied = ref(false);
+
+const copyProductLink = async () => {
+  const url = window.location.href;   
+  try {
+    await navigator.clipboard.writeText(url); 
+    isCopied.value = true; 
+    setTimeout(() => {
+      isCopied.value = false; 
+    }, 1000);
+  } catch (error) {
+    console.error('Errore durante la copia del link:', error);
+    alert('Impossibile copiare il link. Riprova.');
+  }
+};
 
 </script>
 
@@ -87,9 +100,8 @@ const shareProduct = () => {
       <div class="img-container">
         <img class="img-product" :src="product.img" :alt="product.name" />
       </div>
-      <button class="btn btn-primary" @click="shareProduct">
-        <!-- <img src="~/assets/icons/arrow.svg" alt=""> -->
-         condividi
+      <button class="btn btn-primary" @click="copyProductLink()">
+        <img src="~/assets/icons/share.svg" alt="icona di condivisione">
       </button>
     </div>
 
@@ -184,19 +196,25 @@ const shareProduct = () => {
                   <span>
                     <input 
                       type="number" 
-                      :value="getQuantity(product)" 
-                      @input="updateQuantity(product, $event.target.value)" 
-                      @blur="validateQuantity(product)" 
+                      :value="getQuantity(filteredProduct)" 
+                      @input="updateQuantity(filteredProduct, $event.target.value)" 
+                      @blur="validateQuantity(filteredProduct)" 
                       class="input-quantity"
                     />
                   </span>
-                  <span @click="increaseQuantity(product)">+</span>
+                  <span @click="increaseQuantity(filteredProduct)">+</span>
                 </span>
 
                 </div>
             </router-link>
           </li>
         </ul>
+      </div>
+
+      <!-- MODULE LINK COPIED -->
+
+      <div v-if="isCopied" class="link-copied">
+        <p>Link copiato negli appunti!</p>
       </div>
 
   </div>
@@ -221,6 +239,10 @@ const shareProduct = () => {
   position: absolute;
   bottom: 100%;
   right: 25px;
+}
+
+.btn{
+  border:none;
 }
 
 .btnBack {
@@ -391,6 +413,29 @@ const shareProduct = () => {
 
 .other-products li a .info-container{
   margin-top: 10px;
+}
+
+/* LINK URL */
+
+.link-copied{
+  position: fixed;
+  top: 50%;
+  left: 0;
+  width: 100vw;
+  height: 10vh;
+  background-color: var(--primary);
+  opacity: 0.8;
+  color: var(--background);
+  padding: 10px;
+  text-align: center;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link-copied div{
+  background-color: white;
 }
 
 </style>
