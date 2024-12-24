@@ -12,8 +12,8 @@
         border: !disabled? (color === 'var(--primary)' ? '1px solid var(--primary)' : 'none') : 'none',
         fontSize: fontSize
     }">
-  <slot></slot>
-</button>
+        <slot></slot>
+    </button>
     <router-link v-else :to="link" class="btn" :style="{ backgroundColor: color, width: width, color: color === 'var(--primary)' ? 'var(--label)' : 'var(--primary)', border: color === 'var(--primary)' ? 'none' : '1px solid var(--primary)'}">
         <slot></slot>
     </router-link>
@@ -60,8 +60,6 @@ export default {
 
 .btn{
     border: none;
-    -webkit-backface-visibility: hidden;
-    -webkit-transform: translate3d(0, 0, 0);
     color: white;
     padding: 15px 32px;
     text-align: center;
@@ -73,6 +71,13 @@ export default {
     border-radius: 5px;
     font-family: var(--font-secondary);
     font-weight: var(--font-weight-secondary);
+    /* IOS */
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    user-select: none;
+    appearance: none;
 }
 
 .btn:disabled{

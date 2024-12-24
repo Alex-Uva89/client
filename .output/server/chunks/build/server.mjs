@@ -553,17 +553,17 @@ const _routes = [
   {
     name: "cart",
     path: "/cart",
-    component: () => import('./cart-CTjY5bfG.mjs')
+    component: () => import('./cart-BF9-D5eL.mjs')
   },
   {
     name: "checkout",
     path: "/checkout",
-    component: () => import('./checkout-fV9OpCU9.mjs')
+    component: () => import('./checkout-DIOy0kRU.mjs')
   },
   {
     name: "confirm",
     path: "/confirm",
-    component: () => import('./confirm-m4bMfB2F.mjs')
+    component: () => import('./confirm-CzLwkx9o.mjs')
   },
   {
     name: "index",
@@ -578,12 +578,12 @@ const _routes = [
   {
     name: "menu",
     path: "/menu",
-    component: () => import('./menu-BVyF_J5r.mjs')
+    component: () => import('./menu-tm5mj7xu.mjs')
   },
   {
     name: "product-id",
     path: "/product/:id()",
-    component: () => import('./_id_-B6qDjCfW.mjs')
+    component: () => import('./_id_-BqzpfW7p.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
