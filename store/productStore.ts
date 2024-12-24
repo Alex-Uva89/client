@@ -6,8 +6,8 @@ import { useCartStore } from './cartStore';
 export const useProductStore = defineStore('product', {
   state: () => ({
     products: [
-      { id: 1, name: 'Chimay Blue', category: 'Birre', subcategory: 'Scura', price: 8, vigneto: '', annata: '', grado_alcolico: 9, img: '/images/vino.jpeg', status: 'true' },
-      { id: 2, name: 'Chianti Classico', category: 'Vini', subcategory: 'Rosso', price: 15, vigneto: 'Vigneto Toscana', annata: 2018, grado_alcolico: 13, img: '/images/vino.jpeg', status: 'false' },
+      { id: 1, name: 'Chianti Classico', category: 'Vini', subcategory: 'Rosso', price: 15, vigneto: 'Vigneto Toscana', annata: 2018, grado_alcolico: 13, img: '/images/vino.jpeg', status: 'false' },
+      { id: 2, name: 'Chimay Blue', category: 'Birre', subcategory: 'Scura', price: 8, vigneto: '', annata: '', grado_alcolico: 9, img: '/images/vino.jpeg', status: 'true' },
       { id: 3, name: 'Sauvignon Blanc', category: 'Vini', subcategory: 'Bianco', price: 12, vigneto: 'Vigneto Friuli', annata: 2020, grado_alcolico: 12.5, img: '/images/vino.jpeg', status: 'true' },
       { id: 4, name: 'Cerasuolo Di Vittoria', category: 'Vini', subcategory: 'Rosso', price: 11, vigneto: 'Vigneto Sicilia', annata: 2021, grado_alcolico: 12, img: '/images/vino.jpeg', status: 'true' },
       { id: 5, name: 'Heineken', category: 'Birre', subcategory: 'Bionda', price: 6, vigneto: '', annata: '', grado_alcolico: 5, img: '/images/vino.jpeg', status: 'true' },

@@ -2,7 +2,7 @@ import { resolveComponent, mergeProps, withCtx, createVNode, unref, createTextVN
 import { ssrRenderAttrs, ssrRenderComponent, ssrRenderAttr, ssrInterpolate, ssrRenderList } from 'vue/server-renderer';
 import { _ as _imports_1 } from './price-BtEUJ4pC.mjs';
 import { useRoute } from 'vue-router';
-import { u as useProductStore } from './productStore-CS9ug1xV.mjs';
+import { u as useProductStore } from './productStore-B0kvHoIu.mjs';
 import { _ as _export_sfc, e as useCartStore } from './server.mjs';
 import { B as ButtonComponent } from './ButtonComponent-ChpXjk40.mjs';
 import { A as AccordionComponent } from './AccordionComponent-BhquGMKD.mjs';
@@ -205,4 +205,4 @@ _sfc_main.setup = (props, ctx) => {
 const _id_ = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-a140b5b2"]]);
 
 export { _id_ as default };
-//# sourceMappingURL=_id_-CSW5yOSw.mjs.map
+//# sourceMappingURL=_id_-Dps975wL.mjs.map
