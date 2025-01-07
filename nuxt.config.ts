@@ -2,6 +2,11 @@ export default defineNuxtConfig({
   ssr: true,
   nitro: {
     preset: 'node-server',
+    handlers: [
+      {
+        handler: '~/server/express.ts',
+      },
+    ],
   },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
