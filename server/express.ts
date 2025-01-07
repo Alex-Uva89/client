@@ -7,11 +7,11 @@ app.use(cors());
 app.use(express.json());
 
 const connection = mysql.createConnection({
-  host: process.env.DB_HOST || 'menu-mamma-elvira.cpuk68cqabe5.eu-south-1.rds.amazonaws.com',
+  host: process.env.DB_HOST,
   port: Number(process.env.DB_PORT) || 3306,
-  user: process.env.DB_USER || 'adminDev',
-  password: process.env.DB_PASSWORD || '*1qaz2wsx3edc',
-  database: process.env.DB_NAME || 'db_menu',
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 });
 
 app.get('/api/drinks', (req, res) => {
