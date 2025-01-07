@@ -7,7 +7,7 @@ app.use(cors())
 
 const connection = mysql.createConnection({
   host: process.env.DB_HOST || 'menu-mamma-elvira.cpuk68cqabe5.eu-south-1.rds.amazonaws.com',
-  port: process.env.DB_PORT || 3306,
+  port: process.env.DB_PORT || 8000,
   user: process.env.DB_USER || 'adminDev',
   password: process.env.DB_PASSWORD || '*1qaz2wsx3edc',
   database: process.env.DB_NAME || 'db_menu'
