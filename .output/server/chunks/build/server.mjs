@@ -10,6 +10,9 @@ import 'node:http';
 import 'node:https';
 import 'node:fs';
 import 'node:url';
+import 'express';
+import 'mysql2';
+import 'cors';
 import 'node:path';
 import 'vue-bundle-renderer/runtime';
 import 'devalue';
@@ -1142,10 +1145,10 @@ const _sfc_main$2 = {
 };
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_router_view = resolveComponent("router-view");
-  const _component_navigation = __nuxt_component_0;
+  const _component_Navigation = __nuxt_component_0;
   _push(`<div${ssrRenderAttrs(mergeProps({ class: "app" }, _attrs))}>`);
   _push(ssrRenderComponent(_component_router_view, null, null, _parent));
-  _push(ssrRenderComponent(_component_navigation, null, null, _parent));
+  _push(ssrRenderComponent(_component_Navigation, null, null, _parent));
   _push(`</div>`);
 }
 const _sfc_setup$2 = _sfc_main$2.setup;
