@@ -51,7 +51,7 @@
             </p> 
             
             <p>
-            Inserisci l’indirizzo di consegna nella sezione <strong>“Indirizzi”</strong> e verifica subito la copertura del nostro servizio (garantiamo la consegna
+            Inserisci l’indirizzo di consegna nella sezione <strong>“Dove spediamo”</strong> e verifica subito la copertura del nostro servizio (garantiamo la consegna
             in tutto il territorio salentino)!
             </p>
             </Accordion>
@@ -95,6 +95,15 @@
             >
             <p>
               Contattaci per qualsiasi dubbio riguardante ordini, disponibilità e istruzioni di consegna.
+            
+              <a href="tel:+393496534355" 
+                class="call-button" 
+                role="button" 
+                aria-label="Chiama il nostro servizio clienti"
+                tabindex="0">
+                <span class="button-text">Chiama ora</span>
+                <span class="visually-hidden">+39 123 456 7890</span>
+              </a>
             </p>
             </Accordion>
           </div>
@@ -106,6 +115,8 @@
               :hasInput="false"
               :isLink="false"
               :hasMail="true"
+              heigtInput="min-height: 80px; align-items: flex-start;"
+            
             >
             <h2>
               Aiutaci a migliorare!!
@@ -203,6 +214,13 @@ export default defineComponent({
   color: var(--primary);
 }
 
+/* pulsante chiama ora */
+
+.call-button{
+  color: var(--primary);
+  border-radius: 5px;
+  text-decoration: none;
+}
 
 .footer{
   width: 100%;

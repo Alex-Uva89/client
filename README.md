@@ -1,75 +1,102 @@
-# Nuxt Minimal Starter
+# CAMBUSA
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A modern web application built with Nuxt.js and Pinia for state management.
 
-## Setup
+## Project Structure
 
-Make sure to install dependencies:
+### Directory Tree
+<pre>
+client-root/
+├── assets/
+│   ├── font/
+│   ├── icons/
+│   ├── images/
+│   └── styles/
+├── components/
+├── layouts/
+│   ├── default/
+│   └── home/
+├── pages/
+│   ├── cart/
+│   ├── checkout/
+│   ├── confirm/
+│   ├── home/
+│   ├── login/
+│   ├── menu/
+│   └── product/
+├── plugins/
+│   └── pinia.js
+├── public/
+├── server/
+├── static/
+├── store/
+│   ├── cartStore/
+│   ├── productStore/
+│   └── categoryStore/
+├── .env.example
+├── .gitignore
+├── nuxt.config.js
+└── package.json
+</pre>
 
-```bash
-# npm
-npm install
+## Directory Structure Explanation
 
-# pnpm
-pnpm install
+### Core Directories
 
-# yarn
-yarn install
+#### Assets
+Contains uncompiled assets:
+* **font/** - Typography files
+* **icons/** - Icon assets
+* **images/** - Image resources
+* **styles/** - Style files
 
-# bun
-bun install
-```
+#### Components
+* Vue components used throughout the application
 
-## Development Server
+#### Layouts
+* **default/** - Default layout template
+* **home/** - Home-specific layout
 
-Start the development server on `http://localhost:3000`:
+#### Pages
+Application views and routes:
+* **cart/** - Shopping cart functionality
+* **checkout/** - Checkout process
+* **confirm/** - Order confirmation
+* **home/** - Homepage
+* **login/** - Authentication
+* **menu/** - Menu display
+* **product/** - Product details
 
-```bash
-# npm
-npm run dev
+### State Management and Configuration
 
-# pnpm
-pnpm dev
+#### Plugins
+* Plugin configurations including Pinia setup
 
-# yarn
-yarn dev
+#### Store
+Pinia stores for state management:
+* **cartStore/** - Shopping cart state
+* **productStore/** - Product data state
+* **categoryStore/** - Category management
 
-# bun
-bun run dev
-```
+### Static Assets and Server
 
-## Production
+* **public/** - Public assets
+* **static/** - Static icon resources
+* **server/** - Server-side functionality (currently unused)
 
-Build the application for production:
+## Getting Started
 
-```bash
-# npm
-npm run build
+1. Install dependencies:
+   ```bash
+   npm install
 
-# pnpm
-pnpm build
+2. Run development server:
+   ```bash
+   npm run dev
 
-# yarn
-yarn build
+3. Build for production:
+   ```bash
+   npm run build
 
-# bun
-bun run build
-```
+Copy .env.example to .env and configure environment variables.
 
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

@@ -66,25 +66,26 @@ export default defineComponent({
 
     // Usa computed per rendere reattivo filteredProductsState
     const filteredProductsState = computed(() => productStore.filteredProductsState);
-
+    
     const searchQuery = computed(() => productStore.searchQuery);
 
     const filteredProducts = computed(() => {
-      let filtered = filteredProductsState.value.length > 0 ? filteredProductsState.value : productStore.products;
+      let filtered = filteredProductsState.value.length > 0 
+        ? filteredProductsState.value 
+        : productStore.products;
 
-      // Filtro per categoria
-      if (categoryStore.selectedSubcategory || categoryStore.selectedCategory) {
-
+      // Category filter
+      if (categoryStore.selectedCategory) {
         filtered = filtered.filter(product => {
-          if (categoryStore.selectedSubcategory) {
-            return product.subcategory === categoryStore.selectedSubcategory;
-          } else {
-            return product.category === categoryStore.selectedCategory;
+          if (categoryStore.selectedCategory && product.category_id === categoryStore.selectedCategory['category'].id) {
+            return product;
           }
         });
+      } else {
+        filtered = filtered.filter(product => product);
       }
 
-      // Filtro per ricerca
+      // Search filter
       if (searchQuery.value) {
         filtered = filtered.filter(product =>
           product.name.toLowerCase().includes(searchQuery.value.toLowerCase())
@@ -143,7 +144,9 @@ export default defineComponent({
 
 onMounted(() => {
   cartStore.loadCartFromStorage();
+  
 });
+
 
     return {
       categoryStore,

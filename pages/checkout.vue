@@ -23,9 +23,6 @@
                 <label for="deliveryDate" aria-label="Data e Ora di Consegna">Data e Ora*</label>
                 <img src="../assets/icons/date.svg" alt="icona data e ora">
                 <input v-model="form.deliveryDate" type="datetime-local" @focus="hidePlaceholder" @blur="showPlaceholder" @click="openDate" id="deliveryDate" required aria-required="true" aria-describedby="deliveryDateHelp" class="input-date" />
-                <span v-if="showPlaceholderText" class="placeholder-text">
-                     dd/mm/yyyy --:--
-                </span>
                 <small id="deliveryDateHelp">Scegli la data e l'orario di consegna</small>
             </div>
 
@@ -278,22 +275,6 @@
     margin: 0 20px;
 }
 
-.placeholder-text{
-    position: absolute;
-    top: 45%;
-    left: 12%;
-    color: #aaa;
-    pointer-events: none;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    justify-content: start;
-    width: 200px;
-}
-
-.placeholder-text img{
-    width: 20px;
-}
 
 .form-group img{
     position: absolute;
@@ -303,16 +284,9 @@
     width: 18px;
 }
 
-.input-date{
-    color: var(--label);
-}
 
-.input-date:focus{
-    color: trasparent;
-}
-
-.input-date::-webkit-calendar-picker-indicator{
-   display: none;
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    display: none;
 }
 
 /* ERROR INPUT */

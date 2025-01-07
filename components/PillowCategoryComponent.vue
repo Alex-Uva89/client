@@ -19,53 +19,58 @@
           :key="item" 
           class="btn"
           :class="{ 'btn-selected': isSelected(item) }"
-          @click="selectCategoryOrSubcategory(item)"
+          @click="selectCategory(item)"
         >
-          {{ item }}
+          {{ item['category'].name }}
         </button>
       </div>
     </div>
 </template>
   
 <script lang="ts">
-  import { defineComponent, computed } from 'vue'
-  import { useCategoryStore } from '@/store/categoryStore'
-  import { useProductStore } from '@/store/productStore'
-  
-  export default defineComponent({
-    name: 'PillowCategoryComponent',
-    setup() {
-      const categoryStore = useCategoryStore()
-      const { getCategories, getSubcategories, getFirstSubcategory } = useProductStore()
-  
-      const displayedCategories = computed(() => {
-        return categoryStore.selectedCategory
-          ? getSubcategories(categoryStore.selectedCategory)
-          : getCategories
-      })
-  
-      const selectCategoryOrSubcategory = (item: string) => {
-        if (!categoryStore.selectedCategory) {
-          categoryStore.setCategory(item)
-          const firstSub = getFirstSubcategory(item)
-          if (firstSub) categoryStore.setSubcategory(firstSub)
-        } else {
-          categoryStore.setSubcategory(item)
-        }
-      }
-  
-      const isSelected = (item: string) => {
-        return categoryStore.selectedCategory === item || categoryStore.selectedSubcategory === item
-      }
-  
-      return {
-        categoryStore,
-        displayedCategories,
-        selectCategoryOrSubcategory,
-        isSelected
+import { defineComponent, computed, onMounted } from 'vue'
+import { useCategoryStore } from '@/store/categoryStore'
+import { useProductStore } from '@/store/productStore'
+
+export default defineComponent({
+  name: 'PillowCategoryComponent',
+  setup() {
+    const categoryStore = useCategoryStore()
+    const productStore = useProductStore()
+
+    const displayedCategories = computed(() => {
+      return categoryStore.categories.map((category) => ({
+        category
+    }))
+})
+
+    const selectCategory = (item: string) => {
+      categoryStore.setCategory(item)
+      productStore.fetchProducts()
+    }
+
+    const isSelected = (item: string) => {
+      if (!categoryStore.selectedCategory) {
+        return false
+      } else {
+        return categoryStore.selectedCategory['category'].name === item['category'].name
       }
     }
-  })
+
+    onMounted(() => {
+        productStore.fetchProducts(),
+        categoryStore.fetchCategories()
+    })
+
+
+    return {
+      categoryStore,
+      displayedCategories,
+      selectCategory,
+      isSelected
+    }
+  }
+})
 </script>
   
 
@@ -84,8 +89,9 @@
   }
   
   .btn {
-      min-width: 120px;
+      min-width: fit-content;
       max-width: 300px;
+      padding: 0 10px;
       height: 40px;
       border-radius: 5px;
       background-color: var(--background);
@@ -97,12 +103,18 @@
       color: white;
   }
 
-  .btn:has(img) {
-    min-width: 30px;
+  button:has(img) {
+      width: 20px;
+      height: 30px;
       border: none;
       display: flex;
       justify-content: center;
       align-items: center;
+  }
+
+  .btn img{
+      width: 100%;
+      height: 100%;
   }
   </style>
   

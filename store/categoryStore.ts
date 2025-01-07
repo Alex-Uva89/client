@@ -1,31 +1,40 @@
 import { defineStore } from 'pinia'
+import { getCategories } from '~/services/api/categories'
 
 export const useCategoryStore = defineStore('category', {
   state: () => ({
-    selectedCategory: null as string | null,
-    selectedSubcategory: null as string | null
+    selectedCategory: null,
+    selectedSuperCategory: null,
+    categories: []
   }),
-  actions: {
-    setCategory(category: string) {
-    //   console.log("setCategory", category)
-      this.selectedCategory = category
-      this.selectedSubcategory = null
-    },
-    setSubcategory(subcategory: string) {
-        // console.log("setSubcategory", subcategory)
-      this.selectedSubcategory = subcategory
-    },
-    resetCategory() {
 
+  getters: {
+    getCategoryById: (state) => (id) => {
+      return state.categories.find(category => category.id === id)
+    },
+    
+    getActiveCategories: (state) => {
+      return state.categories.filter(category => category.is_active)
+    }
+  },
+
+  actions: {
+    setCategory(category) {
+      this.selectedSuperCategory = category['category'].super_category_id;
+      this.selectedCategory = category
+    },
+
+    resetCategory() {
       this.selectedCategory = null
-      this.selectedSubcategory = null
-    //   console.log("resetCategory", this.selectedSubcategory)
-    //   console.log("resetCategory", this.selectedCategory)
+    },
+
+    async fetchCategories() {
+      try {
+        const data = await getCategories()
+        this.categories = data  
+      } catch (error) {
+        console.error('Errore nel caricamento delle categorie:', error)
+      }
     }
   }
 })
-
-
-
-
-

@@ -1,5 +1,5 @@
 <template>
-      <h1 class="intestate-category">{{ categoryStore.selectedSubcategory ? categoryStore.selectedSubcategory : 'Tutti' }}</h1>
+      <h1 class="intestate-category">{{ categoryStore.selectedCategory ? categoryStore.selectedCategory['category'].name : 'Tutti' }}</h1>
 </template>
 
 <script>

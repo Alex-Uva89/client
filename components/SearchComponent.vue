@@ -73,6 +73,10 @@ export default defineComponent({
       inputText = document.getElementById('search-bar') as HTMLInputElement;
     });
 
+    onMounted(async () => {
+      await productStore.fetchProducts()
+    })
+
     return {
       searchQuery: productStore.searchQuery,
       updateSearchQuery,

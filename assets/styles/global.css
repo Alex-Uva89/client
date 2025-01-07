@@ -34,3 +34,46 @@ a:visited, router-link:visited  {
 a:active, router-link:active  {
     color: var(--text);
 }
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+input:focus, textarea:focus, select:focus{
+    outline: var(--primary) 1px solid;
+    border: none;
+    box-shadow: 0 0 4px 3px var(--primary);
+}
+/* DATE PICKER */
+
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  /* Personalizzazione del calendario (Firefox) */
+  input[type="datetime-local"]::-moz-calendar-picker-indicator {
+    cursor: pointer;
+    padding: 5px;
+    color: var(--text);
+  }
+
+    /* Personalizzazione del calendario (Safari) */
+    input[type="datetime-local"]::-webkit-datetime-edit {
+    cursor: pointer;
+    padding: 5px;
+    color: var(--text);
+  }
+
+  input[type="datetime-local"] {
+    color-scheme: light dark;
+    color: var(--text);
+    background-color: white;
+  }

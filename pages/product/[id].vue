@@ -89,6 +89,10 @@ const copyProductLink = async () => {
   }
 };
 
+onMounted(async () => {
+  await productStore.fetchProducts()
+})
+
 </script>
 
 <template>
@@ -165,7 +169,11 @@ const copyProductLink = async () => {
 
       <div class="container-accordion">
 
-        <AccordionComponent title="Descrizione" content="Qui andrà la descrizione del vino" />
+        <template v-if="product.description">
+          <AccordionComponent title="Descrizione" >
+            <p>{{ product.description }}</p>
+          </AccordionComponent>
+        </template>
     
   
         <AccordionComponent title="Scheda tecnica" content="Qui andranno i dati del vino" />

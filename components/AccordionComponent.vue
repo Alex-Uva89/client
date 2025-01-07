@@ -39,19 +39,49 @@
 
             <!-- Optional Mail -->
             <div v-if="hasMail" class="accordion-input">
-                <form action="">
-                    <input 
-                    type="email" 
-                    placeholder="Inserisci la tua email" 
-                    v-model="email">
-                    <input 
-                    type="text" 
-                    placeholder="Inserisci il tuo messaggio" 
-                    v-model="email" 
-                    />
-                    <ButtonComponent width="100%" @click="sendEmail">Invia</ButtonComponent>
-                </form>
-            </div>
+    <form 
+        action="/submit-form" 
+        method="POST"
+        @submit.prevent="sendEmail"
+        aria-label="Form di contatto"
+    >
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input 
+                id="email"
+                type="email"
+                placeholder="Inserisci la tua email" 
+                v-model="emailText"
+                required
+                aria-required="true"
+                aria-describedby="email-help"
+            />
+            <span id="email-help" class="visually-hidden">Inserisci la tua email per essere ricontattato</span>
+        </div>
+
+        <div class="form-group">
+            <label for="message">Messaggio</label>
+                    <textarea  
+                        id="message"
+                        :style="heigtInput"
+                        placeholder="Inserisci il tuo messaggio" 
+                        v-model="email"
+                        required
+                        aria-required="true"
+                        aria-describedby="message-help"
+                    ></textarea>
+                    <span id="message-help" class="visually-hidden">Scrivi il tuo messaggio</span>
+                </div>
+
+                <ButtonComponent 
+                    type="submit"
+                    width="100%" 
+                    aria-label="Invia il messaggio"
+                >
+                    Invia
+                </ButtonComponent>
+            </form>
+        </div>
         </div>
       </transition>
     </div>
@@ -72,6 +102,7 @@
       hasMail: { type: Boolean, default: false },
       isLink: { type: Boolean, default: false },
       link: { type: String, default: "#" },
+      heigtInput: { type: String, default: "height: auto;" },
     },
     components: {
       ButtonComponent,
@@ -97,10 +128,6 @@
   <style scoped>
   .accordion {
     flex: 1;
-  }
-  
-  .accordion-header {
-    
   }
   
   .accordion-title {
@@ -165,6 +192,25 @@
 
   a.accordion-title{
     display: block;
+  }
+
+
+  .accordion-input textarea{
+    width: 100%;
+    padding: 5px;
+    margin: 10px 0;
+    border: 1px solid var(--text);
+    border-radius: 5px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .accordion-input textarea::placeholder{
+    font-family: var(--font-secondary);
+    font-weight: var(--font-weight-primary);
+    font-size: 16px;
   }
   </style>
   
