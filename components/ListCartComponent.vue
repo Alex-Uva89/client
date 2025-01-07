@@ -64,15 +64,15 @@
         </div>
   
         <div v-if="cartActions" class="cart-actions">
-          <router-link to="/">
-            <ButtonComponent color="var(--primary)">
-              <span>Aggiungi altro al carrello</span>
-            </ButtonComponent>
-          </router-link>
-  
           <router-link to="/checkout">
             <ButtonComponent isLink="true" link="/checkout">
               <span>Procedi all'acquisto</span>
+            </ButtonComponent>
+          </router-link>
+
+          <router-link to="/">
+            <ButtonComponent color="var(--primary)">
+              <span>Aggiungi altro al carrello</span>
             </ButtonComponent>
           </router-link>
         </div>
@@ -306,6 +306,10 @@ li{
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   box-shadow: -2px 0 4px rgba(0, 0, 0, 0.3);
+}
+
+.counter span:not(span:has(.input-quantity)){
+  padding: 0 10px;
 }
 
 /* END COUNTER */

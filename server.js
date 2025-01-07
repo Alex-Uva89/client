@@ -26,15 +26,21 @@ app.get('/api/drinks', (req, res) => {
 
 // Categories endpoint
 app.get('/api/categories', (req, res) => {
-    connection.query('SELECT * FROM categories WHERE is_drink = true', (error, results) => {
-      if (error) {
-        res.status(500).json({ error: 'Database error' })
-        return
-      }
-      res.json(results)
-    })
+  const query = `
+    SELECT DISTINCT c.*
+    FROM categories c
+    INNER JOIN category_venue cv ON c.id = cv.category_id
+    WHERE cv.venue_id = 1 AND c.is_drink = true
+  `
+
+  connection.query(query, (error, results) => {
+    if (error) {
+      res.status(500).json({ error: 'Database error' })
+      return
+    }
+    res.json(results)
   })
-  
+})
 
 const PORT = 8000
 app.listen(PORT, () => {
