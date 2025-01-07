@@ -8,7 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare && nuxt build",
-    "start": "node .output/server/index.mjs"
+    "start": "node server.js"
   },
   "dependencies": {
     "axios": "^1.7.9",
