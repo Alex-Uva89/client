@@ -2,9 +2,13 @@ import express from 'express';
 import mysql from 'mysql2';
 import cors from 'cors';
 
+// defined express
+
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// defined connection
 
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -12,6 +16,16 @@ const connection = mysql.createConnection({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
+});
+
+//debug connection
+
+connection.connect((err) => {
+  if (err) {
+    console.error('Errore di connessione al database:', err.message);
+  } else {
+    console.log('Connesso al database con successo!');
+  }
 });
 
 app.get('/api/drinks', (req, res) => {
@@ -38,6 +52,12 @@ app.get('/api/categories', (req, res) => {
     }
     res.json(results);
   });
+});
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server in esecuzione sulla porta ${PORT}`);
 });
 
 export default app;

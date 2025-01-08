@@ -6,7 +6,7 @@ A modern web application built with Nuxt.js and Pinia for state management.
 
 ### Directory Tree
 <pre>
-client-root/
+client/
 ├── assets/
 │   ├── font/
 │   ├── icons/
@@ -28,6 +28,10 @@ client-root/
 │   └── pinia.js
 ├── public/
 ├── server/
+├── services/
+│   └── api
+│       ├── categories.js
+│       └── drinks.js
 ├── static/
 ├── store/
 │   ├── cartStore/
@@ -36,6 +40,8 @@ client-root/
 ├── .env.example
 ├── .gitignore
 ├── nuxt.config.js
+├── Procfile
+├── README.md
 └── package.json
 </pre>
 
