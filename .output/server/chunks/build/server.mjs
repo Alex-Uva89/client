@@ -13,6 +13,7 @@ import 'node:url';
 import 'express';
 import 'mysql2';
 import 'cors';
+import 'dotenv';
 import 'node:path';
 import 'vue-bundle-renderer/runtime';
 import 'devalue';
@@ -571,7 +572,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-BU3xpPdv.mjs')
+    component: () => import('./index-iVnyb3JA.mjs')
   },
   {
     name: "login",
@@ -586,7 +587,7 @@ const _routes = [
   {
     name: "product-id",
     path: "/product/:id()",
-    component: () => import('./_id_-C6AwrGf3.mjs')
+    component: () => import('./_id_-CHi2Mp0U.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;

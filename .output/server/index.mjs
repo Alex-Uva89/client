@@ -6,6 +6,7 @@ import 'node:url';
 import 'express';
 import 'mysql2';
 import 'cors';
+import 'dotenv';
 import 'node:path';
 
 const cert = process.env.NITRO_SSL_CERT;

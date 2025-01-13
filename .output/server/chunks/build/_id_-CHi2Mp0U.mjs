@@ -1,6 +1,6 @@
 import { ref, resolveComponent, mergeProps, withCtx, createVNode, unref, createTextVNode, toDisplayString, useSSRContext } from 'vue';
 import { ssrRenderAttrs, ssrRenderComponent, ssrRenderAttr, ssrInterpolate, ssrRenderList } from 'vue/server-renderer';
-import { u as useProductStore, _ as _imports_0 } from './back_red-2MH3lC2n.mjs';
+import { u as useProductStore, _ as _imports_0 } from './back_red-BGlWKeWA.mjs';
 import { _ as _imports_2 } from './price-ISNscGNa.mjs';
 import { useRoute } from 'vue-router';
 import { _ as _export_sfc, e as useCartStore } from './server.mjs';
@@ -16,6 +16,7 @@ import 'node:url';
 import 'express';
 import 'mysql2';
 import 'cors';
+import 'dotenv';
 import 'node:path';
 import '../routes/renderer.mjs';
 import 'vue-bundle-renderer/runtime';
@@ -227,4 +228,4 @@ _sfc_main.setup = (props, ctx) => {
 const _id_ = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-0d56b990"]]);
 
 export { _id_ as default };
-//# sourceMappingURL=_id_-C6AwrGf3.mjs.map
+//# sourceMappingURL=_id_-CHi2Mp0U.mjs.map

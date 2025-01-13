@@ -2,13 +2,6 @@ export default defineNuxtConfig({
   ssr: true,
   nitro: {
     preset: 'node-server',
-    devServer: false,
-    handlers: [
-      {
-        route: '/api/**',
-        handler: '~/server/express.ts',
-      },
-    ],
   },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
@@ -17,4 +10,10 @@ export default defineNuxtConfig({
     '@/assets/styles/variables.css'
   ],
   plugins: ['~/plugins/pinia.js'],
+  serverHandlers: [{ route: '/api', handler: '~/server.js' }],
+  runtimeConfig: {
+    public: {
+      apiBase: `${process.env.API_BASE_URL}`,
+    }
+  },
 });

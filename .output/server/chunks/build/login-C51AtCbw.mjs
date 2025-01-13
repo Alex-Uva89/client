@@ -9,6 +9,7 @@ import 'node:url';
 import 'express';
 import 'mysql2';
 import 'cors';
+import 'dotenv';
 import 'node:path';
 import '../routes/renderer.mjs';
 import 'vue-bundle-renderer/runtime';

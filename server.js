@@ -1,6 +1,10 @@
 import express from 'express';
 import mysql from 'mysql2';
 import cors from 'cors';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
 
 // defined express
 
@@ -11,11 +15,11 @@ app.use(express.json());
 // defined connection
 
 const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  port: Number(process.env.DB_PORT) || 3306,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
 });
 
 //debug connection
@@ -54,7 +58,7 @@ app.get('/api/categories', (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || process.env.SERVER_PORT || 8000;
 
 app.listen(PORT, () => {
   console.log(`Server in esecuzione sulla porta ${PORT}`);

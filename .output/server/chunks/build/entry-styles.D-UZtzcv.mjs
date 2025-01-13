@@ -10,6 +10,7 @@ import 'node:url';
 import 'express';
 import 'mysql2';
 import 'cors';
+import 'dotenv';
 import 'node:path';
 import 'devalue';
 import 'vue/server-renderer';
