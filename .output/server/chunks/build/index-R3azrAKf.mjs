@@ -283,33 +283,33 @@ const _sfc_main$1 = defineComponent({
 });
 function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_router_link = resolveComponent("router-link");
-  _push(`<div${ssrRenderAttrs(_attrs)} data-v-fc4cc909><div class="list-product-container" data-v-fc4cc909><ul data-v-fc4cc909><!--[-->`);
+  _push(`<div${ssrRenderAttrs(_attrs)} data-v-7758bb3a><div class="list-product-container" data-v-7758bb3a><ul data-v-7758bb3a><!--[-->`);
   ssrRenderList(_ctx.filteredProducts, (product) => {
-    _push(`<li class="product-item" data-v-fc4cc909>`);
+    _push(`<li class="product-item" data-v-7758bb3a>`);
     _push(ssrRenderComponent(_component_router_link, {
       to: `/product/${product.id}`
     }, {
       default: withCtx((_, _push2, _parent2, _scopeId) => {
         if (_push2) {
-          _push2(`<div class="row-item" data-v-fc4cc909${_scopeId}>${ssrInterpolate(product.name)} `);
+          _push2(`<div class="row-item" data-v-7758bb3a${_scopeId}>${ssrInterpolate(product.name)} `);
           if (product.vigneto) {
-            _push2(`<span data-v-fc4cc909${_scopeId}> - ${ssrInterpolate(product.vigneto)}</span>`);
+            _push2(`<span data-v-7758bb3a${_scopeId}> - ${ssrInterpolate(product.vigneto)}</span>`);
           } else {
             _push2(`<!---->`);
           }
-          _push2(`</div><div class="row-item" data-v-fc4cc909${_scopeId}>`);
+          _push2(`</div><div class="row-item" data-v-7758bb3a${_scopeId}>`);
           if (product.annata) {
-            _push2(`<span data-v-fc4cc909${_scopeId}>${ssrInterpolate(product.annata)}</span>`);
+            _push2(`<span data-v-7758bb3a${_scopeId}>${ssrInterpolate(product.annata)}</span>`);
           } else {
             _push2(`<!---->`);
           }
           if (product.annata && product.grado_alcolico) {
-            _push2(`<span data-v-fc4cc909${_scopeId}> - </span>`);
+            _push2(`<span data-v-7758bb3a${_scopeId}> - </span>`);
           } else {
             _push2(`<!---->`);
           }
           if (product.grado_alcolico) {
-            _push2(`<span data-v-fc4cc909${_scopeId}>${ssrInterpolate(product.grado_alcolico)}% vol. </span>`);
+            _push2(`<span data-v-7758bb3a${_scopeId}>${ssrInterpolate(product.grado_alcolico)}% vol. </span>`);
           } else {
             _push2(`<!---->`);
           }
@@ -330,7 +330,7 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
       }),
       _: 2
     }, _parent));
-    _push(`<div class="row-item" data-v-fc4cc909><span class="row-item" data-v-fc4cc909><img class="icon-price"${ssrRenderAttr("src", _imports_2)} alt="icona che indica il prezzo" data-v-fc4cc909> ${ssrInterpolate(product.price)}</span><span class="counter" data-v-fc4cc909><span data-v-fc4cc909>-</span><span data-v-fc4cc909><input type="number"${ssrRenderAttr("value", _ctx.getQuantity(product))} class="input-quantity" data-v-fc4cc909></span><span data-v-fc4cc909>+</span></span></div></li>`);
+    _push(`<div class="row-item" data-v-7758bb3a><span class="row-item" data-v-7758bb3a><img class="icon-price"${ssrRenderAttr("src", _imports_2)} alt="icona che indica il prezzo" data-v-7758bb3a> ${ssrInterpolate(product.price)}</span><span class="counter" data-v-7758bb3a><span data-v-7758bb3a>-</span><span data-v-7758bb3a><input type="number"${ssrRenderAttr("value", _ctx.getQuantity(product))} class="input-quantity" data-v-7758bb3a></span><span data-v-7758bb3a>+</span></span></div></li>`);
   });
   _push(`<!--]--></ul></div></div>`);
 }
@@ -340,7 +340,7 @@ _sfc_main$1.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/ListProductComponent.vue");
   return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
 };
-const ListProduct = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["ssrRender", _sfc_ssrRender$1], ["__scopeId", "data-v-fc4cc909"]]);
+const ListProduct = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["ssrRender", _sfc_ssrRender$1], ["__scopeId", "data-v-7758bb3a"]]);
 const _sfc_main = {
   name: "home",
   components: {
@@ -368,4 +368,4 @@ _sfc_main.setup = (props, ctx) => {
 const index = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
 
 export { index as default };
-//# sourceMappingURL=index-D2_j_lAX.mjs.map
+//# sourceMappingURL=index-R3azrAKf.mjs.map

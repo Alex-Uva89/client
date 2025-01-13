@@ -170,7 +170,7 @@ onMounted(() => {
 .list-product-container {
   display: flex;
   justify-content: start;
-  margin: auto 20px;
+  margin: auto 20px 7rem;
 }
 
 .list-product-container ul{
