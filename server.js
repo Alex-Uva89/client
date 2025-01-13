@@ -58,10 +58,10 @@ app.get('/api/categories', (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || process.env.SERVER_PORT;
+const port = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log(`Server in esecuzione sulla porta ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
 
 export default app;
