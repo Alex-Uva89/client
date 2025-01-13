@@ -2,8 +2,10 @@ export default defineNuxtConfig({
   ssr: true,
   nitro: {
     preset: 'node-server',
+    devServer: false,
     handlers: [
       {
+        route: '/api/**',
         handler: '~/server/express.ts',
       },
     ],
