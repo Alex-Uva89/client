@@ -1,6 +1,6 @@
 import { L as Logo } from './LogoSection-Clcrpu7w.mjs';
 import { defineComponent, useSSRContext, computed, resolveComponent, mergeProps, withCtx, createVNode, createTextVNode, toDisplayString, openBlock, createBlock, createCommentVNode } from 'vue';
-import { u as useProductStore, _ as _imports_0$1 } from './back_red-Cpx3QPpq.mjs';
+import { u as useProductStore, _ as _imports_0$1 } from './back_red-BClK85ju.mjs';
 import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate, ssrRenderList, ssrRenderAttr, ssrRenderClass } from 'vue/server-renderer';
 import { e as useCartStore, _ as _export_sfc } from './server.mjs';
 import { defineStore } from 'pinia';
@@ -71,7 +71,7 @@ const api = axios.create({
 });
 const getCategories = async () => {
   try {
-    const response = await api.get("/categories");
+    const response = await api.get("/api/categories");
     return response.data;
   } catch (error) {
     console.error("Errore nel recupero delle categorie:", error);
@@ -368,4 +368,4 @@ _sfc_main.setup = (props, ctx) => {
 const index = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
 
 export { index as default };
-//# sourceMappingURL=index-D4lk9vrh.mjs.map
+//# sourceMappingURL=index-Dl1avvZ7.mjs.map
