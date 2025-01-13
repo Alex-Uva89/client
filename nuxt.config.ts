@@ -16,10 +16,5 @@ export default defineNuxtConfig({
       apiBase: `${process.env.API_BASE_URL}`,
     }
   },
-  app: {
-    baseURL: '/',
-    head: {
-      title: 'cambusa-dev'
-    }
-  }
+  
 });
