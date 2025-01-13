@@ -3,7 +3,7 @@ import axios from 'axios'
 const config = useRuntimeConfig();
 
 const api = axios.create({
-  baseURL: config.public.apiBase,
+  baseURL: 'https://cambusa-dev-700afd82d2d2.herokuapp.com/',
 })
 
 export const getCategories = async () => {

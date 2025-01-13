@@ -2,6 +2,9 @@ export default defineNuxtConfig({
   ssr: true,
   nitro: {
     preset: 'heroku',
+    routeRules: {
+      '/**': { cors: true }
+    }
   },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
@@ -12,7 +15,7 @@ export default defineNuxtConfig({
   plugins: ['~/plugins/pinia.js'],
   runtimeConfig: {
     public: {
-      apiBase: 'https://cambusa-dev-700afd82d2d2.herokuapp.com/',
+      apiBase: process.env.API_BASE || 'https://cambusa-dev-700afd82d2d2.herokuapp.com/',
     }
   },
 });

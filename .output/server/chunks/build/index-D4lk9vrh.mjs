@@ -1,8 +1,8 @@
 import { L as Logo } from './LogoSection-Clcrpu7w.mjs';
 import { defineComponent, useSSRContext, computed, resolveComponent, mergeProps, withCtx, createVNode, createTextVNode, toDisplayString, openBlock, createBlock, createCommentVNode } from 'vue';
-import { u as useProductStore, _ as _imports_0$1 } from './back_red-Ch4YYC6-.mjs';
+import { u as useProductStore, _ as _imports_0$1 } from './back_red-Cpx3QPpq.mjs';
 import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate, ssrRenderList, ssrRenderAttr, ssrRenderClass } from 'vue/server-renderer';
-import { e as useCartStore, _ as _export_sfc, c as useRuntimeConfig } from './server.mjs';
+import { e as useCartStore, _ as _export_sfc } from './server.mjs';
 import { defineStore } from 'pinia';
 import axios from 'axios';
 import { _ as _imports_2 } from './price-ISNscGNa.mjs';
@@ -66,9 +66,8 @@ _sfc_main$5.setup = (props, ctx) => {
   return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
 };
 const SearcBar = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["ssrRender", _sfc_ssrRender$5], ["__scopeId", "data-v-e4182c1f"]]);
-const config = useRuntimeConfig();
 const api = axios.create({
-  baseURL: config.public.apiBase
+  baseURL: "https://cambusa-dev-700afd82d2d2.herokuapp.com/"
 });
 const getCategories = async () => {
   try {
@@ -369,4 +368,4 @@ _sfc_main.setup = (props, ctx) => {
 const index = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
 
 export { index as default };
-//# sourceMappingURL=index-CGcpjbz3.mjs.map
+//# sourceMappingURL=index-D4lk9vrh.mjs.map
