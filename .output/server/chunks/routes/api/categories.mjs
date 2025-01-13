@@ -13,7 +13,7 @@ const connection = mysql.createConnection({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME
 });
-const categorie = defineEventHandler(async () => {
+const categories = defineEventHandler(async () => {
   return new Promise((resolve, reject) => {
     const query = `
       SELECT DISTINCT c.*
@@ -28,5 +28,5 @@ const categorie = defineEventHandler(async () => {
   });
 });
 
-export { categorie as default };
-//# sourceMappingURL=categorie.mjs.map
+export { categories as default };
+//# sourceMappingURL=categories.mjs.map

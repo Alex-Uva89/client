@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-const config = useRuntimeConfig();
 
 const api = axios.create({
   baseURL: 'https://cambusa-dev-700afd82d2d2.herokuapp.com/',
