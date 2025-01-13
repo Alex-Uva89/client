@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   serverHandlers: [{ route: '/api', handler: '~/server.js' }],
   runtimeConfig: {
     public: {
-      apiBase: `${process.env.API_BASE_URL}`,
+      apiBase: 'https://cambusa-dev-700afd82d2d2.herokuapp.com/',
     }
   },
   
