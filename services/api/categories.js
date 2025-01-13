@@ -3,7 +3,7 @@ import axios from 'axios'
 const config = useRuntimeConfig();
 
 const api = axios.create({
-  baseURL: 'http://localhost:8000' | config.public.apiBase,
+  baseURL: config.public.apiBase | 'http://localhost:8000',
 })
 
 export const getCategories = async () => {
@@ -15,3 +15,5 @@ export const getCategories = async () => {
     throw error
   }
 }
+
+
