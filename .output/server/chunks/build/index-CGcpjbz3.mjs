@@ -1,6 +1,6 @@
 import { L as Logo } from './LogoSection-Clcrpu7w.mjs';
 import { defineComponent, useSSRContext, computed, resolveComponent, mergeProps, withCtx, createVNode, createTextVNode, toDisplayString, openBlock, createBlock, createCommentVNode } from 'vue';
-import { u as useProductStore, _ as _imports_0$1 } from './back_red-B2vvlv00.mjs';
+import { u as useProductStore, _ as _imports_0$1 } from './back_red-Ch4YYC6-.mjs';
 import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate, ssrRenderList, ssrRenderAttr, ssrRenderClass } from 'vue/server-renderer';
 import { e as useCartStore, _ as _export_sfc, c as useRuntimeConfig } from './server.mjs';
 import { defineStore } from 'pinia';
@@ -11,10 +11,6 @@ import 'node:http';
 import 'node:https';
 import 'node:fs';
 import 'node:url';
-import 'express';
-import 'mysql2';
-import 'cors';
-import 'dotenv';
 import 'node:path';
 import '../routes/renderer.mjs';
 import 'vue-bundle-renderer/runtime';
@@ -373,4 +369,4 @@ _sfc_main.setup = (props, ctx) => {
 const index = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
 
 export { index as default };
-//# sourceMappingURL=index-9uWbKAmD.mjs.map
+//# sourceMappingURL=index-CGcpjbz3.mjs.map

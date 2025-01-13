@@ -1,5 +1,5 @@
 import { version, unref, inject, hasInjectionContext, getCurrentInstance, useSSRContext, createApp, effectScope, shallowReactive, reactive, getCurrentScope, provide, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, toRef, defineAsyncComponent, mergeProps, shallowRef, isReadonly, resolveComponent, withCtx, openBlock, createBlock, toDisplayString, createCommentVNode, isRef, isShallow, isReactive, toRaw } from 'vue';
-import { $ as $fetch, k as hasProtocol, l as isScriptProtocol, m as joinURL, w as withQuery, n as sanitizeStatusCode, o as getContext, p as createHooks, e as createError$1, q as toRouteMatcher, r as createRouter$1, v as defu } from '../_/nitro.mjs';
+import { $ as $fetch, l as hasProtocol, m as isScriptProtocol, n as joinURL, w as withQuery, o as sanitizeStatusCode, p as getContext, q as createHooks, f as createError$1, r as toRouteMatcher, v as createRouter$1, x as defu } from '../_/nitro.mjs';
 import { b as baseURL } from '../routes/renderer.mjs';
 import { getActiveHead, CapoPlugin } from 'unhead';
 import { defineHeadPlugin } from '@unhead/shared';
@@ -10,10 +10,6 @@ import 'node:http';
 import 'node:https';
 import 'node:fs';
 import 'node:url';
-import 'express';
-import 'mysql2';
-import 'cors';
-import 'dotenv';
 import 'node:path';
 import 'vue-bundle-renderer/runtime';
 import 'devalue';
@@ -572,7 +568,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-9uWbKAmD.mjs')
+    component: () => import('./index-CGcpjbz3.mjs')
   },
   {
     name: "login",
@@ -587,7 +583,7 @@ const _routes = [
   {
     name: "product-id",
     path: "/product/:id()",
-    component: () => import('./_id_-Di4smt3-.mjs')
+    component: () => import('./_id_-BC_E-6u6.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
