@@ -1,9 +1,7 @@
 import axios from 'axios'
 
-const config = useRuntimeConfig();
-
 const api = axios.create({
-  baseURL: config.public.apiBase,
+  baseURL: 'http://localhost:8000',
 })
 
 export const getDrinks = async () => {

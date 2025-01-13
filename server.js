@@ -58,7 +58,7 @@ app.get('/api/categories', (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || process.env.SERVER_PORT;
 
 app.listen(PORT, () => {
   console.log(`Server in esecuzione sulla porta ${PORT}`);

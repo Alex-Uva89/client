@@ -16,5 +16,4 @@ export default defineNuxtConfig({
       apiBase: 'https://cambusa-dev-700afd82d2d2.herokuapp.com/',
     }
   },
-  
 });

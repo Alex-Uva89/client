@@ -1,4 +1,0 @@
-const PillowCategoryComponent_vue_vue_type_style_index_0_scoped_6fae7415_lang = ".categories-container[data-v-6fae7415]{display:flex;flex-wrap:nowrap;gap:10px;justify-content:start;margin:20px auto;max-width:1000px;overflow-x:scroll;padding:0 20px;scrollbar-width:none}.btn[data-v-6fae7415]{background-color:var(--background);border-radius:5px;font-size:var(--font-size-medium);height:40px;max-width:300px;min-width:-moz-fit-content;min-width:fit-content;padding:0 10px}.btn-selected[data-v-6fae7415]{background-color:var(--primary);color:#fff}button[data-v-6fae7415]:has(img){align-items:center;border:none;display:flex;height:30px;justify-content:center;width:20px}.btn img[data-v-6fae7415]{height:100%;width:100%}";
-
-export { PillowCategoryComponent_vue_vue_type_style_index_0_scoped_6fae7415_lang as P };
-//# sourceMappingURL=PillowCategoryComponent-styles-1.mjs-DxJ3cvpA.mjs.map
