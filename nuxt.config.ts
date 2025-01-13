@@ -16,4 +16,12 @@ export default defineNuxtConfig({
       apiBase: 'https://cambusa-dev-700afd82d2d2.herokuapp.com/',
     }
   },
+  vite: {
+    server: {
+      hmr: {
+        host: '0.0.0.0',
+        port: Number(process.env.PORT) || 3000,
+      },
+    },
+  },
 });
