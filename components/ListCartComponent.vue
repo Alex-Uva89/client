@@ -236,7 +236,7 @@ li{
   display: flex;
   align-items: center;
   gap: 4px;
-  font-family: var(--font-secondary);
+  font-family: var(--font-primary);
   color: var(--text-secondary);
 }
 

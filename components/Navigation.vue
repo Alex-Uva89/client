@@ -44,9 +44,9 @@ export default {
 <style scoped>
     .nav{
         background-color: var(--background);
-        font-family: var(--font-secondary);
-        font-weight: var(--font-weight-primary);
-        font-size: var(--font-size-small);
+        font-family: var(--font-primary);
+        font-weight: var(--font-weight-tertiary);
+        font-size: var(--font-size-medium);
         position: fixed;
         bottom: 0;
         left: 0;

@@ -191,13 +191,14 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 4px;
-  font-family: var(--font-secondary);
+  font-family: var(--font-primary);
   color: var(--text-secondary);
+  font-size: var(--font-size-large);
 }
 
-.row-item:first-child{
+a .row-item:first-child{
   color: var(--text);
-  font-size: var(--font-size-medium);
+  font-size: var(--font-size-large);
   font-weight: bold;
 }
 

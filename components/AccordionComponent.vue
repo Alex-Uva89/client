@@ -162,6 +162,7 @@
     flex-direction: column;
     gap: 10px;
     margin-bottom: 10px;
+    font-family: var(--font-secondary);
   }
   
   .accordion-enter-active,

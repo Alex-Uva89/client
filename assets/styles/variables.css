@@ -2,6 +2,19 @@
     font-family: 'Decima';
     src: url('../fonts/DecimaNova_Regular_7.otf') format('truetype');
     font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Decima';
+    src: url('../fonts/DecimaNova_Bold.ttf') format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Decima';
+    src: url('../fonts/DecimaNova_Light.ttf') format('truetype');
+    font-weight: 200;
 }
 
 
@@ -22,8 +35,9 @@
     --font-secondary: 'Barlow', sans-serif;
 
     /* WEIGHT-FONT */
-    --font-weight-primary: regular;
-    --font-weight-secondary: semibold;
+    --font-weight-primary: normal;
+    --font-weight-secondary: bold;
+    --font-weight-tertiary: 200;
 
     /* FONT SIZE */
     --font-size-xsmall: 12px;

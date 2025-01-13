@@ -90,7 +90,7 @@ const copyProductLink = async () => {
 };
 
 onMounted(async () => {
-  await productStore.fetchProducts()
+  await productStore.fetchProducts();
 })
 
 </script>
@@ -102,7 +102,11 @@ onMounted(async () => {
           <img src="~/assets/icons/back_red.svg" alt="icona del tasto indietro">
       </router-link>
       <div class="img-container">
-        <img class="img-product" :src="product.img" :alt="product.name" />
+        <img 
+          class="img-product" 
+          :src="product.image"
+          :alt="product.name" 
+        />
       </div>
       <button class="btn btn-primary" @click="copyProductLink()">
         <img src="~/assets/icons/share.svg" alt="icona di condivisione">

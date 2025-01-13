@@ -95,7 +95,14 @@ export default defineComponent({
       height: 40px;
       border-radius: 5px;
       background-color: var(--background);
-      font-size: var(--font-size-medium);
+      font-size: var(--font-size-small);
+      color: var(--primary);
+      font-family: var(--font-primary);
+      font-weight: var(--font-weight-primary);
+      text-transform: lowercase;
+      &::first-letter {
+          text-transform: uppercase;
+      }
   }
   
   .btn-selected {

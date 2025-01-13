@@ -44,7 +44,7 @@ export const useProductStore = defineStore('product', {
           producer: drink.producer || '',
           vintage: drink.vintage || '',
           degrees: parseFloat(drink.degrees) || 0,
-          image: drink.img || '/images/vino.jpeg',
+          image: drink.image || '/images/CAMBUSA.png',
           is_active: drink.is_active,
           description: drink.description || '',
         }))
