@@ -7,20 +7,20 @@
             
             <div class="row-item">
               {{ product.name }} 
-              <span v-if="product.vigneto">
-                - {{ product.vigneto }}
+              <span v-if="product.grape">
+                - {{ product.grape }}
               </span>
             </div>
             
             <div class="row-item">
-              <span v-if="product.annata">
-                  {{ product.annata }}
+              <span v-if="product.vintage">
+                  {{ product.vintage }}
               </span>
-              <span v-if="product.annata && product.grado_alcolico">
+              <span v-if="product.vintage && product.degrees">
                 - 
               </span>
-              <span v-if="product.grado_alcolico">
-                  {{ product.grado_alcolico }}% vol.
+              <span v-if="product.degrees">
+                  {{ product.degrees }}% vol.
               </span>
             </div>
 
