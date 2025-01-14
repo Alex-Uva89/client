@@ -1,5 +1,5 @@
 <template>
-    <div >
+    <div>
         <Transition name="fade">
             <div v-if="showWhiteScreen" class="white-screen"></div>
         </Transition>
@@ -21,18 +21,26 @@ const showLoadingImage = ref(false);
 
 onMounted(() => {
     const hasVisited = window.localStorage.getItem('hasVisitedBefore') === 'true';
-    setTimeout(() => {
-        showLoadingImage.value = hasVisited ? true : false;
+    
+    if (!hasVisited) {
         setTimeout(() => {
-            showWhiteScreen.value = hasVisited ? false : true;
+            showLoadingImage.value = true;
+            
+            setTimeout(() => {
+                showWhiteScreen.value = false;
+            }, 500);
+            
+            setTimeout(() => {
+                showLoadingImage.value = false;
+                window.localStorage.setItem('hasVisitedBefore', 'true');
+            }, 5000);
         }, 500);
-        
-        setTimeout(() => {
-            showLoadingImage.value = hasVisited ? false : true;
-        }, 5000);
-    }, 500);
+    } else {
+        showWhiteScreen.value = false;
+    }
 });
 </script>
+
 
 <style scoped>
 .white-screen {

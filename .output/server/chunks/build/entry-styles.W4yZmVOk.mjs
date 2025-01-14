@@ -1,6 +1,6 @@
 import { a as buildAssetsURL } from '../routes/renderer.mjs';
 import { N as Navigation_vue_vue_type_style_index_0_scoped_62fc9a92_lang } from './entry-styles-3.mjs-Da0r5fdy.mjs';
-import { S as StartComponent_vue_vue_type_style_index_0_scoped_dba04a87_lang } from './entry-styles-4.mjs-CasgjUtc.mjs';
+import { S as StartComponent_vue_vue_type_style_index_0_scoped_732b9adf_lang } from './entry-styles-4.mjs-B3gdgCRC.mjs';
 import { a as app_vue_vue_type_style_index_0_lang } from './entry-styles-5.mjs-C6r5w_UJ.mjs';
 import 'vue-bundle-renderer/runtime';
 import '../_/nitro.mjs';
@@ -20,7 +20,7 @@ const global = "*{box-sizing:border-box;font-size:16px;margin:0;padding:0}img{he
 
 const variables = "@font-face{font-family:Decima;font-style:normal;font-weight:400;src:url(" + buildAssetsURL("DecimaNova.BPrie8-E.ttf") + ') format("truetype")}@font-face{font-family:Decima;font-weight:700;src:url(' + buildAssetsURL("DecimaNova_Bold.Dq2VVfph.ttf") + ') format("truetype")}@font-face{font-family:Decima;font-weight:200;src:url(' + buildAssetsURL("DecimaNova_Light.DXPYvstR.ttf") + ') format("truetype")}:root{--primary:#74121d;--background:#f4f1ec;--banner:#e7d7c0;--text:#372c43;--text-secondary:#757373;--label:#e7d7c1;--disabled:#afadad;--font-primary:"Decima",sans-serif;--font-secondary:"Barlow",sans-serif;--font-weight-primary:normal;--font-weight-secondary:bold;--font-weight-tertiary:200;--font-size-xsmall:12px;--font-size-small:14px;--font-size-medium:16px;--font-size-large:18px;--font-size-xlarge:20px;--font-size-xxlarge:24px;--font-size-xxxlarge:26px}';
 
-const entryStyles_DtChxsim = [global, variables, Navigation_vue_vue_type_style_index_0_scoped_62fc9a92_lang, StartComponent_vue_vue_type_style_index_0_scoped_dba04a87_lang, app_vue_vue_type_style_index_0_lang];
+const entryStyles_W4yZmVOk = [global, variables, Navigation_vue_vue_type_style_index_0_scoped_62fc9a92_lang, StartComponent_vue_vue_type_style_index_0_scoped_732b9adf_lang, app_vue_vue_type_style_index_0_lang];
 
-export { entryStyles_DtChxsim as default };
-//# sourceMappingURL=entry-styles.DtChxsim.mjs.map
+export { entryStyles_W4yZmVOk as default };
+//# sourceMappingURL=entry-styles.W4yZmVOk.mjs.map

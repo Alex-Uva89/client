@@ -1142,14 +1142,14 @@ const _sfc_main$3 = {
     const showWhiteScreen = ref(true);
     const showLoadingImage = ref(false);
     return (_ctx, _push, _parent, _attrs) => {
-      _push(`<div${ssrRenderAttrs(_attrs)} data-v-dba04a87>`);
+      _push(`<div${ssrRenderAttrs(_attrs)} data-v-732b9adf>`);
       if (showWhiteScreen.value) {
-        _push(`<div class="white-screen" data-v-dba04a87></div>`);
+        _push(`<div class="white-screen" data-v-732b9adf></div>`);
       } else {
         _push(`<!---->`);
       }
       if (showLoadingImage.value) {
-        _push(`<div class="loading-screen" data-v-dba04a87><img${ssrRenderAttr("src", _imports_0)} alt="Loading" data-v-dba04a87><h1 class="loading-title" data-v-dba04a87>CAMBUSA</h1></div>`);
+        _push(`<div class="loading-screen" data-v-732b9adf><img${ssrRenderAttr("src", _imports_0)} alt="Loading" data-v-732b9adf><h1 class="loading-title" data-v-732b9adf>CAMBUSA</h1></div>`);
       } else {
         _push(`<!---->`);
       }
@@ -1163,7 +1163,7 @@ _sfc_main$3.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/StartComponent.vue");
   return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
-const Start = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-dba04a87"]]);
+const Start = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-732b9adf"]]);
 const _sfc_main$2 = {
   components: {
     Start,
