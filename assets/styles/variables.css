@@ -1,19 +1,19 @@
 @font-face {
     font-family: 'Decima';
-    src: url('../fonts/DecimaNova.otf') format('truetype');
+    src: url('/assets/fonts/DecimaNova.ttf') format('truetype');
     font-style: normal;
     font-weight: normal;
 }
 
 @font-face {
     font-family: 'Decima';
-    src: url('../fonts/DecimaNova_Bold.ttf') format('truetype');
+    src: url('/assets/fonts/DecimaNova_Bold.ttf') format('truetype');
     font-weight: bold;
 }
 
 @font-face {
     font-family: 'Decima';
-    src: url('../fonts/DecimaNova_Light.ttf') format('truetype');
+    src: url('/assets/fonts/DecimaNova_Light.ttf') format('truetype');
     font-weight: 200;
 }
 
