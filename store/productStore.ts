@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { getDrinks } from '~/services/api/drinks';
 import { useCartStore } from './cartStore';
+import { format } from 'mysql2';
 
 export const useProductStore = defineStore('product', {
   state: () => ({
@@ -35,7 +36,7 @@ export const useProductStore = defineStore('product', {
     async fetchProducts() {
       try {
         const drinks = await getDrinks()
-        this.products = drinks.map(drink => ({
+        this.products = drinks.map((drink: any) => ({
           id: drink.id,
           name: drink.name,
           category_id: drink.category_id,
@@ -43,10 +44,14 @@ export const useProductStore = defineStore('product', {
           price: drink.price,
           producer: drink.producer || '',
           vintage: drink.vintage || '',
+          grape: drink.grape_variety || '',
           degrees: parseFloat(drink.degrees) || 0,
           image: drink.image || '/images/CAMBUSA.png',
           is_active: drink.is_active,
-          description: drink.description || '',
+          description: drink.instructions || '',
+          origin: drink.origin || '',
+          production_method: drink.production_method || '',
+          flavour: drink.flavour || '',
         }))
       } catch (error) {
         console.error('Errore nel recupero dei prodotti:', error)

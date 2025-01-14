@@ -1,27 +1,25 @@
 <template>
   <header>
-    <ButtonBack @click="$router.go(-1)">
+    <ButtonBack @click="router.back()">
         <img src="~/assets/icons/back.svg" alt="icona del tasto indietro">
     </ButtonBack>
     <h1> {{ title }} </h1>
   </header>
 </template>
 
-<script>
+<script setup>
 import ButtonBack from "./ButtonBackComponent.vue";
+import { useRouter } from 'vue-router';
 
-export default {
-    name: 'HeaderDefault',
-    components: {
-        ButtonBack
-    },
-    props: {
-        title: {
-            type: String,
-            required: true
-        }
-    }
-}
+const router = useRouter();
+
+defineProps({
+  title: {
+    type: String,
+    required: true
+  }
+});
+
 </script>
 
 <style scoped>

@@ -553,12 +553,12 @@ const _routes = [
   {
     name: "cart",
     path: "/cart",
-    component: () => import('./cart-FBxfRHq_.mjs')
+    component: () => import('./cart-UJQIXPgO.mjs')
   },
   {
     name: "checkout",
     path: "/checkout",
-    component: () => import('./checkout-BqawBZWG.mjs')
+    component: () => import('./checkout-C3Z3ACkE.mjs')
   },
   {
     name: "confirm",
@@ -568,7 +568,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-R3azrAKf.mjs')
+    component: () => import('./index-Dn-fyaRn.mjs')
   },
   {
     name: "login",
@@ -578,12 +578,12 @@ const _routes = [
   {
     name: "menu",
     path: "/menu",
-    component: () => import('./menu-B8ZdkxM9.mjs')
+    component: () => import('./menu-Bd3GKb6D.mjs')
   },
   {
     name: "product-id",
     path: "/product/:id()",
-    component: () => import('./_id_-BIrSTP39.mjs')
+    component: () => import('./_id_-5Awz9q70.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -1045,14 +1045,14 @@ const _sfc_main$4 = {
 };
 function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_router_link = resolveComponent("router-link");
-  _push(`<nav${ssrRenderAttrs(mergeProps({ class: "nav" }, _attrs))} data-v-97a6d2bf>`);
+  _push(`<nav${ssrRenderAttrs(mergeProps({ class: "nav" }, _attrs))} data-v-62fc9a92>`);
   _push(ssrRenderComponent(_component_router_link, {
     to: "/",
     class: "item-nav"
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<img${ssrRenderAttr("src", _imports_0$1)} alt="logo della lente d&#39;ingrandimento" data-v-97a6d2bf${_scopeId}><span data-v-97a6d2bf${_scopeId}> Cerca </span>`);
+        _push2(`<img${ssrRenderAttr("src", _imports_0$1)} alt="logo della lente d&#39;ingrandimento" data-v-62fc9a92${_scopeId}><span data-v-62fc9a92${_scopeId}> Cerca </span>`);
       } else {
         return [
           createVNode("img", {
@@ -1071,7 +1071,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<img${ssrRenderAttr("src", _imports_1)} alt="logo aziendale, raffigurante volto di mamma elvira" data-v-97a6d2bf${_scopeId}><span data-v-97a6d2bf${_scopeId}>Menù</span>`);
+        _push2(`<img${ssrRenderAttr("src", _imports_1)} alt="logo aziendale, raffigurante volto di mamma elvira" data-v-62fc9a92${_scopeId}><span data-v-62fc9a92${_scopeId}>Menù</span>`);
       } else {
         return [
           createVNode("img", {
@@ -1090,9 +1090,9 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<img${ssrRenderAttr("src", _imports_0)} alt="logo del carrello" data-v-97a6d2bf${_scopeId}><span data-v-97a6d2bf${_scopeId}> La mia Cambusa </span>`);
+        _push2(`<img${ssrRenderAttr("src", _imports_0)} alt="logo del carrello" data-v-62fc9a92${_scopeId}><span data-v-62fc9a92${_scopeId}> La mia Cambusa </span>`);
         if ($setup.cartStore.getCartTotalItems != 0) {
-          _push2(`<span class="cart-counter" data-v-97a6d2bf${_scopeId}>${ssrInterpolate($setup.cartStore.getCartTotalItems)}</span>`);
+          _push2(`<span class="cart-counter" data-v-62fc9a92${_scopeId}>${ssrInterpolate($setup.cartStore.getCartTotalItems)}</span>`);
         } else {
           _push2(`<!---->`);
         }
@@ -1120,7 +1120,7 @@ _sfc_main$4.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/Navigation.vue");
   return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
 };
-const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["ssrRender", _sfc_ssrRender$2], ["__scopeId", "data-v-97a6d2bf"]]);
+const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["ssrRender", _sfc_ssrRender$2], ["__scopeId", "data-v-62fc9a92"]]);
 const _sfc_main$3 = {};
 function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<div${ssrRenderAttrs(_attrs)}><div> HEADER `);

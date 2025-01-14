@@ -7,20 +7,20 @@
           class="product-item"
         >
         <template v-if="getQuantity(product) > 0">
-          <div class="row-item">
-            {{ product.name }}
-            <span v-if="product.vigneto"> - {{ product.vigneto }} </span>
-          </div>
-  
-          <div class="row-item">
-            <span v-if="product.annata">{{ product.annata }}</span>
-            <span v-if="product.annata && product.grado_alcolico"> - </span>
-            <span v-if="product.grado_alcolico">
-              {{ product.grado_alcolico }}% vol.
-            </span>
-          </div>
-  
-          <div class="row-item">
+          <div @click="$router.push('/product/' + product.id)" class="row-link">
+            <div class="row-item">
+              {{ product.name }}
+              <span v-if="product.grape"> - {{ product.grape }} </span>
+            </div>
+    
+            <div class="row-item">
+              <span v-if="product.vintage">{{ product.vintage }}</span>
+              <span v-if="product.vintage && product.degrees"> - </span>
+              <span v-if="product.degrees">
+                {{ product.degrees }}% vol.
+              </span>
+            </div>
+    
             <span class="row-item">
               <img
                 class="icon-price"
@@ -28,7 +28,19 @@
                 alt="icona che indica il prezzo"
               />
               {{ product.price }}
+            </span> 
+          </div>
+
+          <div class="row-item actions">
+            <!-- Tasto per rimuovere prodotto -->
+            <span @click="openDeleteModal(product)">
+              <img
+                class="icon-delete"
+                src="../assets/icons/trash.svg"
+                alt="icona che indica la rimozione del prodotto totale dal carrello"
+              />
             </span>
+            <!-- Contatore per la quantità -->
             <span class="counter">
               <span @click="decreaseQuantity(product)">-</span>
               <span>
@@ -44,14 +56,7 @@
             </span>
           </div>
   
-          <!-- Tasto per rimuovere prodotto -->
-          <span @click="openDeleteModal(product)">
-            <img
-              class="icon-delete"
-              src="../assets/icons/trash.svg"
-              alt="icona che indica la rimozione del prodotto totale dal carrello"
-            />
-          </span>
+          
         </template>
         </li>
       </ul>
@@ -100,6 +105,7 @@
   import { ref, onMounted } from "vue";
   
   const cartStore = useCartStore();
+  
   
   // Stato per la modale e il prodotto da eliminare
   const isModalOpen = ref(false);
@@ -224,11 +230,21 @@
 }
 
 .product-item:has(.row-item):last-child {
-  margin-block: 20px;
+  margin-bottom: 20px;
 }
 
 li{
   list-style-type: none;
+}
+
+.row-link{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px;
+  position: relative;
 }
 
 .row-item{
@@ -240,12 +256,22 @@ li{
   color: var(--text-secondary);
 }
 
-.row-item span {
-  font-size: var(--font-size-small);
+.row-item:first-child{
+  font-size: var(--font-size-xlarge);
+  font-weight: var(--font-weight-secondary);
+  color: var(--text);
 }
 
-.row-item:last-child{
+.row-item.actions{
+  width: 30%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: flex-end;
+  right: 0;
+  top:10%;
+  bottom: 10px;
 }
 
 .product-item > div:nth-child(1){
@@ -261,9 +287,6 @@ li{
 .icon-delete{
     width: 20px;
     height: 20px;
-    position: absolute;
-    top: 10px;
-    right: 0;
 }
 
 /* COUNTER */

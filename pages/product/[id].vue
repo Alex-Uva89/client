@@ -2,36 +2,38 @@
 import { useRoute } from 'vue-router';
 import { useProductStore } from '@/store/productStore';
 import { useCartStore } from '@/store/cartStore';
+import { ref, computed, onMounted, watch } from 'vue';
 import ButtonComponent from '@/components/ButtonComponent.vue';
 import AccordionComponent from '~/components/AccordionComponent.vue';
 
 const route = useRoute();
+const router = useRouter();
 const productId = route.params.id;
 
 const cartStore = useCartStore();
 
 const productStore = useProductStore();
-const product = productStore.products.find(p => p.id === parseInt(productId));
+const product = ref(null);
 
 
  // COUNTER
- const increaseQuantity = (product) => {
-    if(product.status){
-      cartStore.addProductToCart(product);
+ const increaseQuantity = (Item) => {
+    if(Item){
+      cartStore.addProductToCart(Item);
     }
     cartTotal = cartStore.getCartTotal;
   };
 
-  const increaseQuantityAdd = (product) => {
-    if(getQuantity(product) === 0 && product.status){
-      cartStore.addProductToCart(product);
+  const increaseQuantityAdd = (item) => {
+    if(getQuantity(item) === 0 && item){
+      cartStore.addProductToCart(item);
     }
     cartTotal = cartStore.getCartTotal;
   };
   
-  const decreaseQuantity = (product) => {
-    const productId = product.id;
-    const existingProduct = cartStore.cart.find((item) => item.id === productId);
+  const decreaseQuantity = (item) => {
+    const productId = item.id;
+    const existingProduct = cartStore.cart.find((i) => i.id === productId);
   
     if (existingProduct && existingProduct.quantity > 0) {
       cartStore.updateQuantity(productId, existingProduct.quantity - 1);
@@ -39,34 +41,34 @@ const product = productStore.products.find(p => p.id === parseInt(productId));
     } 
   };
 
-  const updateQuantity = (product, value) => {
+  const updateQuantity = (item, value) => {
         const quantity = parseInt(value, 10);
         if (!isNaN(quantity) && quantity > 0) {
-            const existingItem = cartStore.cart.find((item) => item.id === product.id);
+            const existingItem = cartStore.cart.find((i) => i.id === item.id);
             if (existingItem) {
-                cartStore.updateQuantity(product.id, quantity);
+                cartStore.updateQuantity(item.id, quantity);
             } else {
-                cartStore.addProductToCart({ ...product, quantity });
+                cartStore.addProductToCart({ ...item, quantity });
             }
         } else if (quantity === 0) {
-            cartStore.removeProductFromCart(product.id);
+            cartStore.removeProductFromCart(item.id);
         }
 
         cartTotal = cartStore.getCartTotal;
     };
 
-  const validateQuantity = (product) => {
-    const existingProduct = cartStore.cart.find((item) => item.id === product.id);
+  const validateQuantity = (item) => {
+    const existingProduct = cartStore.cart.find((i) => i.id === item.id);
     if (!existingProduct || existingProduct.quantity <= 0) {
-      cartStore.updateQuantity(product.id, 1);
+      cartStore.updateQuantity(item.id, 1);
       cartTotal = cartStore.getCartTotal;
     }
   };
 
   
-  const getQuantity = (product) => {
-    const productId = product.id;
-    const existingProduct = cartStore.cart.find((item) => item.id === productId);
+  const getQuantity = (item) => {
+    const productId = item.id;
+    const existingProduct = cartStore.cart.find((i) => i.id === productId);
     return existingProduct ? existingProduct.quantity : 0;
   };
 
@@ -91,16 +93,43 @@ const copyProductLink = async () => {
 
 onMounted(async () => {
   await productStore.fetchProducts();
+  product.value = productStore.products.find(p => p.id === parseInt(productId));
 })
+
+// DATA ACCORDION
+
+const hasData = computed(() => {
+  if (!product.value) return false;
+  
+  return !!(
+    product.value.vintage || 
+    product.value.degrees || 
+    product.value.producer || 
+    product.value.grape
+  );
+});
+
+// ROUTING
+
+const navigateToProduct = (id) => {
+  router.push(`/product/${id}`);
+};
+
+watch(
+  () => route.params.id,
+  async (newId) => {
+    product.value = productStore.products.find(p => p.id === parseInt(newId));
+  }
+);
 
 </script>
 
 <template>
-  <div class="container-product-page">
+  <div class="container-product-page"  v-if="product">
     <div class="header-product">
-      <router-link class="btnBack" to="/">
+      <button class="btnBack" @click="router.back()">
           <img src="~/assets/icons/back_red.svg" alt="icona del tasto indietro">
-      </router-link>
+      </button>
       <div class="img-container">
         <img 
           class="img-product" 
@@ -115,8 +144,13 @@ onMounted(async () => {
 
 
     <div class="card-content">
-      <h2>{{ product.name }} - produttore</h2>
-      <p>{{ product.vigneto ? product.vigneto : 'vigneto N/A' }} {{ product.annata? product.annata : 'anno N/A' }} - {{ product.grado_alcolico? product.grado_alcolico : 'N/A' }}% vol.</p>
+      <h2>{{ product.name }} <span v-if="product.producer">-  {{ product.producer }} </span> </h2>
+      <p class="product-info"> 
+        <span v-if="product.grape">{{ product.grape }}</span> 
+        <span v-if="product.vintage">{{ product.vintage }}</span> 
+        <span v-if="product.degrees && product.vintage || product.degrees && product.grape "> - </span>
+        <span v-if="product.degrees">{{ product.degrees }}% vol.</span>
+      </p>
       
       <div class="info-container">
         <div class="price">
@@ -180,31 +214,82 @@ onMounted(async () => {
         </template>
     
   
-        <AccordionComponent title="Scheda tecnica" content="Qui andranno i dati del vino" />
+        <AccordionComponent title="Scheda tecnica" content="Qui andranno i dati del vino" v-if="hasData">
+          <ul class="technical-data">
+            <li class="technical-data-item" v-if="product.vintage">
+              <p>Annata</p>
+              <p>{{ product.vintage }}</p>
+            </li>
+            <li class="technical-data-item">
+              <p>Grado alcolico</p>
+              <p>{{ product.degrees ? product.degrees : 'N/A' }}% vol.</p>
+            </li>
+            <li class="technical-data-item"  v-if="product.producer">
+              <p>Produttore</p>
+              <p>{{ product.producer }}</p>
+            </li>
+            <li class="technical-data-item" v-if="product.grape">
+              <p>Vitigno</p>
+              <p>{{ product.grape }}</p>
+            </li>
+            <li class="technical-data-item"  v-if="product.format">
+              <p>Formato</p>
+              <p>{{ product.format }}</p>
+            </li>
+            <li class="technical-data-item"  v-if="product.origin">
+              <p>Origine</p>
+              <p>{{ product.origin }}</p>
+            </li>
+            <li class="technical-data-item"  v-if="product.flavour">
+              <p>Gusto</p>
+              <p>{{ product.flavour }}</p>
+            </li>
+            <li class="technical-data-item"  v-if="product.subcategory">
+              <p>Colore</p>
+              <p>{{ product.subcategory }}</p>
+            </li>
+            <li class="technical-data-item"  v-if="product.production_method">
+              <p>Metodo di produzione</p>
+              <p>{{ product.production_method }}</p>
+            </li>
+        </ul>
+        </AccordionComponent>
       </div>
 
 
       <!-- OTHER PRODUCTS -->
-      <div v-if="productStore.products.filter(p => p.price < product.price && p.category === product.category)" >
+      <div v-if="productStore.products.filter(p => p.price < product.price && p.category_id === product.category_id)" >
         <h3 class="title-other-products">Guarda Anche:</h3>
         <ul class="other-products">
+          <!-- PRODUCTS BY PRODUCER OR GRAPE OR BETWEEN-->
           <li 
-            v-for="filteredProduct in productStore.products.filter(p => p.price < product.price && p.category === product.category)" 
+            v-for="filteredProduct in productStore.products
+            .filter(p => p.price >  p.price > product.price && p.grape === product.grape && p.producer === product.producer && p.id != product.id || product.price && p.producer === product.producer  && p.id != product.id || p.price > product.price && p.grape === product.grape  && p.id != product.id)
+            .slice(0,4)" 
             :key="filteredProduct.id"
             class="card-other-products"
           >
-            <router-link :to="'/product/' + filteredProduct.id">
-              <h2>{{ filteredProduct.name }} - produttore</h2>
-                <p>{{ filteredProduct.vigneto ? filteredProduct.vigneto : 'vigneto N/A' }} {{ filteredProduct.annata? filteredProduct.annata : 'anno N/A' }} - {{ filteredProduct.grado_alcolico? filteredProduct.grado_alcolico : 'N/A' }}% vol.</p>
+            <div class="link-product" @click="navigateToProduct(filteredProduct.id)">
+              <div>
+                <h2>{{ filteredProduct.name }} <span v-if="filteredProduct.producer">-  {{ filteredProduct.producer }} </span></h2>
+                <p class="product-info"> 
+                  <span v-if="filteredProduct.grape">{{ filteredProduct.grape }}</span> 
+                  <span v-if="filteredProduct.vintage">{{ filteredProduct.vintage }}</span>
+                  <span v-if="filteredProduct.degrees && filteredProduct.vintage || filteredProduct.degrees && filteredProduct.grape "> - </span> 
+                  <span v-if="filteredProduct.degrees">{{ filteredProduct.degrees }}% vol.</span>
+                </p>
+              </div>
                 
-                <div class="info-container">
+            </div>
+
+            <div class="info-container">
                   <div class="price">
                     <img src="~/assets/icons/price.svg" alt="" class="icon">
                     <p>{{ filteredProduct.price }}</p>
                   </div>
 
                   <span class="counter">
-                  <span @click="decreaseQuantity(product)">-</span>
+                  <span @click="decreaseQuantity(filteredProduct)">-</span>
                   <span>
                     <input 
                       type="number" 
@@ -217,8 +302,7 @@ onMounted(async () => {
                   <span @click="increaseQuantity(filteredProduct)">+</span>
                 </span>
 
-                </div>
-            </router-link>
+            </div>
           </li>
         </ul>
       </div>
@@ -257,11 +341,12 @@ onMounted(async () => {
   border:none;
 }
 
-.btnBack {
+.header-product button.btnBack {
   width: 50px;
   position: absolute;
   bottom: 90%;
   left: 5px;
+  border: none;
 }
 
 .btnBack img {
@@ -284,6 +369,11 @@ onMounted(async () => {
   flex-direction: column;
   margin: 20px;
   gap: 10px;
+}
+
+p.product-info{
+  display:flex;
+  gap: 5px;
 }
 
 .icon{
@@ -386,6 +476,28 @@ onMounted(async () => {
   border-bottom: 1px solid var(--primary);
 }
 
+
+/*  OTHER PRODUCTS */
+
+.card-other-products{
+  display: flex;
+  min-height: 150px;
+  max-height: 300px;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+  text-rendering: optimizeLegibility;
+  box-shadow: 11px 10px 10px -5px rgba(0, 0, 0, 0.3);
+}
+
+.link-product{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .title-other-products{
   margin-left:20px;
 }
@@ -393,8 +505,8 @@ onMounted(async () => {
 .other-products{
   overflow-x: scroll;
   padding-left: 20px;
-  padding-right: 60px;
-  min-width: 1000px;
+  padding-right: 2rem;
+  min-width: 200px;
   max-width: 4000px;
   display: flex;
   gap: 25px;
@@ -408,7 +520,7 @@ onMounted(async () => {
 .other-products li{
   min-width: 250px;
   max-width: 600px;
-  padding: 10px;
+  padding: 20px;
   border: 1px solid var(--primary);
   border-radius: 5px;
   text-rendering: optimizeLegibility;
@@ -448,6 +560,39 @@ onMounted(async () => {
 
 .link-copied div{
   background-color: white;
+}
+
+/* TECHNIQUE SECTION */
+
+.technical-data{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 20px 35px;
+}
+
+.technical-data-item{
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.technical-data-item p{
+  max-width: 50%;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-medium);
+}
+
+.technical-data-item p:first-child{
+  text-align: left;
+  font-weight: var(--font-weight-secondary);
+  color: var(--primary);
+}
+
+.technical-data-item p:last-child{
+  text-align: right;
+  font-weight: var(--font-weight-tertiary);
+  color: var(--text);
 }
 
 </style>

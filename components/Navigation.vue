@@ -82,8 +82,9 @@ export default {
         background-color: #74121D;
         color: #fff;
         border-radius: 50%;
-        width: 20px;
-        height: 20px;
+        width: 25px;
+        height: 25px;
+        padding: 5px;
         display: flex;
         justify-content: center;
         align-items: center;
