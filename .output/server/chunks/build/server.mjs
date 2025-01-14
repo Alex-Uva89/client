@@ -1,11 +1,11 @@
-import { version, unref, inject, hasInjectionContext, getCurrentInstance, useSSRContext, createApp, effectScope, shallowReactive, reactive, getCurrentScope, provide, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, toRef, defineAsyncComponent, mergeProps, shallowRef, isReadonly, resolveComponent, withCtx, openBlock, createBlock, toDisplayString, createCommentVNode, isRef, isShallow, isReactive, toRaw } from 'vue';
+import { version, unref, inject, hasInjectionContext, getCurrentInstance, useSSRContext, createApp, effectScope, shallowReactive, reactive, getCurrentScope, ref, provide, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, toRef, defineAsyncComponent, mergeProps, shallowRef, isReadonly, resolveComponent, withCtx, openBlock, createBlock, toDisplayString, createCommentVNode, isRef, isShallow, isReactive, toRaw } from 'vue';
 import { $ as $fetch, l as hasProtocol, m as isScriptProtocol, n as joinURL, w as withQuery, o as sanitizeStatusCode, p as getContext, q as createHooks, f as createError$1, r as toRouteMatcher, v as createRouter$1, x as defu } from '../_/nitro.mjs';
 import { b as baseURL } from '../routes/renderer.mjs';
 import { getActiveHead, CapoPlugin } from 'unhead';
 import { defineHeadPlugin } from '@unhead/shared';
 import { createMemoryHistory, createRouter, START_LOCATION } from 'vue-router';
 import { defineStore, createPinia } from 'pinia';
-import { ssrRenderSuspense, ssrRenderComponent, ssrRenderVNode, ssrRenderAttrs, ssrRenderAttr, ssrInterpolate, ssrRenderSlot } from 'vue/server-renderer';
+import { ssrRenderAttrs, ssrRenderAttr, ssrRenderSuspense, ssrRenderComponent, ssrRenderVNode, ssrInterpolate, ssrRenderSlot } from 'vue/server-renderer';
 import 'node:http';
 import 'node:https';
 import 'node:fs';
@@ -362,11 +362,11 @@ version[0] === "3";
 function resolveUnref(r) {
   return typeof r === "function" ? r() : unref(r);
 }
-function resolveUnrefHeadInput(ref) {
-  if (ref instanceof Promise || ref instanceof Date || ref instanceof RegExp)
-    return ref;
-  const root = resolveUnref(ref);
-  if (!ref || !root)
+function resolveUnrefHeadInput(ref2) {
+  if (ref2 instanceof Promise || ref2 instanceof Date || ref2 instanceof RegExp)
+    return ref2;
+  const root = resolveUnref(ref2);
+  if (!ref2 || !root)
     return root;
   if (Array.isArray(root))
     return root.map((r) => resolveUnrefHeadInput(r));
@@ -568,7 +568,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-U9W3ZJWv.mjs')
+    component: () => import('./index-JkDNVH2F.mjs')
   },
   {
     name: "login",
@@ -1024,9 +1024,9 @@ const useCartStore = defineStore("cartStore", {
     getCartTotalItems: (state) => state.cart.reduce((total, item) => total + item.quantity, 0)
   }
 });
-const _imports_0$1 = "data:image/svg+xml,%3csvg%20width='25'%20height='26'%20viewBox='0%200%2025%2026'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M19.168%2019.245C21.2279%2017.2026%2022.5103%2014.3759%2022.5103%2011.2524C22.5062%205.04839%2017.4605%200%2011.2551%200C5.04839%200%200%205.04839%200%2011.2551C0%2017.4619%205.04839%2022.5065%2011.2513%2022.5065C13.5879%2022.5065%2015.7572%2021.791%2017.5579%2020.568L22.8036%2026L24.2966%2024.5583L19.168%2019.245ZM2.07309%2011.2551C2.07309%206.19326%206.19156%202.0734%2011.2548%202.0734C16.3167%202.0734%2020.4327%206.19326%2020.4327%2011.2551C20.4327%2016.317%2016.3129%2020.433%2011.2548%2020.433C6.19537%2020.433%202.07309%2016.3146%202.07309%2011.2551Z'%20fill='%2374121D'/%3e%3c/svg%3e";
+const _imports_0$2 = "data:image/svg+xml,%3csvg%20width='25'%20height='26'%20viewBox='0%200%2025%2026'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M19.168%2019.245C21.2279%2017.2026%2022.5103%2014.3759%2022.5103%2011.2524C22.5062%205.04839%2017.4605%200%2011.2551%200C5.04839%200%200%205.04839%200%2011.2551C0%2017.4619%205.04839%2022.5065%2011.2513%2022.5065C13.5879%2022.5065%2015.7572%2021.791%2017.5579%2020.568L22.8036%2026L24.2966%2024.5583L19.168%2019.245ZM2.07309%2011.2551C2.07309%206.19326%206.19156%202.0734%2011.2548%202.0734C16.3167%202.0734%2020.4327%206.19326%2020.4327%2011.2551C20.4327%2016.317%2016.3129%2020.433%2011.2548%2020.433C6.19537%2020.433%202.07309%2016.3146%202.07309%2011.2551Z'%20fill='%2374121D'/%3e%3c/svg%3e";
 const _imports_1 = "" + __buildAssetsURL("mamma-elvira.FdGqdhVm.svg");
-const _imports_0 = "" + __buildAssetsURL("basket.Bdgk0gwp.svg");
+const _imports_0$1 = "" + __buildAssetsURL("basket.Bdgk0gwp.svg");
 const _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
   for (const [key, val] of props) {
@@ -1034,7 +1034,7 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const _sfc_main$4 = {
+const _sfc_main$5 = {
   name: "navigation",
   setup() {
     const cartStore = useCartStore();
@@ -1052,11 +1052,11 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<img${ssrRenderAttr("src", _imports_0$1)} alt="logo della lente d&#39;ingrandimento" data-v-62fc9a92${_scopeId}><span data-v-62fc9a92${_scopeId}> Cerca </span>`);
+        _push2(`<img${ssrRenderAttr("src", _imports_0$2)} alt="logo della lente d&#39;ingrandimento" data-v-62fc9a92${_scopeId}><span data-v-62fc9a92${_scopeId}> Cerca </span>`);
       } else {
         return [
           createVNode("img", {
-            src: _imports_0$1,
+            src: _imports_0$2,
             alt: "logo della lente d'ingrandimento"
           }),
           createVNode("span", null, " Cerca ")
@@ -1090,7 +1090,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<img${ssrRenderAttr("src", _imports_0)} alt="logo del carrello" data-v-62fc9a92${_scopeId}><span data-v-62fc9a92${_scopeId}> La mia Cambusa </span>`);
+        _push2(`<img${ssrRenderAttr("src", _imports_0$1)} alt="logo del carrello" data-v-62fc9a92${_scopeId}><span data-v-62fc9a92${_scopeId}> La mia Cambusa </span>`);
         if ($setup.cartStore.getCartTotalItems != 0) {
           _push2(`<span class="cart-counter" data-v-62fc9a92${_scopeId}>${ssrInterpolate($setup.cartStore.getCartTotalItems)}</span>`);
         } else {
@@ -1099,7 +1099,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
       } else {
         return [
           createVNode("img", {
-            src: _imports_0,
+            src: _imports_0$1,
             alt: "logo del carrello"
           }),
           createVNode("span", null, " La mia Cambusa "),
@@ -1114,36 +1114,69 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, _parent));
   _push(`</nav>`);
 }
-const _sfc_setup$4 = _sfc_main$4.setup;
-_sfc_main$4.setup = (props, ctx) => {
+const _sfc_setup$5 = _sfc_main$5.setup;
+_sfc_main$5.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/Navigation.vue");
-  return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
+  return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
 };
-const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["ssrRender", _sfc_ssrRender$2], ["__scopeId", "data-v-62fc9a92"]]);
-const _sfc_main$3 = {};
+const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["ssrRender", _sfc_ssrRender$2], ["__scopeId", "data-v-62fc9a92"]]);
+const _sfc_main$4 = {};
 function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<div${ssrRenderAttrs(_attrs)}><div> HEADER `);
   ssrRenderSlot(_ctx.$slots, "default", {}, null, _push, _parent);
   _push(`</div></div>`);
 }
+const _sfc_setup$4 = _sfc_main$4.setup;
+_sfc_main$4.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("layouts/homeLayout.vue");
+  return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
+};
+const defaultLayout = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["ssrRender", _sfc_ssrRender$1]]);
+const _imports_0 = "" + __buildAssetsURL("image 2.Eo2V3nLt.png");
+const _sfc_main$3 = {
+  __name: "StartComponent",
+  __ssrInlineRender: true,
+  setup(__props) {
+    const showWhiteScreen = ref(true);
+    const showLoadingImage = ref(false);
+    return (_ctx, _push, _parent, _attrs) => {
+      _push(`<div${ssrRenderAttrs(_attrs)} data-v-f44c0933>`);
+      if (showWhiteScreen.value) {
+        _push(`<div class="white-screen" data-v-f44c0933></div>`);
+      } else {
+        _push(`<!---->`);
+      }
+      if (showLoadingImage.value) {
+        _push(`<div class="loading-screen" data-v-f44c0933><img${ssrRenderAttr("src", _imports_0)} alt="Loading" data-v-f44c0933><h1 class="loading-title" data-v-f44c0933>CAMBUSA</h1></div>`);
+      } else {
+        _push(`<!---->`);
+      }
+      _push(`</div>`);
+    };
+  }
+};
 const _sfc_setup$3 = _sfc_main$3.setup;
 _sfc_main$3.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("layouts/homeLayout.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/StartComponent.vue");
   return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
-const defaultLayout = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$1]]);
+const Start = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-f44c0933"]]);
 const _sfc_main$2 = {
   components: {
+    Start,
     defaultLayout,
     Navigation: __nuxt_component_0
   }
 };
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  const _component_Start = resolveComponent("Start");
   const _component_router_view = resolveComponent("router-view");
   const _component_Navigation = __nuxt_component_0;
   _push(`<div${ssrRenderAttrs(mergeProps({ class: "app" }, _attrs))}>`);
+  _push(ssrRenderComponent(_component_Start, null, null, _parent));
   _push(ssrRenderComponent(_component_router_view, null, null, _parent));
   _push(ssrRenderComponent(_component_Navigation, null, null, _parent));
   _push(`</div>`);
@@ -1258,5 +1291,5 @@ let entry;
 }
 const entry$1 = (ssrContext) => entry(ssrContext);
 
-export { _export_sfc as _, navigateTo as a, useNuxtApp as b, useRuntimeConfig as c, resolveUnrefHeadInput as d, entry$1 as default, useCartStore as e, _imports_0 as f, injectHead as i, nuxtLinkDefaults as n, resolveRouteObject as r, useRouter as u };
+export { _export_sfc as _, navigateTo as a, useNuxtApp as b, useRuntimeConfig as c, resolveUnrefHeadInput as d, entry$1 as default, useCartStore as e, _imports_0$1 as f, injectHead as i, nuxtLinkDefaults as n, resolveRouteObject as r, useRouter as u };
 //# sourceMappingURL=server.mjs.map

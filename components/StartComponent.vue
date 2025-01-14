@@ -7,28 +7,28 @@
         <Transition name="fade">
             <div v-if="showLoadingImage" class="loading-screen">
                 <img src="/assets/images/image 2.png" alt="Loading" />
-                <Logo class="loading-title" />
+                <h1 class="loading-title">CAMBUSA</h1>
             </div>
         </Transition>
     </div>
 </template>
 
 <script setup>
-import Logo from '~/components/LogoSection.vue'
 import { ref, onMounted } from 'vue';
 
 const showWhiteScreen = ref(true);
 const showLoadingImage = ref(false);
 
 onMounted(() => {
+    const hasVisited = window.localStorage.getItem('hasVisitedBefore') === 'true';
     setTimeout(() => {
-        showLoadingImage.value = true;
+        showLoadingImage.value = hasVisited ? true : false;
         setTimeout(() => {
-            showWhiteScreen.value = false;
+            showWhiteScreen.value = hasVisited ? false : true;
         }, 500);
         
         setTimeout(() => {
-            showLoadingImage.value = false;
+            showLoadingImage.value = hasVisited ? false : true;
         }, 5000);
     }, 500);
 });
@@ -62,11 +62,12 @@ onMounted(() => {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
-    font-size: 4rem;
+    color: var(--label);
+    font-size: 5rem;
     font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 0px 0px 10px var(--primary);
     z-index: 10000;
+    font-family: var(--font-primary);
 }
 
 .loading-screen img {

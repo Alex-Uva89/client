@@ -4,7 +4,7 @@ import { L as Logo } from './LogoSection-BdmjOFmU.mjs';
 import { defineComponent, useSSRContext, resolveComponent, withCtx, createVNode, createTextVNode } from 'vue';
 import { A as AccordionComponent } from './AccordionComponent-CywX46DP.mjs';
 import { ssrRenderAttrs, ssrRenderComponent, ssrRenderAttr } from 'vue/server-renderer';
-import { _ as _export_sfc, f as _imports_0 } from './server.mjs';
+import { _ as _export_sfc, f as _imports_0$1 } from './server.mjs';
 import { _ as _imports_2, a as _imports_3 } from './privacy-BlfKfCeW.mjs';
 import 'vue-bundle-renderer/runtime';
 import '../_/nitro.mjs';
@@ -38,7 +38,7 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
   const _component_router_link = resolveComponent("router-link");
   _push(`<div${ssrRenderAttrs(_attrs)} data-v-65d1c605><div class="container-fix-header" data-v-65d1c605>`);
   _push(ssrRenderComponent(_component_Header, { title: "Men\xF9" }, null, _parent));
-  _push(`</div><div class="menu-container" data-v-65d1c605><div class="menu-main-container" data-v-65d1c605><div class="accordion-container" data-v-65d1c605><img${ssrRenderAttr("src", _imports_0)} alt="icona cestino della spesa" class="accordion-icon" data-v-65d1c605>`);
+  _push(`</div><div class="menu-container" data-v-65d1c605><div class="menu-main-container" data-v-65d1c605><div class="accordion-container" data-v-65d1c605><img${ssrRenderAttr("src", _imports_0$1)} alt="icona cestino della spesa" class="accordion-icon" data-v-65d1c605>`);
   _push(ssrRenderComponent(_component_Accordion, {
     title: "La mia Cambusa",
     isLink: "true",

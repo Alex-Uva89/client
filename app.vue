@@ -1,5 +1,6 @@
 <template>
   <div class="app">
+    <Start />
     <router-view></router-view>
     
     <Navigation />
@@ -8,10 +9,12 @@
 
 <script>
 import defaultLayout from './layouts/homeLayout.vue';
+import Start from './components/StartComponent.vue';
 import Navigation from './components/Navigation.vue';
 
 export default {
   components: {
+    Start,
     defaultLayout,
     Navigation
   }
