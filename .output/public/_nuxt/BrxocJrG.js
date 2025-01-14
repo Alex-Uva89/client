@@ -1,1 +1,0 @@
-import{_ as e}from"./BAfi3_tR.js";import{_ as a,t as n,v as r,z as s,Z as c}from"./Dl7Jhsgg.js";const _={name:"defaultLayout",components:{HeaderDefault:e}};function l(t,u,d,f,p,m){const o=e;return n(),r("div",null,[s(o),c(t.$slots,"default")])}const x=a(_,[["render",l]]);export{x as default};
