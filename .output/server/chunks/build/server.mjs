@@ -568,7 +568,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-JkDNVH2F.mjs')
+    component: () => import('./index-vJP7eo-q.mjs')
   },
   {
     name: "login",
@@ -583,7 +583,7 @@ const _routes = [
   {
     name: "product-id",
     path: "/product/:id()",
-    component: () => import('./_id_-5Awz9q70.mjs')
+    component: () => import('./_id_-D-xW2bjs.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;

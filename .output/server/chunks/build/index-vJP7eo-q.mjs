@@ -1,6 +1,6 @@
 import { L as Logo } from './LogoSection-BdmjOFmU.mjs';
 import { defineComponent, useSSRContext, computed, resolveComponent, mergeProps, withCtx, createVNode, createTextVNode, toDisplayString, openBlock, createBlock, createCommentVNode } from 'vue';
-import { u as useProductStore, _ as _imports_0$1 } from './back_red-BlvYJxpW.mjs';
+import { u as useProductStore, _ as _imports_0$1 } from './back_red-DBgXPiVt.mjs';
 import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate, ssrRenderList, ssrRenderAttr, ssrRenderClass } from 'vue/server-renderer';
 import { e as useCartStore, _ as _export_sfc } from './server.mjs';
 import { defineStore } from 'pinia';
@@ -66,12 +66,12 @@ _sfc_main$5.setup = (props, ctx) => {
   return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
 };
 const SearcBar = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["ssrRender", _sfc_ssrRender$5], ["__scopeId", "data-v-e4182c1f"]]);
-const api = axios.create({
+axios.create({
   baseURL: "https://cambusa-dev-700afd82d2d2.herokuapp.com/"
 });
 const getCategories = async () => {
   try {
-    const response = await api.get("/api/categories");
+    const response = await axios.get("/api/categories");
     return response.data;
   } catch (error) {
     console.error("Errore nel recupero delle categorie:", error);
@@ -368,4 +368,4 @@ _sfc_main.setup = (props, ctx) => {
 const index = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
 
 export { index as default };
-//# sourceMappingURL=index-JkDNVH2F.mjs.map
+//# sourceMappingURL=index-vJP7eo-q.mjs.map
