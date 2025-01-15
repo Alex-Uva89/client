@@ -54,7 +54,7 @@ export default {
         display: flex;
         align-items: center;
         padding: 20px 0;
-        border-top: 2px solid #74121D;
+        border-top: 2px solid var(--primary);
         box-shadow: 0px -2px 10px rgba(0, 0, 0, .35);
         .item-nav{
             flex: 1;
@@ -79,7 +79,7 @@ export default {
         position: absolute;
         bottom: 50px;
         right: 30px;
-        background-color: #74121D;
+        background-color: var(--primary);
         color: #fff;
         border-radius: 50%;
         width: 25px;

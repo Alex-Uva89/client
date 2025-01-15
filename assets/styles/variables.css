@@ -22,7 +22,8 @@
 :root {
 
     /* COLORS */
-    --primary: #74121D;
+    /* --primary: #74121D; */
+    --primary: #232323fe;
     --background: #F4F1EC;
     --banner: #e7d7c0;
     --text: #372C43;
@@ -40,6 +41,7 @@
     --font-weight-tertiary: 200;
 
     /* FONT SIZE */
+    --font-size-xxsmall: 10px;
     --font-size-xsmall: 12px;
     --font-size-small: 14px;
     --font-size-medium: 16px;

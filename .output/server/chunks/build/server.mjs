@@ -568,7 +568,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-vJP7eo-q.mjs')
+    component: () => import('./index-CN2d2wjZ.mjs')
   },
   {
     name: "login",
@@ -1024,7 +1024,7 @@ const useCartStore = defineStore("cartStore", {
     getCartTotalItems: (state) => state.cart.reduce((total, item) => total + item.quantity, 0)
   }
 });
-const _imports_0$2 = "data:image/svg+xml,%3csvg%20width='25'%20height='26'%20viewBox='0%200%2025%2026'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M19.168%2019.245C21.2279%2017.2026%2022.5103%2014.3759%2022.5103%2011.2524C22.5062%205.04839%2017.4605%200%2011.2551%200C5.04839%200%200%205.04839%200%2011.2551C0%2017.4619%205.04839%2022.5065%2011.2513%2022.5065C13.5879%2022.5065%2015.7572%2021.791%2017.5579%2020.568L22.8036%2026L24.2966%2024.5583L19.168%2019.245ZM2.07309%2011.2551C2.07309%206.19326%206.19156%202.0734%2011.2548%202.0734C16.3167%202.0734%2020.4327%206.19326%2020.4327%2011.2551C20.4327%2016.317%2016.3129%2020.433%2011.2548%2020.433C6.19537%2020.433%202.07309%2016.3146%202.07309%2011.2551Z'%20fill='%2374121D'/%3e%3c/svg%3e";
+const _imports_0$2 = "data:image/svg+xml,%3csvg%20width='25'%20height='26'%20viewBox='0%200%2025%2026'%20stroke='var(--primary)'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M19.168%2019.245C21.2279%2017.2026%2022.5103%2014.3759%2022.5103%2011.2524C22.5062%205.04839%2017.4605%200%2011.2551%200C5.04839%200%200%205.04839%200%2011.2551C0%2017.4619%205.04839%2022.5065%2011.2513%2022.5065C13.5879%2022.5065%2015.7572%2021.791%2017.5579%2020.568L22.8036%2026L24.2966%2024.5583L19.168%2019.245ZM2.07309%2011.2551C2.07309%206.19326%206.19156%202.0734%2011.2548%202.0734C16.3167%202.0734%2020.4327%206.19326%2020.4327%2011.2551C20.4327%2016.317%2016.3129%2020.433%2011.2548%2020.433C6.19537%2020.433%202.07309%2016.3146%202.07309%2011.2551Z'%20fill='%2374121D'/%3e%3c/svg%3e";
 const _imports_1 = "" + __buildAssetsURL("mamma-elvira.FdGqdhVm.svg");
 const _imports_0$1 = "" + __buildAssetsURL("basket.Bdgk0gwp.svg");
 const _export_sfc = (sfc, props) => {
@@ -1045,14 +1045,14 @@ const _sfc_main$5 = {
 };
 function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_router_link = resolveComponent("router-link");
-  _push(`<nav${ssrRenderAttrs(mergeProps({ class: "nav" }, _attrs))} data-v-62fc9a92>`);
+  _push(`<nav${ssrRenderAttrs(mergeProps({ class: "nav" }, _attrs))} data-v-ad8682d0>`);
   _push(ssrRenderComponent(_component_router_link, {
     to: "/",
     class: "item-nav"
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<img${ssrRenderAttr("src", _imports_0$2)} alt="logo della lente d&#39;ingrandimento" data-v-62fc9a92${_scopeId}><span data-v-62fc9a92${_scopeId}> Cerca </span>`);
+        _push2(`<img${ssrRenderAttr("src", _imports_0$2)} alt="logo della lente d&#39;ingrandimento" data-v-ad8682d0${_scopeId}><span data-v-ad8682d0${_scopeId}> Cerca </span>`);
       } else {
         return [
           createVNode("img", {
@@ -1071,7 +1071,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<img${ssrRenderAttr("src", _imports_1)} alt="logo aziendale, raffigurante volto di mamma elvira" data-v-62fc9a92${_scopeId}><span data-v-62fc9a92${_scopeId}>Menù</span>`);
+        _push2(`<img${ssrRenderAttr("src", _imports_1)} alt="logo aziendale, raffigurante volto di mamma elvira" data-v-ad8682d0${_scopeId}><span data-v-ad8682d0${_scopeId}>Menù</span>`);
       } else {
         return [
           createVNode("img", {
@@ -1090,9 +1090,9 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<img${ssrRenderAttr("src", _imports_0$1)} alt="logo del carrello" data-v-62fc9a92${_scopeId}><span data-v-62fc9a92${_scopeId}> La mia Cambusa </span>`);
+        _push2(`<img${ssrRenderAttr("src", _imports_0$1)} alt="logo del carrello" data-v-ad8682d0${_scopeId}><span data-v-ad8682d0${_scopeId}> La mia Cambusa </span>`);
         if ($setup.cartStore.getCartTotalItems != 0) {
-          _push2(`<span class="cart-counter" data-v-62fc9a92${_scopeId}>${ssrInterpolate($setup.cartStore.getCartTotalItems)}</span>`);
+          _push2(`<span class="cart-counter" data-v-ad8682d0${_scopeId}>${ssrInterpolate($setup.cartStore.getCartTotalItems)}</span>`);
         } else {
           _push2(`<!---->`);
         }
@@ -1120,7 +1120,7 @@ _sfc_main$5.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/Navigation.vue");
   return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
 };
-const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["ssrRender", _sfc_ssrRender$2], ["__scopeId", "data-v-62fc9a92"]]);
+const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["ssrRender", _sfc_ssrRender$2], ["__scopeId", "data-v-ad8682d0"]]);
 const _sfc_main$4 = {};
 function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<div${ssrRenderAttrs(_attrs)}><div> HEADER `);

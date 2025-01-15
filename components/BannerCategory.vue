@@ -1,12 +1,19 @@
 <template>
-      <h1 class="intestate-category">{{ categoryStore.selectedCategory ? categoryStore.selectedCategory['category'].name : 'Tutti' }}</h1>
+    <div class="banner-container">
+        <h1 class="intestate-category">{{ categoryStore.selectedCategory ? categoryStore.selectedCategory['category'].name : 'Tutti' }}</h1>
+        <FilterComponent />
+    </div>
 </template>
 
 <script>
 import { useCategoryStore } from '@/store/categoryStore';
+import FilterComponent from './FilterComponent.vue';
 
 export default {
     name: 'BannerCategory',
+    components: {
+        FilterComponent,
+    },
     setup() {
         const categoryStore = useCategoryStore();
         return {
@@ -17,6 +24,10 @@ export default {
 </script>
 
 <style scoped>
+
+.banner-container {
+    position: relative;
+}
 
 .intestate-category {
     width: 100%;
