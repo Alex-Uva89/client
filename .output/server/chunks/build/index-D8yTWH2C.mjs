@@ -266,19 +266,13 @@ const _sfc_main$3 = {
     };
     return (_ctx, _push, _parent, _attrs) => {
       const _component_range_component = resolveComponent("range-component");
-      _push(`<div${ssrRenderAttrs(_attrs)} data-v-a874e380><button class="btn-filter" data-v-a874e380><img${ssrRenderAttr("src", _imports_0)} class="icon-filter" alt="Icona per aprire la pagina filtri" data-v-a874e380></button>`);
+      _push(`<div${ssrRenderAttrs(_attrs)} data-v-6ebaa404><button class="btn-filter" data-v-6ebaa404><img${ssrRenderAttr("src", _imports_0)} class="icon-filter" alt="Icona per aprire la pagina filtri" data-v-6ebaa404></button>`);
       if (showFilter.value) {
-        _push(`<div class="filter-container" data-v-a874e380><div class="filter-header" data-v-a874e380><img${ssrRenderAttr("src", _imports_1)} alt="icona per chiudere la pagina filtri" class="icon-close" data-v-a874e380><div class="filter-header-content" data-v-a874e380><h2 class="filter-header-title" data-v-a874e380>Filtri</h2><div class="filter-header-buttons" data-v-a874e380><button class="btn apply" data-v-a874e380>Applica filtri</button>`);
-        if (_ctx.hasFilter) {
-          _push(`<button class="btn reset" data-v-a874e380>Reset</button>`);
-        } else {
-          _push(`<!---->`);
-        }
-        _push(`</div></div></div><div class="filter-content" data-v-a874e380>`);
+        _push(`<div class="filter-container" data-v-6ebaa404><div class="filter-header" data-v-6ebaa404><img${ssrRenderAttr("src", _imports_1)} alt="icona per chiudere la pagina filtri" class="icon-close" data-v-6ebaa404><div class="filter-header-content" data-v-6ebaa404><h2 class="filter-header-title" data-v-6ebaa404>Filtri</h2><div class="filter-header-buttons" data-v-6ebaa404><button class="btn apply" data-v-6ebaa404>Applica filtri</button><button class="btn reset" data-v-6ebaa404>Reset</button></div></div></div><div class="filter-content" data-v-6ebaa404>`);
         _push(ssrRenderComponent(PillowFilter, { title: "Ordina per" }, {
           default: withCtx((_, _push2, _parent2, _scopeId) => {
             if (_push2) {
-              _push2(`<button id="abc" class="btn mono" data-v-a874e380${_scopeId}>Alfabetico</button><button id="crescent" class="btn mono" data-v-a874e380${_scopeId}>Prezzo decrescente</button><button id="decrescent" class="btn mono" data-v-a874e380${_scopeId}>Prezzo crescente</button>`);
+              _push2(`<button id="abc" class="btn mono" data-v-6ebaa404${_scopeId}>Alfabetico</button><button id="crescent" class="btn mono" data-v-6ebaa404${_scopeId}>Prezzo decrescente</button><button id="decrescent" class="btn mono" data-v-6ebaa404${_scopeId}>Prezzo crescente</button>`);
             } else {
               return [
                 createVNode("button", {
@@ -311,18 +305,18 @@ const _sfc_main$3 = {
             if (_push2) {
               _push2(`<!--[-->`);
               ssrRenderList(displayedColors.value, (color) => {
-                _push2(`<button class="${ssrRenderClass([{ active: activeFilters.value.subcategory.includes(color) }, "btn"])}" data-v-a874e380${_scopeId}>${ssrInterpolate(color)}</button>`);
+                _push2(`<button class="${ssrRenderClass([{ active: activeFilters.value.subcategory.includes(color) }, "btn"])}" data-v-6ebaa404${_scopeId}>${ssrInterpolate(color)}</button>`);
               });
               _push2(`<!--]-->`);
               if (uniqueColors.value.length > INITIAL_DISPLAY) {
-                _push2(`<div class="filter-controls" data-v-a874e380${_scopeId}>`);
+                _push2(`<div class="filter-controls" data-v-6ebaa404${_scopeId}>`);
                 if (uniqueColors.value.length > displayLimits.value.subcategory) {
-                  _push2(`<div class="show-toggle" data-v-a874e380${_scopeId}> Mostra di pi\xF9 </div>`);
+                  _push2(`<div class="show-toggle" data-v-6ebaa404${_scopeId}> Mostra di pi\xF9 </div>`);
                 } else {
                   _push2(`<!---->`);
                 }
                 if (displayLimits.value.subcategory > INITIAL_DISPLAY) {
-                  _push2(`<div class="show-toggle" data-v-a874e380${_scopeId}> Mostra meno </div>`);
+                  _push2(`<div class="show-toggle" data-v-6ebaa404${_scopeId}> Mostra meno </div>`);
                 } else {
                   _push2(`<!---->`);
                 }
@@ -364,18 +358,18 @@ const _sfc_main$3 = {
             if (_push2) {
               _push2(`<!--[-->`);
               ssrRenderList(displayedOrigins.value, (origin) => {
-                _push2(`<button class="${ssrRenderClass([{ active: activeFilters.value.origin.includes(origin) }, "btn"])}" data-v-a874e380${_scopeId}>${ssrInterpolate(origin)}</button>`);
+                _push2(`<button class="${ssrRenderClass([{ active: activeFilters.value.origin.includes(origin) }, "btn"])}" data-v-6ebaa404${_scopeId}>${ssrInterpolate(origin)}</button>`);
               });
               _push2(`<!--]-->`);
               if (uniqueColors.value.length > INITIAL_DISPLAY) {
-                _push2(`<div class="filter-controls" data-v-a874e380${_scopeId}>`);
+                _push2(`<div class="filter-controls" data-v-6ebaa404${_scopeId}>`);
                 if (uniqueColors.value.length > displayLimits.value.subcategory) {
-                  _push2(`<div class="show-toggle" data-v-a874e380${_scopeId}> Mostra di pi\xF9 </div>`);
+                  _push2(`<div class="show-toggle" data-v-6ebaa404${_scopeId}> Mostra di pi\xF9 </div>`);
                 } else {
                   _push2(`<!---->`);
                 }
                 if (displayLimits.value.subcategory > INITIAL_DISPLAY) {
-                  _push2(`<div class="show-toggle" data-v-a874e380${_scopeId}> Mostra meno </div>`);
+                  _push2(`<div class="show-toggle" data-v-6ebaa404${_scopeId}> Mostra meno </div>`);
                 } else {
                   _push2(`<!---->`);
                 }
@@ -417,18 +411,18 @@ const _sfc_main$3 = {
             if (_push2) {
               _push2(`<!--[-->`);
               ssrRenderList(displayedGrapes.value, (grape) => {
-                _push2(`<button class="${ssrRenderClass([{ active: activeFilters.value.grape.includes(grape) }, "btn"])}" data-v-a874e380${_scopeId}>${ssrInterpolate(grape)}</button>`);
+                _push2(`<button class="${ssrRenderClass([{ active: activeFilters.value.grape.includes(grape) }, "btn"])}" data-v-6ebaa404${_scopeId}>${ssrInterpolate(grape)}</button>`);
               });
               _push2(`<!--]-->`);
               if (uniqueColors.value.length > INITIAL_DISPLAY) {
-                _push2(`<div class="filter-controls" data-v-a874e380${_scopeId}>`);
+                _push2(`<div class="filter-controls" data-v-6ebaa404${_scopeId}>`);
                 if (uniqueColors.value.length > displayLimits.value.subcategory) {
-                  _push2(`<div class="show-toggle" data-v-a874e380${_scopeId}> Mostra di pi\xF9 </div>`);
+                  _push2(`<div class="show-toggle" data-v-6ebaa404${_scopeId}> Mostra di pi\xF9 </div>`);
                 } else {
                   _push2(`<!---->`);
                 }
                 if (displayLimits.value.subcategory > INITIAL_DISPLAY) {
-                  _push2(`<div class="show-toggle" data-v-a874e380${_scopeId}> Mostra meno </div>`);
+                  _push2(`<div class="show-toggle" data-v-6ebaa404${_scopeId}> Mostra meno </div>`);
                 } else {
                   _push2(`<!---->`);
                 }
@@ -470,18 +464,18 @@ const _sfc_main$3 = {
             if (_push2) {
               _push2(`<!--[-->`);
               ssrRenderList(displayedVintages.value, (vintage) => {
-                _push2(`<button class="${ssrRenderClass([{ active: activeFilters.value.vintage.includes(vintage) }, "btn"])}" data-v-a874e380${_scopeId}>${ssrInterpolate(vintage)}</button>`);
+                _push2(`<button class="${ssrRenderClass([{ active: activeFilters.value.vintage.includes(vintage) }, "btn"])}" data-v-6ebaa404${_scopeId}>${ssrInterpolate(vintage)}</button>`);
               });
               _push2(`<!--]-->`);
               if (uniqueColors.value.length > INITIAL_DISPLAY) {
-                _push2(`<div class="filter-controls" data-v-a874e380${_scopeId}>`);
+                _push2(`<div class="filter-controls" data-v-6ebaa404${_scopeId}>`);
                 if (uniqueColors.value.length > displayLimits.value.subcategory) {
-                  _push2(`<div class="show-toggle" data-v-a874e380${_scopeId}> Mostra di pi\xF9 </div>`);
+                  _push2(`<div class="show-toggle" data-v-6ebaa404${_scopeId}> Mostra di pi\xF9 </div>`);
                 } else {
                   _push2(`<!---->`);
                 }
                 if (displayLimits.value.subcategory > INITIAL_DISPLAY) {
-                  _push2(`<div class="show-toggle" data-v-a874e380${_scopeId}> Mostra meno </div>`);
+                  _push2(`<div class="show-toggle" data-v-6ebaa404${_scopeId}> Mostra meno </div>`);
                 } else {
                   _push2(`<!---->`);
                 }
@@ -532,7 +526,7 @@ _sfc_main$3.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/FilterComponent.vue");
   return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
-const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-a874e380"]]);
+const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-6ebaa404"]]);
 const _sfc_main$2 = {
   name: "BannerCategory",
   components: {
@@ -722,4 +716,4 @@ _sfc_main.setup = (props, ctx) => {
 const index = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
 
 export { index as default };
-//# sourceMappingURL=index-CN2d2wjZ.mjs.map
+//# sourceMappingURL=index-D8yTWH2C.mjs.map

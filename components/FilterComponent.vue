@@ -12,7 +12,7 @@
                     <h2 class="filter-header-title">Filtri</h2>
                     <div class="filter-header-buttons">
                         <button class="btn apply">Applica filtri</button>
-                        <button v-if="hasFilter" class="btn reset">Reset</button>
+                        <button class="btn reset" >Reset</button>
                     </div>
                 </div>
                 
@@ -281,7 +281,7 @@ const updateFilteredProducts = () => {
     width: 100%;
     position: relative;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
 }
 
 .filter-header-title {
@@ -289,6 +289,7 @@ const updateFilteredProducts = () => {
     color: var(--label);
     font-size: var(--font-size-xlarge);
     font-weight: var(--font-weight-secondary);
+    margin-left: 20px;
 }
 
 /* buttons */
@@ -317,7 +318,7 @@ const updateFilteredProducts = () => {
     overflow: hidden;
 }
 
-.btn.btn:not(.apply) {
+button.btn:not(.apply , .reset) {
     margin-bottom: 15px;
 }
 
@@ -337,6 +338,7 @@ const updateFilteredProducts = () => {
     font-weight: var(--font-weight-tertiary);
     width: 100px;
     background-color: transparent;
+    margin: 0 5px;
 }
 
 /* content */
