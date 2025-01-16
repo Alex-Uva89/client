@@ -28,7 +28,7 @@ onMounted(() => {
         
         setTimeout(() => {
             showLoadingImage.value = false;
-        }, 5000);
+        }, 3500);
     }, 500);
 });
 </script>
