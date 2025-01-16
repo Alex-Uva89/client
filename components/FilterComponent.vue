@@ -156,6 +156,7 @@
 import { ref, computed } from 'vue';
 import { useProductStore } from '~/store/productStore';
 import PillowFilter from '/components/filters/PillowFilterComponent.vue';
+import RangeComponent from '/components/filters/RangeComponent.vue';
 
 const productStore = useProductStore();
 const INITIAL_DISPLAY = 6;
@@ -188,6 +189,8 @@ const displayedColors = computed(() => uniqueColors.value.slice(0, displayLimits
 const displayedOrigins = computed(() => uniqueOrigins.value.slice(0, displayLimits.value.origin));
 const displayedGrapes = computed(() => uniqueGrapes.value.slice(0, displayLimits.value.grape));
 const displayedVintages = computed(() => uniqueVintages.value.slice(0, displayLimits.value.vintage));
+
+console.log(displayedColors);
 
 const loadMore = (filterType) => {
   displayLimits.value[filterType] += LOAD_MORE_COUNT;
