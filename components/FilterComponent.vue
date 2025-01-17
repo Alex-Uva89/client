@@ -28,7 +28,7 @@
                 
                 <range-component :min="0" :max="600" @update:values="handleValues"  />
 
-                <pillow-filter title="Colore">
+                <pillow-filter title="Tipologia">
                 <button 
                     v-for="color in displayedColors" 
                     :key="color"
@@ -36,7 +36,7 @@
                     @click="activeFilterMultiple(color, 'subcategory')"
                     :class="{ active: activeFilters.subcategory.includes(color) }"
                 >
-                    {{ color }}
+                    {{ color.replace('VINI ', '') }}
                 </button>
                 <div class="filter-controls" v-if="uniqueColors.length > INITIAL_DISPLAY">
                     <div 
@@ -46,15 +46,13 @@
                     >
                         Mostra di più
                     </div>
-
                     <div 
-                        v-if="displayLimits.subcategory > INITIAL_DISPLAY" 
+                        v-if="displayLimits.subcategory > INITIAL_DISPLAY && uniqueColors.length > INITIAL_DISPLAY" 
                         class="show-toggle"
                         @click="showLess('subcategory')"
                     >
                         Mostra meno
                     </div>
-                    
                 </div>
                 </pillow-filter>
 
@@ -68,23 +66,21 @@
                 >
                     {{ origin }}
                 </button>
-                <div class="filter-controls" v-if="uniqueColors.length > INITIAL_DISPLAY">
+                <div class="filter-controls" v-if="uniqueOrigins.length > INITIAL_DISPLAY">
                     <div 
-                        v-if="uniqueColors.length > displayLimits.subcategory"
+                        v-if="uniqueOrigins.length > displayLimits.origin"
                         class="show-toggle"
-                        @click="loadMore('subcategory')"
+                        @click="loadMore('origin')"
                     >
                         Mostra di più
                     </div>
-                    
                     <div 
-                        v-if="displayLimits.subcategory > INITIAL_DISPLAY" 
+                        v-if="displayLimits.origin > INITIAL_DISPLAY && uniqueOrigins.length > INITIAL_DISPLAY" 
                         class="show-toggle"
-                        @click="showLess('subcategory')"
+                        @click="showLess('origin')"
                     >
                         Mostra meno
                     </div>
-                    
                 </div>
                 </pillow-filter>
 
@@ -98,23 +94,21 @@
                 >
                     {{ grape }}
                 </button>
-                <div class="filter-controls" v-if="uniqueColors.length > INITIAL_DISPLAY">
+                <div class="filter-controls" v-if="uniqueGrapes.length > INITIAL_DISPLAY">
                     <div 
-                        v-if="uniqueColors.length > displayLimits.subcategory"
+                        v-if="uniqueGrapes.length > displayLimits.grape"
                         class="show-toggle"
-                        @click="loadMore('subcategory')"
+                        @click="loadMore('grape')"
                     >
                         Mostra di più
                     </div>
-                    
                     <div 
-                        v-if="displayLimits.subcategory > INITIAL_DISPLAY" 
+                        v-if="displayLimits.grape > INITIAL_DISPLAY && uniqueGrapes.length > INITIAL_DISPLAY" 
                         class="show-toggle"
-                        @click="showLess('subcategory')"
+                        @click="showLess('grape')"
                     >
                         Mostra meno
                     </div>
-                    
                 </div>
                 </pillow-filter>
 
@@ -128,23 +122,21 @@
                 >
                     {{ vintage }}
                 </button>
-                <div class="filter-controls" v-if="uniqueColors.length > INITIAL_DISPLAY">
+                <div class="filter-controls" v-if="uniqueVintages.length > INITIAL_DISPLAY">
                     <div 
-                        v-if="uniqueColors.length > displayLimits.subcategory"
+                        v-if="uniqueVintages.length > displayLimits.vintage"
                         class="show-toggle"
-                        @click="loadMore('subcategory')"
+                        @click="loadMore('vintage')"
                     >
                         Mostra di più
                     </div>
-                    
                     <div 
-                        v-if="displayLimits.subcategory > INITIAL_DISPLAY" 
+                        v-if="displayLimits.vintage > INITIAL_DISPLAY && uniqueVintages.length > INITIAL_DISPLAY" 
                         class="show-toggle"
-                        @click="showLess('subcategory')"
+                        @click="showLess('vintage')"
                     >
                         Mostra meno
                     </div>
-                    
                 </div>
                 </pillow-filter>
             </div>
@@ -155,9 +147,11 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useProductStore } from '~/store/productStore';
+import { useCategoryStore } from '~/store/categoryStore';
 import PillowFilter from '/components/filters/PillowFilterComponent.vue';
 import RangeComponent from '/components/filters/RangeComponent.vue';
 
+const categoryStore = useCategoryStore();
 const productStore = useProductStore();
 const INITIAL_DISPLAY = 6;
 const LOAD_MORE_COUNT = 6;
@@ -178,11 +172,27 @@ const displayLimits = ref({
   vintage: INITIAL_DISPLAY
 });
 
-// Computed per i valori unici
-const uniqueColors = computed(() => [...new Set(productStore.products.map(p => p.subcategory))]);
-const uniqueOrigins = computed(() => [...new Set(productStore.products.map(p => p.origin))]);
-const uniqueGrapes = computed(() => [...new Set(productStore.products.map(p => p.grape))]);
-const uniqueVintages = computed(() => [...new Set(productStore.products.map(p => p.vintage))]);
+
+const uniqueColors = computed(() => 
+  categoryStore.getActiveCategories
+    .filter(category => category.is_active)
+    .map(category => category.name)
+);
+
+const uniqueOrigins = computed(() => [...new Set(productStore.products
+  .map(p => p.origin)
+  .filter(value => value !== 'N/A' && value !== ''))]
+);
+
+const uniqueGrapes = computed(() => [...new Set(productStore.products
+  .map(p => p.grape)
+  .filter(value => value !== 'N/A' && value !== ''))]
+);
+
+const uniqueVintages = computed(() => [...new Set(productStore.products
+  .map(p => p.vintage)
+  .filter(value => value !== 'N/A' && value !== ''))]
+);
 
 // Computed per gli elementi visualizzati
 const displayedColors = computed(() => uniqueColors.value.slice(0, displayLimits.value.subcategory));
@@ -314,14 +324,15 @@ const updateFilteredProducts = () => {
     padding: 10px 12px;
     border-radius: 5px;
     border: 1px solid var(--primary);
-    font-size: var(--font-size-small);
+    font-size: var(--font-size-xsmall);
 
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+    white-space: wrap;
+
+    text-transform: capitalize;
 }
 
 button.btn:not(.apply , .reset) {
+    min-height: 60px;
     margin-bottom: 15px;
 }
 
@@ -385,6 +396,10 @@ button.btn:not(.apply , .reset) {
 
 .show-toggle:hover {
   color: #0056b3;
+}
+
+.filter-controls {
+  width: 100%;
 }
 
 </style>

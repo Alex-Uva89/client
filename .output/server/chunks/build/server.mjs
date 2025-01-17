@@ -553,22 +553,22 @@ const _routes = [
   {
     name: "cart",
     path: "/cart",
-    component: () => import('./cart-UJQIXPgO.mjs')
+    component: () => import('./cart-Ui-DSFEI.mjs')
   },
   {
     name: "checkout",
     path: "/checkout",
-    component: () => import('./checkout-C3Z3ACkE.mjs')
+    component: () => import('./checkout-CMJnADSK.mjs')
   },
   {
     name: "confirm",
     path: "/confirm",
-    component: () => import('./confirm-D3gcuX3S.mjs')
+    component: () => import('./confirm-DnGh5_vQ.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-DAxkSA63.mjs')
+    component: () => import('./index-CJAHZgZG.mjs')
   },
   {
     name: "login",
@@ -578,12 +578,12 @@ const _routes = [
   {
     name: "menu",
     path: "/menu",
-    component: () => import('./menu-Bd3GKb6D.mjs')
+    component: () => import('./menu-u7l_nQP4.mjs')
   },
   {
     name: "product-id",
     path: "/product/:id()",
-    component: () => import('./_id_-D-xW2bjs.mjs')
+    component: () => import('./_id_-DQCwvfC3.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -1024,9 +1024,9 @@ const useCartStore = defineStore("cartStore", {
     getCartTotalItems: (state) => state.cart.reduce((total, item) => total + item.quantity, 0)
   }
 });
-const _imports_0$2 = "data:image/svg+xml,%3csvg%20width='25'%20height='26'%20viewBox='0%200%2025%2026'%20stroke='var(--primary)'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M19.168%2019.245C21.2279%2017.2026%2022.5103%2014.3759%2022.5103%2011.2524C22.5062%205.04839%2017.4605%200%2011.2551%200C5.04839%200%200%205.04839%200%2011.2551C0%2017.4619%205.04839%2022.5065%2011.2513%2022.5065C13.5879%2022.5065%2015.7572%2021.791%2017.5579%2020.568L22.8036%2026L24.2966%2024.5583L19.168%2019.245ZM2.07309%2011.2551C2.07309%206.19326%206.19156%202.0734%2011.2548%202.0734C16.3167%202.0734%2020.4327%206.19326%2020.4327%2011.2551C20.4327%2016.317%2016.3129%2020.433%2011.2548%2020.433C6.19537%2020.433%202.07309%2016.3146%202.07309%2011.2551Z'%20fill='%2374121D'/%3e%3c/svg%3e";
+const _imports_0$2 = "data:image/svg+xml,%3csvg%20width='25'%20height='26'%20viewBox='0%200%2025%2026'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M19.168%2019.245C21.2279%2017.2026%2022.5103%2014.3759%2022.5103%2011.2524C22.5062%205.04839%2017.4605%200%2011.2551%200C5.04839%200%200%205.04839%200%2011.2551C0%2017.4619%205.04839%2022.5065%2011.2513%2022.5065C13.5879%2022.5065%2015.7572%2021.791%2017.5579%2020.568L22.8036%2026L24.2966%2024.5583L19.168%2019.245ZM2.07309%2011.2551C2.07309%206.19326%206.19156%202.0734%2011.2548%202.0734C16.3167%202.0734%2020.4327%206.19326%2020.4327%2011.2551C20.4327%2016.317%2016.3129%2020.433%2011.2548%2020.433C6.19537%2020.433%202.07309%2016.3146%202.07309%2011.2551Z'%20fill='%23232323fe'/%3e%3c/svg%3e";
 const _imports_1 = "" + __buildAssetsURL("mamma-elvira.FdGqdhVm.svg");
-const _imports_0$1 = "" + __buildAssetsURL("basket.Bdgk0gwp.svg");
+const _imports_0$1 = "" + __buildAssetsURL("basket.DrwGIMvN.svg");
 const _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
   for (const [key, val] of props) {

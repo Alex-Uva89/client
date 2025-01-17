@@ -98,7 +98,7 @@
           const rectWidth = pageWidth - 2 * margin; // width of the rectangle
           const textHeight = 8; // height of the rectangle
 
-          doc.setFillColor(178, 34, 34); // Color
+          doc.setFillColor(0, 0, 0); // Color
           doc.rect(margin, y - textHeight + 2, rectWidth, textHeight, 'F'); 
           doc.setTextColor(255, 255, 255);
           doc.text(text, x, y);
@@ -107,7 +107,7 @@
 
         // INTESTAZIONE
         doc.setFontSize(26);
-        doc.setTextColor(178, 34, 34);
+        doc.setTextColor(0, 0, 0);
         doc.text("Cambusa", 20, 20);
 
         doc.setTextColor(0, 0, 0);

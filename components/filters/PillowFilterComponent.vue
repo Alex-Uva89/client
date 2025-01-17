@@ -8,7 +8,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
 import { defineProps } from 'vue';
 
 
@@ -38,9 +37,10 @@ defineProps({
 }
 
 .filter-content-order-buttons {
-    display: gird;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 10px 5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: start;
 }
 
 
