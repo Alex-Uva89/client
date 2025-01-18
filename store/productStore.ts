@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { getDrinks } from '~/services/api/drinks';
 import { useCartStore } from './cartStore';
-import { format } from 'mysql2';
+import { useCategoryStore } from './categoryStore';
 
 export const useProductStore = defineStore('product', {
   state: () => ({
@@ -11,6 +11,14 @@ export const useProductStore = defineStore('product', {
     filteredProductsState: ref([]),
     selectedCategory: null,
     selectedSubcategory: null,
+    activeFilters: {
+      subcategory: [],
+      origin: [],
+      grape: [],
+      vintage: [],
+      priceRange: { min: 0, max: 600 }
+    }
+
   }),
 
   getters: {
@@ -78,6 +86,68 @@ export const useProductStore = defineStore('product', {
         const cartStore = useCartStore();
         cartStore.addProductToCart(product);
       }
+    },
+
+    // Filters
+
+    orderByABC() {
+      // Create a new sorted array instead of modifying the existing one
+      this.filteredProductsState = [...this.filteredProductsState].sort((a, b) => 
+        a.name.localeCompare(b.name)
+      );
+    },
+    
+    orderByPriceMinus() {
+      this.filteredProductsState = [...this.filteredProductsState].sort((a, b) => 
+        Number(b.price) - Number(a.price)
+      );
+    },
+    
+    orderByPricePlus() {
+      this.filteredProductsState = [...this.filteredProductsState].sort((a, b) => 
+        Number(a.price) - Number(b.price)
+      );
+    },
+    
+    applyFilters(filters: any) {
+      this.activeFilters = filters;
+      const categoryStore = useCategoryStore();
+    
+      // Applica tutti i filtri
+      const filteredResults = this.products.filter(product => {
+        const productPrice = Number(product.price);
+        const priceInRange = productPrice >= Number(filters.priceRange.min) && 
+                            productPrice <= Number(filters.priceRange.max);
+    
+        const category = categoryStore.categories.find(cat => cat.id === product.category_id);
+        const categoryMatch = filters.subcategory.length === 0 || 
+                             (category && filters.subcategory.includes(category.name));
+    
+        const originMatch = filters.origin.length === 0 || 
+                           filters.origin.includes(product.origin);
+    
+        const grapeMatch = filters.grape.length === 0 || 
+                          filters.grape.includes(product.grape);
+    
+        const vintageMatch = filters.vintage.length === 0 || 
+                            filters.vintage.includes(product.vintage);
+    
+        return priceInRange && categoryMatch && originMatch && grapeMatch && vintageMatch;
+      });
+    
+      this.filteredProductsState = filteredResults;
+    },
+    
+    
+    resetFilters() {
+      this.activeFilters = {
+        subcategory: [],
+        origin: [],
+        grape: [],
+        vintage: [],
+        priceRange: { min: 0, max: 600 }
+      };
+      this.filteredProductsState = this.products;
     }
   },
 });

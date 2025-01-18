@@ -563,12 +563,12 @@ const _routes = [
   {
     name: "confirm",
     path: "/confirm",
-    component: () => import('./confirm-DnGh5_vQ.mjs')
+    component: () => import('./confirm-zW2dgc7c.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-CJAHZgZG.mjs')
+    component: () => import('./index-r43YzYLj.mjs')
   },
   {
     name: "login",
@@ -583,7 +583,7 @@ const _routes = [
   {
     name: "product-id",
     path: "/product/:id()",
-    component: () => import('./_id_-DQCwvfC3.mjs')
+    component: () => import('./_id_-BFFBdtPc.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;

@@ -1,7 +1,10 @@
 <template>
   <div>
-    <div class="list-product-container">
-      <ul>
+    <div class="list-product-header">
+      Prodotti: {{ filteredProducts.length > 0 ? filteredProducts.length : 'Nessun prodotto' }}
+    </div>
+    <div class="list-product-container"> 
+      <ul v-if="filteredProducts.length > 0">
         <li v-for="product in filteredProducts" :key="product.id" class="product-item">
           <router-link :to="`/product/${product.id}`">
             
@@ -70,29 +73,7 @@ export default defineComponent({
     const searchQuery = computed(() => productStore.searchQuery);
 
     const filteredProducts = computed(() => {
-      let filtered = filteredProductsState.value.length > 0 
-        ? filteredProductsState.value 
-        : productStore.products;
-
-      // Category filter
-      if (categoryStore.selectedCategory) {
-        filtered = filtered.filter(product => {
-          if (categoryStore.selectedCategory && product.category_id === categoryStore.selectedCategory['category'].id) {
-            return product;
-          }
-        });
-      } else {
-        filtered = filtered.filter(product => product);
-      }
-
-      // Search filter
-      if (searchQuery.value) {
-        filtered = filtered.filter(product =>
-          product.name.toLowerCase().includes(searchQuery.value.toLowerCase())
-        );
-      }
-
-      return filtered;
+      return filteredProductsState.value;
     });
 
     const increaseQuantity = (product) => {
@@ -167,6 +148,22 @@ onMounted(() => {
 
 
 <style scoped>
+.list-product-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 0 20px;
+  font-family: var(--font-primary);
+  color: var(--text-secondary);
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-secondary);
+  font-style: normal;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+
 .list-product-container {
   display: flex;
   justify-content: start;

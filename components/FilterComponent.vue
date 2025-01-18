@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button class="btn-filter" @click="showFilter = !showFilter">
+        <button class="btn-filter" @click="openFilters();">
             <img src="/assets/icons/filter.svg" class="icon-filter" alt="Icona per aprire la pagina filtri">
         </button>
 
@@ -11,8 +11,8 @@
                 <div class="filter-header-content">
                     <h2 class="filter-header-title">Filtri</h2>
                     <div class="filter-header-buttons">
-                        <button class="btn apply">Applica filtri</button>
-                        <button class="btn reset" >Reset</button>
+                        <button class="btn apply" @click="applyFilters()">Applica filtri</button>
+                        <button class="btn reset" @click="resetFilters()">Reset</button>
                     </div>
                 </div>
                 
@@ -21,12 +21,33 @@
             <div class="filter-content">
                 <!-- ORDER BY  -->
                 <pillow-filter title="Ordina per">
-                    <button id="abc" class="btn mono" @click="activeFilterMono()">Alfabetico</button>
-                    <button id="crescent" class="btn mono" @click="activeFilterMono()">Prezzo decrescente</button>
-                    <button id="decrescent" class="btn mono" @click="activeFilterMono()">Prezzo crescente</button>
+                    <button 
+                        id="abc" 
+                        class="btn mono" 
+                        :class="{ active: activeOrders.abc }"
+                        @click="toggleOrder('abc')"
+                    >
+                        Alfabetico
+                    </button>
+                    <button 
+                        id="crescent" 
+                        class="btn mono" 
+                        :class="{ active: activeOrders.priceDesc }"
+                        @click="toggleOrder('priceDesc')"
+                    >
+                        Prezzo decrescente
+                    </button>
+                    <button 
+                        id="decrescent" 
+                        class="btn mono" 
+                        :class="{ active: activeOrders.priceAsc }"
+                        @click="toggleOrder('priceAsc')"
+                    >
+                        Prezzo crescente
+                    </button>
                 </pillow-filter>
                 
-                <range-component :min="0" :max="600" @update:values="handleValues"  />
+                <range-component :min="0" :max="600" @update:values="handleValues"/>
 
                 <pillow-filter title="Tipologia">
                 <button 
@@ -34,7 +55,7 @@
                     :key="color"
                     class="btn" 
                     @click="activeFilterMultiple(color, 'subcategory')"
-                    :class="{ active: activeFilters.subcategory.includes(color) }"
+                    :class="{ active: tempFilters.subcategory.includes(color) }"
                 >
                     {{ color.replace('VINI ', '') }}
                 </button>
@@ -62,7 +83,7 @@
                     :key="origin"
                     class="btn" 
                     @click="activeFilterMultiple(origin, 'origin')"
-                    :class="{ active: activeFilters.origin.includes(origin) }"
+                    :class="{ active: tempFilters.origin.includes(origin) }"
                 >
                     {{ origin }}
                 </button>
@@ -90,7 +111,7 @@
                     :key="grape"
                     class="btn" 
                     @click="activeFilterMultiple(grape, 'grape')"
-                    :class="{ active: activeFilters.grape.includes(grape) }"
+                    :class="{ active: tempFilters.grape.includes(grape) }"
                 >
                     {{ grape }}
                 </button>
@@ -118,7 +139,7 @@
                     :key="vintage"
                     class="btn" 
                     @click="activeFilterMultiple(vintage, 'vintage')"
-                    :class="{ active: activeFilters.vintage.includes(vintage) }"
+                    :class="{ active: tempFilters.vintage.includes(vintage) }"
                 >
                     {{ vintage }}
                 </button>
@@ -158,12 +179,11 @@ const LOAD_MORE_COUNT = 6;
 
 const showFilter = ref(false);
 
-const activeFilters = ref({
-  subcategory: [],
-  origin: [],
-  grape: [],
-  vintage: []
-});
+const openFilters = () => {
+    showFilter.value = !showFilter.value;
+    productStore.resetFilters();
+}
+
 
 const displayLimits = ref({
   subcategory: INITIAL_DISPLAY,
@@ -210,27 +230,78 @@ const showLess = (filterType) => {
   displayLimits.value[filterType] = INITIAL_DISPLAY;
 };
 
-const activeFilterMultiple = (value, filterType) => {
-  if (activeFilters.value[filterType].includes(value)) {
-    activeFilters.value[filterType] = activeFilters.value[filterType].filter(v => v !== value);
-  } else {
-    activeFilters.value[filterType].push(value);
+const tempFilters = ref({
+  subcategory: [],
+  origin: [],
+  grape: [],
+  vintage: [],
+  priceRange: { min: 0, max: 600 }
+});
+
+const activeOrders = ref({
+  abc: false,
+  priceDesc: false,
+  priceAsc: false
+});
+
+const toggleOrder = (type) => {
+  if (type === 'abc') {
+    activeOrders.value.abc = !activeOrders.value.abc;
+  } else if (type === 'priceDesc') {
+    activeOrders.value.priceDesc = !activeOrders.value.priceDesc;
+    activeOrders.value.priceAsc = false;
+  } else if (type === 'priceAsc') {
+    activeOrders.value.priceAsc = !activeOrders.value.priceAsc;
+    activeOrders.value.priceDesc = false;
   }
-  updateFilteredProducts();
+
+  // Applica gli ordinamenti
+  if (activeOrders.value.abc) {
+    productStore.orderByABC();
+  }
+  if (activeOrders.value.priceDesc) {
+    productStore.orderByPriceMinus();
+  }
+  if (activeOrders.value.priceAsc) {
+    productStore.orderByPricePlus();
+  }
 };
 
-const updateFilteredProducts = () => {
-  let filteredProducts = productStore.products;
-  
-  Object.entries(activeFilters.value).forEach(([filterType, values]) => {
-    if (values.length > 0) {
-      filteredProducts = filteredProducts.filter(product => 
-        values.includes(product[filterType])
-      );
-    }
-  });
+const activeFilterMultiple = (value, filterType) => {
+    if (tempFilters.value[filterType].includes(value)) {
+    tempFilters.value[filterType] = tempFilters.value[filterType].filter(v => v !== value);
+  } else {
+    tempFilters.value[filterType].push(value);
+  }
+};
 
-  productStore.filteredProductsState = filteredProducts;
+
+const handleValues = (values) => {
+  tempFilters.value.priceRange = {
+    min: values.min,
+    max: values.max
+  }
+};
+
+const applyFilters = () => {
+    productStore.applyFilters(tempFilters.value);
+    showFilter.value = false;
+};
+
+const resetFilters = () => {
+    tempFilters.value = {
+        subcategory: [],
+        origin: [],
+        grape: [],
+        vintage: [],
+        priceRange: { min: 0, max: 600 }
+    };
+    activeOrders.value = {
+        abc: false,
+        priceDesc: false,
+        priceAsc: false
+    };
+  productStore.resetFilters();
 };
 </script>
 

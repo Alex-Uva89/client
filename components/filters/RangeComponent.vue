@@ -1,84 +1,91 @@
 <template>
-    <div class="price-section">
-        <h3 class="range-title">Prezzo</h3>
-        <div class="dual-range-container">
-          <div class="range-slider">
-            <div class="slider-track"></div>
-            <input
-              type="range"
-              :min="min"
-              :max="max"
-              v-model="minValue"
-              @input="updateValues"
-              class="range-input"
-            />
-            <input
-              type="range"
-              :min="min"
-              :max="max"
-              v-model="maxValue"
-              @input="updateValues"
-              class="range-input"
-            />
-          </div>
-          <div class="range-values">
-            <span>
-                <p>Min</p>
-                <div class="min-value">{{ minValue }}</div>
-            </span>
-
-            <span>
-                <p>Max</p>
-                <div class="max-value">{{ maxValue }}</div>
-            </span>
-          </div>
+  <div class="price-section">
+      <h3 class="range-title">Prezzo</h3>
+      <div class="dual-range-container">
+        <div class="range-slider">
+          <div class="slider-track"></div>
+          <input
+            type="range"
+            :min="min"
+            :max="max"
+            v-model.number="minValue"
+            @input="updateValues"
+            class="range-input"
+          />
+          <input
+            type="range"
+            :min="min"
+            :max="max"
+            v-model.number="maxValue"
+            @input="updateValues"
+            class="range-input"
+          />
         </div>
-    </div>
-  </template>
-  
-  <script setup>
-  import { ref, watch, onMounted } from 'vue'
-  
-  const props = defineProps({
-    min: {
-      type: Number,
-      default: 0
-    },
-    max: {
-      type: Number,
-      default: 100
-    }
-  })
-  
-  const minValue = ref(props.min)
-  const maxValue = ref(props.max)
-  
-  const updateValues = () => {
-    if (Number(minValue.value) > Number(maxValue.value)) {
-      const temp = minValue.value
-      minValue.value = maxValue.value
-      maxValue.value = temp
-    }
-    updateSliderTrack()
-  }
-  
-  const updateSliderTrack = () => {
-    const sliderTrack = document.querySelector('.slider-track')
-    const percent1 = ((minValue.value - props.min) / (props.max - props.min)) * 100
-    const percent2 = ((maxValue.value - props.min) / (props.max - props.min)) * 100
-    sliderTrack.style.background = `linear-gradient(to right, #e0e0e0 ${percent1}%, var(--primary) ${percent1}%, var(--primary) ${percent2}%, #e0e0e0 ${percent2}%)`
-  }
-  
-  onMounted(() => {
-    updateSliderTrack()
-  })
-  
-  watch([minValue, maxValue], ([newMin, newMax]) => {
-    emit('update:values', { min: Number(newMin), max: Number(newMax) })
-  })
-  
-  const emit = defineEmits(['update:values'])
-  </script>
+        <div class="range-values">
+          <span>
+              <p>Min</p>
+              <div class="min-value">{{ minValue }}</div>
+          </span>
+          <span>
+              <p>Max</p>
+              <div class="max-value">{{ maxValue }}</div>
+          </span>
+        </div>
+      </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted } from 'vue'
+
+const props = defineProps({
+min: {
+  type: Number,
+  default: 0
+},
+max: {
+  type: Number,
+  default: 100
+}
+})
+
+const emit = defineEmits(['update:values'])
+
+const minValue = ref(props.min)
+const maxValue = ref(props.max)
+
+const updateValues = () => {
+if (Number(minValue.value) > Number(maxValue.value)) {
+  const temp = minValue.value
+  minValue.value = maxValue.value
+  maxValue.value = temp
+}
+
+emit('update:values', {
+  min: Number(minValue.value),
+  max: Number(maxValue.value)
+})
+
+updateSliderTrack()
+}
+
+const updateSliderTrack = () => {
+const sliderTrack = document.querySelector('.slider-track')
+const percent1 = ((minValue.value - props.min) / (props.max - props.min)) * 100
+const percent2 = ((maxValue.value - props.min) / (props.max - props.min)) * 100
+sliderTrack.style.background = `linear-gradient(to right, #e0e0e0 ${percent1}%, var(--primary) ${percent1}%, var(--primary) ${percent2}%, #e0e0e0 ${percent2}%)`
+}
+
+onMounted(() => {
+updateSliderTrack()
+// Emit initial values
+emit('update:values', {
+  min: Number(minValue.value),
+  max: Number(maxValue.value)
+})
+})
+</script>
+
   
   <style scoped>
 

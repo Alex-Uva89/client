@@ -103,7 +103,7 @@
           doc.setTextColor(255, 255, 255);
           doc.text(text, x, y);
           doc.setTextColor(0, 0, 0); 
-        };
+        }; 
 
         // INTESTAZIONE
         doc.setFontSize(26);
