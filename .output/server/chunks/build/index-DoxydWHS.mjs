@@ -576,6 +576,10 @@ const _sfc_main$1 = defineComponent({
     const filteredProductsState = computed(() => productStore.filteredProductsState);
     computed(() => productStore.searchQuery);
     const filteredProducts = computed(() => {
+      const hasActiveFilters = productStore.activeFilters.subcategory.length > 0 || productStore.activeFilters.origin.length > 0 || productStore.activeFilters.grape.length > 0 || productStore.activeFilters.vintage.length > 0;
+      if (!hasActiveFilters && productStore.activeFilters.priceRange.min === 0 && productStore.activeFilters.priceRange.max === 600) {
+        return productStore.products;
+      }
       return filteredProductsState.value;
     });
     const increaseQuantity = (product) => {
@@ -631,35 +635,35 @@ const _sfc_main$1 = defineComponent({
 });
 function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_router_link = resolveComponent("router-link");
-  _push(`<div${ssrRenderAttrs(_attrs)} data-v-c210a361><div class="list-product-header" data-v-c210a361> Prodotti: ${ssrInterpolate(_ctx.filteredProducts.length > 0 ? _ctx.filteredProducts.length : "Nessun prodotto")}</div><div class="list-product-container" data-v-c210a361>`);
+  _push(`<div${ssrRenderAttrs(_attrs)} data-v-b4c29c5e><div class="list-product-header" data-v-b4c29c5e> Prodotti: ${ssrInterpolate(_ctx.filteredProducts.length > 0 ? _ctx.filteredProducts.length : "Nessun prodotto")}</div><div class="list-product-container" data-v-b4c29c5e>`);
   if (_ctx.filteredProducts.length > 0) {
-    _push(`<ul data-v-c210a361><!--[-->`);
+    _push(`<ul data-v-b4c29c5e><!--[-->`);
     ssrRenderList(_ctx.filteredProducts, (product) => {
-      _push(`<li class="product-item" data-v-c210a361>`);
+      _push(`<li class="product-item" data-v-b4c29c5e>`);
       _push(ssrRenderComponent(_component_router_link, {
         to: `/product/${product.id}`
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<div class="row-item" data-v-c210a361${_scopeId}>${ssrInterpolate(product.name)} `);
+            _push2(`<div class="row-item" data-v-b4c29c5e${_scopeId}>${ssrInterpolate(product.name)} `);
             if (product.grape) {
-              _push2(`<span data-v-c210a361${_scopeId}> - ${ssrInterpolate(product.grape)}</span>`);
+              _push2(`<span data-v-b4c29c5e${_scopeId}> - ${ssrInterpolate(product.grape)}</span>`);
             } else {
               _push2(`<!---->`);
             }
-            _push2(`</div><div class="row-item" data-v-c210a361${_scopeId}>`);
+            _push2(`</div><div class="row-item" data-v-b4c29c5e${_scopeId}>`);
             if (product.vintage) {
-              _push2(`<span data-v-c210a361${_scopeId}>${ssrInterpolate(product.vintage)}</span>`);
+              _push2(`<span data-v-b4c29c5e${_scopeId}>${ssrInterpolate(product.vintage)}</span>`);
             } else {
               _push2(`<!---->`);
             }
             if (product.vintage && product.degrees) {
-              _push2(`<span data-v-c210a361${_scopeId}> - </span>`);
+              _push2(`<span data-v-b4c29c5e${_scopeId}> - </span>`);
             } else {
               _push2(`<!---->`);
             }
             if (product.degrees) {
-              _push2(`<span data-v-c210a361${_scopeId}>${ssrInterpolate(product.degrees)}% vol. </span>`);
+              _push2(`<span data-v-b4c29c5e${_scopeId}>${ssrInterpolate(product.degrees)}% vol. </span>`);
             } else {
               _push2(`<!---->`);
             }
@@ -680,7 +684,7 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
         }),
         _: 2
       }, _parent));
-      _push(`<div class="row-item" data-v-c210a361><span class="row-item" data-v-c210a361><img class="icon-price"${ssrRenderAttr("src", _imports_2)} alt="icona che indica il prezzo" data-v-c210a361> ${ssrInterpolate(product.price)}</span><span class="counter" data-v-c210a361><span data-v-c210a361>-</span><span data-v-c210a361><input type="number"${ssrRenderAttr("value", _ctx.getQuantity(product))} class="input-quantity" data-v-c210a361></span><span data-v-c210a361>+</span></span></div></li>`);
+      _push(`<div class="row-item" data-v-b4c29c5e><span class="row-item" data-v-b4c29c5e><img class="icon-price"${ssrRenderAttr("src", _imports_2)} alt="icona che indica il prezzo" data-v-b4c29c5e> ${ssrInterpolate(product.price)}</span><span class="counter" data-v-b4c29c5e><span data-v-b4c29c5e>-</span><span data-v-b4c29c5e><input type="number"${ssrRenderAttr("value", _ctx.getQuantity(product))} class="input-quantity" data-v-b4c29c5e></span><span data-v-b4c29c5e>+</span></span></div></li>`);
     });
     _push(`<!--]--></ul>`);
   } else {
@@ -694,7 +698,7 @@ _sfc_main$1.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/ListProductComponent.vue");
   return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
 };
-const ListProduct = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["ssrRender", _sfc_ssrRender$1], ["__scopeId", "data-v-c210a361"]]);
+const ListProduct = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["ssrRender", _sfc_ssrRender$1], ["__scopeId", "data-v-b4c29c5e"]]);
 const _sfc_main = {
   name: "home",
   components: {
@@ -722,4 +726,4 @@ _sfc_main.setup = (props, ctx) => {
 const index = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
 
 export { index as default };
-//# sourceMappingURL=index-r43YzYLj.mjs.map
+//# sourceMappingURL=index-DoxydWHS.mjs.map

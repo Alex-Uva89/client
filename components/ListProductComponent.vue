@@ -73,8 +73,22 @@ export default defineComponent({
     const searchQuery = computed(() => productStore.searchQuery);
 
     const filteredProducts = computed(() => {
-      return filteredProductsState.value;
-    });
+    // no filters
+    const hasActiveFilters = 
+      productStore.activeFilters.subcategory.length > 0 ||
+      productStore.activeFilters.origin.length > 0 ||
+      productStore.activeFilters.grape.length > 0 ||
+      productStore.activeFilters.vintage.length > 0;
+
+    // filters
+    if (!hasActiveFilters && productStore.activeFilters.priceRange.min === 0 && 
+        productStore.activeFilters.priceRange.max === 600) {
+      return productStore.products;
+    }
+
+    // Altrimenti ritorna i risultati filtrati
+    return filteredProductsState.value;
+  });
 
     const increaseQuantity = (product) => {
       cartStore.addProductToCart(product); 
