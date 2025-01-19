@@ -194,7 +194,7 @@ watch(
 
 
     </div>
-      <div class="container-status">
+      <!-- <div class="container-status">
         <div v-if="product.status == 'true'">
           <span class="green-ball"></span>
           <span>disponibile</span>
@@ -203,7 +203,7 @@ watch(
           <span class="red-ball"></span>
           <span>non disponibile</span>
         </div>
-      </div>
+      </div> -->
 
       <div class="container-accordion">
 
@@ -449,14 +449,14 @@ p.product-info{
   align-items: center;
 }
 
-.container-status {
+/* .container-status {
   display: flex;
   justify-content: start;
   align-items: center;
   border-top: 1px solid var(--primary);
   border-bottom: 1px solid var(--primary);
   padding: 10px 20px;
-}
+} */
 
 .green-ball, .red-ball {
   display: inline-block;

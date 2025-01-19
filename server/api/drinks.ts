@@ -18,6 +18,7 @@ export default defineEventHandler(async () => {
       INNER JOIN category_venue cv ON c.id = cv.category_id
       WHERE cv.venue_id = 1 
       AND c.is_drink = true
+      AND d.is_active = true
       AND (
         c.name LIKE '%VINI%'
         OR c.name LIKE '%Spumanti%'
