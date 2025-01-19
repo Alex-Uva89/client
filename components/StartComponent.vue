@@ -62,7 +62,7 @@ onMounted(() => {
     left: 50%;
     transform: translate(-50%, -50%);
     color: var(--label);
-    font-size: 5rem;
+    font-size: 4rem;
     font-weight: bold;
     text-shadow: 0px 0px 10px var(--primary);
     z-index: 10000;

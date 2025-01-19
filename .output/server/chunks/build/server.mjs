@@ -20,7 +20,7 @@ if (!globalThis.$fetch) {
     baseURL: baseURL()
   });
 }
-const appPageTransition = false;
+const appPageTransition = { "name": "page", "mode": "out-in" };
 const nuxtLinkDefaults = { "componentName": "NuxtLink", "prefetch": true, "prefetchOn": { "visibility": true } };
 const appId = "nuxt-app";
 function getNuxtAppCtx(id = appId) {
@@ -558,12 +558,12 @@ const _routes = [
   {
     name: "checkout",
     path: "/checkout",
-    component: () => import('./checkout-BA_Exr-V.mjs')
+    component: () => import('./checkout-D64VLXjX.mjs')
   },
   {
     name: "confirm",
     path: "/confirm",
-    component: () => import('./confirm-BzU6PKwm.mjs')
+    component: () => import('./confirm-D0XtDG6q.mjs')
   },
   {
     name: "index",
@@ -1142,14 +1142,14 @@ const _sfc_main$3 = {
     const showWhiteScreen = ref(true);
     const showLoadingImage = ref(false);
     return (_ctx, _push, _parent, _attrs) => {
-      _push(`<div${ssrRenderAttrs(_attrs)} data-v-4a06da40>`);
+      _push(`<div${ssrRenderAttrs(_attrs)} data-v-3d562337>`);
       if (showWhiteScreen.value) {
-        _push(`<div class="white-screen" data-v-4a06da40></div>`);
+        _push(`<div class="white-screen" data-v-3d562337></div>`);
       } else {
         _push(`<!---->`);
       }
       if (showLoadingImage.value) {
-        _push(`<div class="loading-screen" data-v-4a06da40><img${ssrRenderAttr("src", _imports_0)} alt="Loading" data-v-4a06da40><h1 class="loading-title" data-v-4a06da40>CAMBUSA</h1></div>`);
+        _push(`<div class="loading-screen" data-v-3d562337><img${ssrRenderAttr("src", _imports_0)} alt="Loading" data-v-3d562337><h1 class="loading-title" data-v-3d562337>CAMBUSA</h1></div>`);
       } else {
         _push(`<!---->`);
       }
@@ -1163,7 +1163,7 @@ _sfc_main$3.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/StartComponent.vue");
   return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
-const Start = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-4a06da40"]]);
+const Start = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-3d562337"]]);
 const _sfc_main$2 = {
   components: {
     Start,

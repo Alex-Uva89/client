@@ -15,7 +15,20 @@ const connection = mysql.createConnection({
 });
 const drinks = defineEventHandler(async () => {
   return new Promise((resolve, reject) => {
-    connection.query("SELECT * FROM drinks", (error, results) => {
+    const query = `
+      SELECT d.*
+      FROM drinks d
+      INNER JOIN categories c ON d.category_id = c.id
+      INNER JOIN category_venue cv ON c.id = cv.category_id
+      WHERE cv.venue_id = 1 
+      AND c.is_drink = true
+      AND (
+        c.name LIKE '%VINI%'
+        OR c.name LIKE '%Spumanti%'
+        OR c.name LIKE '%Champagne%'
+      )
+    `;
+    connection.query(query, (error, results) => {
       if (error) reject(error);
       resolve(results);
     });

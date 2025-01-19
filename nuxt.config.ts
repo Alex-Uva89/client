@@ -18,4 +18,13 @@ export default defineNuxtConfig({
       apiBase: process.env.API_BASE || 'https://cambusa-dev-700afd82d2d2.herokuapp.com/',
     }
   },
+  app: {
+    pageTransition: {
+      name: 'page',
+      mode: 'out-in',
+      onBeforeEnter: (el) => {
+        window.scrollTo(0, 0)
+      }
+    }
+  },
 });

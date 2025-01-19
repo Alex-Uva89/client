@@ -64,158 +64,174 @@
     </div>
   </template>
   
-  <script>
+<script>
   import { jsPDF } from "jspdf";
   import { useCartStore } from "@/store/cartStore";
   import ButtonComponent from "~/components/ButtonComponent.vue";
+  import { onBeforeRouteLeave } from 'vue-router';
   
   export default {
-    name: "Confirm",
-    components: {
-      ButtonComponent,
-    },
-    setup() {
-      const cartStore = useCartStore();
+      name: "Confirm",
+      components: {
+          ButtonComponent,
+      },
+      setup() {
+          const cartStore = useCartStore();
   
-      // DATA
-      const orderData = cartStore.order.form;
-      const orderNumber = cartStore.order.orderNumber;
-      const cartTotal = cartStore.getCartTotal.toFixed(2);
-      const cartItems = cartStore.cart;
-
+          // DATA
+          const orderData = cartStore.order.form;
+          const orderNumber = cartStore.order.orderNumber;
+          const cartTotal = cartStore.getCartTotal.toFixed(2);
+          const cartItems = cartStore.cart;
   
-      // CREATE PDF
-      const downloadOrder = () => {
-        const doc = new jsPDF();
-
-        // RECTANGLE RED
-        const drawHeader = (text, x, y) => {
-          const pageWidth = doc.internal.pageSize.getWidth(); // width of the page
-          const margin = 10;
-          const rectWidth = pageWidth - 2 * margin; // width of the rectangle
-          const textHeight = 8; // height of the rectangle
-
-          doc.setFillColor(0, 0, 0); // Color
-          doc.rect(margin, y - textHeight + 2, rectWidth, textHeight, 'F'); 
-          doc.setTextColor(255, 255, 255);
-          doc.text(text, x, y);
-          doc.setTextColor(0, 0, 0); 
-        }; 
-
-        // INTESTAZIONE
-        doc.setFontSize(26);
-        doc.setTextColor(0, 0, 0);
-        doc.text("Cambusa", 20, 20);
-
-        doc.setTextColor(0, 0, 0);
-        doc.setFontSize(20);
-        doc.text("Grazie per il tuo ordine!", 20, 30);
-
-        // DATI ORDINE
-        drawHeader("Dati ordine", 20, 50);
-        doc.setFontSize(12);
-        doc.text(`Numero ${orderNumber || 'N/A'}`, 20, 60);
-        doc.text(`Data ${orderData.deliveryDate || 'N/A'}`, 20, 70);
-
-        // DATI SPEDIZIONE
-        drawHeader("Dati di spedizione", 20, 90);
-        doc.text(`${orderData.fullName || 'N/A'}`, 20, 100);
-        doc.text(`${orderData.address || 'N/A'}`, 20, 110);
-        doc.text(`${orderData.phone || 'N/A'}`, 20, 120);
-        doc.text(`${orderData.email || 'N/A'}`, 20, 130);
-
-        // RIEPILOGO
-        drawHeader("Riepilogo ordine", 20, 140);
-        let startY = 150; 
-        const pageHeight = doc.internal.pageSize.getHeight();
-        const marginBottom = 20;
-        const lineHeight = 8;
-
-        doc.setFontSize(14);
-        doc.text("Prodotti:", 20, startY);
-        startY += lineHeight;
-
-        // LISTA PRODOTTI
-        doc.setFontSize(10);
-        cartItems.forEach((item) => {
-          if (startY + lineHeight > pageHeight - marginBottom) {
-            doc.addPage(); 
-            startY = 20;
-            drawHeader("Riepilogo ordine (continua)", 20, startY);
-            startY += lineHeight;
-          }
-
-          doc.text(`${item.name} - ${item.quantity}`, 20, startY);
-          doc.text(`€${item.price.toFixed(2)}`, 180, startY);
-          startY += lineHeight;
-        });
-
-        // TOTALE
-        if (startY + lineHeight > pageHeight - marginBottom) {
-          doc.addPage(); // NEW PAGE
-          startY = 20;
-          drawHeader("Riepilogo ordine (continua)", 20, startY);
-          startY += lineHeight;
-        }
-        doc.setFontSize(12);
-        doc.text("Totale", 20, startY);
-        doc.setFontSize(14);
-        doc.text(`€${cartTotal || 'N/A'}`, 180, startY);
-        startY += lineHeight;
-
-        // COMMENTI
-        doc.setFontSize(14);
-        if (startY + 20 > pageHeight - marginBottom) {
-          doc.addPage();
-          startY = 20;
-          drawHeader("Commenti ordine", 20, startY);
-          startY += lineHeight; // Aggiungi lineHeight per separare il titolo dai dati
-        } else {
-          doc.text("Commenti:", 20, startY);
-          startY += lineHeight; // Mantieni la stessa altezza per il titolo
-        }
-        doc.text(`${orderData.additionalInfo || 'N/A'}`, 20, startY); // I dati dei commenti subito dopo il titolo
-
-        // SERVIZIO CLIENTI
-        startY += 20;
-        if (startY + 20 > pageHeight - marginBottom) {
-          doc.addPage();
-          startY = 20;
-        }
-        doc.setFontSize(14);
-        drawHeader("Servizio clienti", 20, startY);
-        doc.setFontSize(12);
-        doc.text("enoteca@mammaelvira.com", 20, startY + 10);
-
-        // FOOTER
-        doc.setFontSize(8);
-        doc.text("CAMBUSA by Mamma Elvira | 73100 Lecce, Italia", 20, pageHeight - 10);
-
-        const fileName = `CAMBUSA_ordineNumbero_${orderNumber || "N_A"}_${orderData.fullName || "Cliente"}.pdf`;
-        doc.save(fileName);
-
-        cartStore.clearOrderAndCart(); // Pulisce i dati dell'ordine e del carrello
-      };
-
-
-
-
-
+          // CREATE PDF
+          const createPDF = () => {
+              const doc = new jsPDF();
   
-      return {
-        orderData,
-        orderNumber,
-        downloadOrder,
-        cartTotal,
-      };
-    },
-    beforeRouteLeave(to, from, next) {
-      next();
-    },
+              // RECTANGLE RED
+              const drawHeader = (text, x, y) => {
+                  const pageWidth = doc.internal.pageSize.getWidth();
+                  const margin = 10;
+                  const rectWidth = pageWidth - 2 * margin;
+                  const textHeight = 8;
+  
+                  doc.setFillColor(0, 0, 0);
+                  doc.rect(margin, y - textHeight + 2, rectWidth, textHeight, 'F');
+                  doc.setTextColor(255, 255, 255);
+                  doc.text(text, x, y);
+                  doc.setTextColor(0, 0, 0);
+              };
+  
+              // INTESTAZIONE
+              doc.setFontSize(26);
+              doc.setTextColor(0, 0, 0);
+              doc.text("Cambusa", 20, 20);
+  
+              doc.setTextColor(0, 0, 0);
+              doc.setFontSize(20);
+              doc.text("Grazie per il tuo ordine!", 20, 30);
+  
+              // DATI ORDINE
+              drawHeader("Dati ordine", 20, 50);
+              doc.setFontSize(12);
+              doc.text(`Numero ${orderNumber || 'N/A'}`, 20, 60);
+              doc.text(`Data ${orderData.deliveryDate || 'N/A'}`, 20, 70);
+  
+              // DATI SPEDIZIONE
+              drawHeader("Dati di spedizione", 20, 90);
+              doc.text(`${orderData.fullName || 'N/A'}`, 20, 100);
+              doc.text(`${orderData.address || 'N/A'}`, 20, 110);
+              doc.text(`${orderData.phone || 'N/A'}`, 20, 120);
+              doc.text(`${orderData.email || 'N/A'}`, 20, 130);
+  
+              // RIEPILOGO
+              drawHeader("Riepilogo ordine", 20, 140);
+              let startY = 150;
+              const pageHeight = doc.internal.pageSize.getHeight();
+              const marginBottom = 20;
+              const lineHeight = 8;
+  
+              doc.setFontSize(14);
+              doc.text("Prodotti:", 20, startY);
+              startY += lineHeight;
+  
+              // LISTA PRODOTTI
+              doc.setFontSize(10);
+              cartItems.forEach((item) => {
+                  if (startY + lineHeight > pageHeight - marginBottom) {
+                      doc.addPage();
+                      startY = 20;
+                      drawHeader("Riepilogo ordine (continua)", 20, startY);
+                      startY += lineHeight;
+                  }
+  
+                  doc.text(`${item.name} - ${item.quantity}`, 20, startY);
+                  doc.text(`€${item.price.toFixed(2)}`, 180, startY);
+                  startY += lineHeight;
+              });
+  
+              // TOTALE
+              if (startY + lineHeight > pageHeight - marginBottom) {
+                  doc.addPage();
+                  startY = 20;
+                  drawHeader("Riepilogo ordine (continua)", 20, startY);
+                  startY += lineHeight;
+              }
+              doc.setFontSize(12);
+              doc.text("Totale", 20, startY);
+              doc.setFontSize(14);
+              doc.text(`€${cartTotal || 'N/A'}`, 180, startY);
+              startY += lineHeight;
+  
+              // COMMENTI
+              doc.setFontSize(14);
+              if (startY + 20 > pageHeight - marginBottom) {
+                  doc.addPage();
+                  startY = 20;
+                  drawHeader("Commenti ordine", 20, startY);
+                  startY += lineHeight;
+              } else {
+                  doc.text("Commenti:", 20, startY);
+                  startY += lineHeight;
+              }
+              doc.text(`${orderData.additionalInfo || 'N/A'}`, 20, startY);
+  
+              // SERVIZIO CLIENTI
+              startY += 20;
+              if (startY + 20 > pageHeight - marginBottom) {
+                  doc.addPage();
+                  startY = 20;
+              }
+              doc.setFontSize(14);
+              drawHeader("Servizio clienti", 20, startY);
+              doc.setFontSize(12);
+              doc.text("enoteca@mammaelvira.com", 20, startY + 10);
+  
+              // FOOTER
+              doc.setFontSize(8);
+              doc.text("CAMBUSA by Mamma Elvira | 73100 Lecce, Italia", 20, pageHeight - 10);
+  
+              // Salva il PDF nel localStorage
+              const pdfData = doc.output('datauristring');
+              localStorage.setItem('tempPDF', pdfData);
+  
+              // Svuota il carrello dopo la creazione del PDF
+              cartStore.clearOrderAndCart();
+          };
+  
+          // DOWNLOAD PDF
+          const downloadOrder = () => {
+              const pdfData = localStorage.getItem('tempPDF');
+              if (pdfData) {
+                  const fileName = `CAMBUSA_ordineNumero_${orderNumber || "N_A"}_${orderData.fullName || "Cliente"}.pdf`;
+                  const link = document.createElement('a');
+                  link.href = pdfData;
+                  link.download = fileName;
+                  link.click();
+              }
+          };
+  
+          // Cleanup quando si lascia la pagina
+          onBeforeRouteLeave(() => {
+              localStorage.removeItem('tempPDF');
+          });
+  
+          return {
+              orderData,
+              orderNumber,
+              downloadOrder,
+              cartTotal,
+              createPDF
+          };
+      },
+      mounted() {
+          window.scrollTo(0, 0);
+          this.createPDF();
+      }
   };
-  </script>
+</script>
   
-  <style scoped>
+<style scoped>
   .container-confirm {
     display: flex;
     flex-direction: column;

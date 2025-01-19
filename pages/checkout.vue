@@ -188,6 +188,9 @@
         console.log('acceptTerms changed:', newValue);
       },
     },
+    mounted() {
+      window.scrollTo(0, 0);
+    },
   };
   </script>
   
