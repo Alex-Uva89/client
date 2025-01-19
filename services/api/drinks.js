@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-const api = axios.create({
-  baseURL: 'https://cambusa-dev-700afd82d2d2.herokuapp.com/',
-})
+// const api = axios.create({
+//   baseURL: 'https://cambusa-dev-700afd82d2d2.herokuapp.com/',
+// })
 
 export const getDrinks = async () => {
   try {

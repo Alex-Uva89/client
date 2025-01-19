@@ -180,8 +180,8 @@ const LOAD_MORE_COUNT = 6;
 const showFilter = ref(false);
 
 const openFilters = () => {
-    showFilter.value = !showFilter.value;
     productStore.resetFilters();
+    showFilter.value = !showFilter.value;
 }
 
 
@@ -220,7 +220,6 @@ const displayedOrigins = computed(() => uniqueOrigins.value.slice(0, displayLimi
 const displayedGrapes = computed(() => uniqueGrapes.value.slice(0, displayLimits.value.grape));
 const displayedVintages = computed(() => uniqueVintages.value.slice(0, displayLimits.value.vintage));
 
-console.log(displayedColors);
 
 const loadMore = (filterType) => {
   displayLimits.value[filterType] += LOAD_MORE_COUNT;
@@ -235,7 +234,8 @@ const tempFilters = ref({
   origin: [],
   grape: [],
   vintage: [],
-  priceRange: { min: 0, max: 600 }
+  priceRange: { min: 0, max: 600 },
+  orderBy: null
 });
 
 const activeOrders = ref({
@@ -245,27 +245,24 @@ const activeOrders = ref({
 });
 
 const toggleOrder = (type) => {
-  if (type === 'abc') {
-    activeOrders.value.abc = !activeOrders.value.abc;
-  } else if (type === 'priceDesc') {
-    activeOrders.value.priceDesc = !activeOrders.value.priceDesc;
-    activeOrders.value.priceAsc = false;
-  } else if (type === 'priceAsc') {
-    activeOrders.value.priceAsc = !activeOrders.value.priceAsc;
-    activeOrders.value.priceDesc = false;
-  }
-
-  // Applica gli ordinamenti
-  if (activeOrders.value.abc) {
-    productStore.orderByABC();
-  }
-  if (activeOrders.value.priceDesc) {
-    productStore.orderByPriceMinus();
-  }
-  if (activeOrders.value.priceAsc) {
-    productStore.orderByPricePlus();
+  // toggle on or off
+  if (activeOrders.value[type]) {
+    activeOrders.value[type] = false;
+    tempFilters.value.orderBy = null;
+  } else {
+    // price + or price -
+    if (type === 'priceDesc') {
+      activeOrders.value.priceAsc = false;
+    } else if (type === 'priceAsc') {
+      activeOrders.value.priceDesc = false;
+    }
+    
+    // filter active
+    activeOrders.value[type] = true;
+    tempFilters.value.orderBy = type;
   }
 };
+
 
 const activeFilterMultiple = (value, filterType) => {
     if (tempFilters.value[filterType].includes(value)) {
@@ -294,7 +291,8 @@ const resetFilters = () => {
         origin: [],
         grape: [],
         vintage: [],
-        priceRange: { min: 0, max: 600 }
+        priceRange: { min: 0, max: 600 },
+        orderBy: null
     };
     activeOrders.value = {
         abc: false,

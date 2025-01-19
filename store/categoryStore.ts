@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { getCategories } from '~/services/api/categories'
+import { useProductStore } from './productStore'
 
 export const useCategoryStore = defineStore('category', {
   state: () => ({
@@ -26,7 +27,12 @@ export const useCategoryStore = defineStore('category', {
 
     resetCategory() {
       this.selectedCategory = null
+      this.selectedSuperCategory = null
+      // reset
+      const productStore = useProductStore()
+      productStore.filteredProductsState = productStore.products
     },
+    
 
     async fetchCategories() {
       try {

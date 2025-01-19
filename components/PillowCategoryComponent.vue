@@ -46,8 +46,13 @@ export default defineComponent({
 
     const selectCategory = (item: string) => {
       categoryStore.setCategory(item)
-      productStore.fetchProducts()
+      // Invece di fetchProducts, filtriamo i prodotti esistenti
+      const selectedCategoryId = item.category.id
+      productStore.filteredProductsState = productStore.products.filter(
+        product => product.category_id === selectedCategoryId
+      )
     }
+
 
     const isSelected = (item: string) => {
       if (!categoryStore.selectedCategory) {

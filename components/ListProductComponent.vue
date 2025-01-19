@@ -69,26 +69,26 @@ export default defineComponent({
 
     // Usa computed per rendere reattivo filteredProductsState
     const filteredProductsState = computed(() => productStore.filteredProductsState);
-    
-    const searchQuery = computed(() => productStore.searchQuery);
+        
+        // const searchQuery = computed(() => productStore.searchQuery);
 
     const filteredProducts = computed(() => {
-    // no filters
-    const hasActiveFilters = 
-      productStore.activeFilters.subcategory.length > 0 ||
-      productStore.activeFilters.origin.length > 0 ||
-      productStore.activeFilters.grape.length > 0 ||
-      productStore.activeFilters.vintage.length > 0;
+      // Se ci sono filtri attivi (incluso l'ordinamento), usa filteredProductsState
+      if (filteredProductsState.value.length > 0) {
+        return filteredProductsState.value;
+      }
 
-    // filters
-    if (!hasActiveFilters && productStore.activeFilters.priceRange.min === 0 && 
-        productStore.activeFilters.priceRange.max === 600) {
+      // category filter
+      if (categoryStore.selectedCategory) {
+        const selectedCategoryId = categoryStore.selectedCategory.category.id;
+        return productStore.products.filter(product => 
+          product.category_id === selectedCategoryId
+        );
+      }
+
+      // Se non ci sono filtri attivi, ritorna tutti i prodotti
       return productStore.products;
-    }
-
-    // Altrimenti ritorna i risultati filtrati
-    return filteredProductsState.value;
-  });
+    });
 
     const increaseQuantity = (product) => {
       cartStore.addProductToCart(product); 

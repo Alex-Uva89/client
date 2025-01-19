@@ -558,17 +558,17 @@ const _routes = [
   {
     name: "checkout",
     path: "/checkout",
-    component: () => import('./checkout-CMJnADSK.mjs')
+    component: () => import('./checkout-BA_Exr-V.mjs')
   },
   {
     name: "confirm",
     path: "/confirm",
-    component: () => import('./confirm-zW2dgc7c.mjs')
+    component: () => import('./confirm-BzU6PKwm.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-DoxydWHS.mjs')
+    component: () => import('./index-CyPkE3Cp.mjs')
   },
   {
     name: "login",
@@ -578,12 +578,12 @@ const _routes = [
   {
     name: "menu",
     path: "/menu",
-    component: () => import('./menu-u7l_nQP4.mjs')
+    component: () => import('./menu-DBTMBdfy.mjs')
   },
   {
     name: "product-id",
     path: "/product/:id()",
-    component: () => import('./_id_-BFFBdtPc.mjs')
+    component: () => import('./_id_-Cq9F1CO-.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;

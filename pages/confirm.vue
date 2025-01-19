@@ -83,9 +83,6 @@
       const cartTotal = cartStore.getCartTotal.toFixed(2);
       const cartItems = cartStore.cart;
 
-      console.log('dati nel carrello: ');
-      console.log(cartItems)
-
   
       // CREATE PDF
       const downloadOrder = () => {
@@ -213,7 +210,6 @@
       };
     },
     beforeRouteLeave(to, from, next) {
-      console.log("Lascio la pagina di conferma");
       next();
     },
   };

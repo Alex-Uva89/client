@@ -7,8 +7,8 @@ import { useCategoryStore } from './categoryStore';
 export const useProductStore = defineStore('product', {
   state: () => ({
     products: [],
-    searchQuery: ref(''),
-    filteredProductsState: ref([]),
+    searchQuery: '',
+    filteredProductsState: [],
     selectedCategory: null,
     selectedSubcategory: null,
     activeFilters: {
@@ -27,7 +27,6 @@ export const useProductStore = defineStore('product', {
     },
     
     filteredProducts: (state) => {
-      console.log('STATE:', state)
       if (!state.searchQuery) return state.products;
       const query = state.searchQuery.toLowerCase();
       return state.products.filter((product) =>
@@ -87,34 +86,19 @@ export const useProductStore = defineStore('product', {
         cartStore.addProductToCart(product);
       }
     },
-
-    // Filters
-
-    orderByABC() {
-      // Create a new sorted array instead of modifying the existing one
-      this.filteredProductsState = [...this.filteredProductsState].sort((a, b) => 
-        a.name.localeCompare(b.name)
-      );
-    },
     
-    orderByPriceMinus() {
-      this.filteredProductsState = [...this.filteredProductsState].sort((a, b) => 
-        Number(b.price) - Number(a.price)
-      );
-    },
-    
-    orderByPricePlus() {
-      this.filteredProductsState = [...this.filteredProductsState].sort((a, b) => 
-        Number(a.price) - Number(b.price)
-      );
-    },
+    // FILTRI
     
     applyFilters(filters: any) {
-      this.activeFilters = filters;
+      console.log('1. Inizio applyFilters');
+      const plainFilters = JSON.parse(JSON.stringify(filters));
+      console.log('2. plainFilters creato:', plainFilters);
+  
+      this.activeFilters = plainFilters;
       const categoryStore = useCategoryStore();
     
-      // Applica tutti i filtri
-      const filteredResults = this.products.filter(product => {
+      // all filters
+      let filteredResults = this.products.filter(product => {
         const productPrice = Number(product.price);
         const priceInRange = productPrice >= Number(filters.priceRange.min) && 
                             productPrice <= Number(filters.priceRange.max);
@@ -134,9 +118,32 @@ export const useProductStore = defineStore('product', {
     
         return priceInRange && categoryMatch && originMatch && grapeMatch && vintageMatch;
       });
+
+      console.log('3. Prima del check orderBy');
+      console.log('4. Valore di orderBy:', plainFilters.orderBy);
+      console.log('5. Tipo di orderBy:', typeof plainFilters.orderBy);
+    
+      // order
+      if (plainFilters.orderBy) {
+        console.log('Tipo di ordinamento:', plainFilters.orderBy);
+        
+        if (plainFilters.orderBy === 'abc') {
+          console.log('Applico ordinamento alfabetico');
+          filteredResults = [...filteredResults].sort((a, b) => a.name.localeCompare(b.name));
+        }
+        else if (plainFilters.orderBy === 'priceDesc') {
+          console.log('Applico ordinamento prezzo decrescente');
+          filteredResults = [...filteredResults].sort((a, b) => Number(b.price) - Number(a.price));
+        }
+        else if (plainFilters.orderBy === 'priceAsc') {
+          console.log('Applico ordinamento prezzo crescente');
+          filteredResults = [...filteredResults].sort((a, b) => Number(a.price) - Number(b.price));
+        }
+      }
     
       this.filteredProductsState = filteredResults;
     },
+    
     
     
     resetFilters() {

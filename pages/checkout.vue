@@ -180,7 +180,6 @@
       },
         openDate() {
             const dateInput = document.getElementById('deliveryDate');
-            console.log('dateInput:', dateInput);
             dateInput.showPicker();
         },
     },

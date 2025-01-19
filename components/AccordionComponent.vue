@@ -116,7 +116,6 @@
       };
   
       const sendEmail = () => {
-        console.log(`Email inviata: ${email.value}`);
         email.value = "";
       };
   
