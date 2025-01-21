@@ -213,6 +213,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    width: 100%;
   }
 
   .form-group.terms{
@@ -223,8 +224,8 @@
         padding:5px 5px 5px 40px;
         border: 1px solid var(--text);
         border-radius: 5px;
-    }
-
+      }
+ 
     .form-group input:focus {
         padding-left: 40px;
     }
@@ -257,6 +258,7 @@
         font-size: var(--font-size-small);
         color: var(--primary);
         text-align: right;
+        margin-top: 3px;
     }
   
   button:disabled {

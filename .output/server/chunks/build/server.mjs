@@ -558,7 +558,7 @@ const _routes = [
   {
     name: "checkout",
     path: "/checkout",
-    component: () => import('./checkout-D64VLXjX.mjs')
+    component: () => import('./checkout-DXYxVGtj.mjs')
   },
   {
     name: "confirm",
@@ -573,12 +573,12 @@ const _routes = [
   {
     name: "login",
     path: "/login",
-    component: () => import('./login-C51AtCbw.mjs')
+    component: () => import('./login-BbP2gwmA.mjs')
   },
   {
     name: "menu",
     path: "/menu",
-    component: () => import('./menu-A__Y4VN1.mjs')
+    component: () => import('./menu-BxoL6NyF.mjs')
   },
   {
     name: "product-id",

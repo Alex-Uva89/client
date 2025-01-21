@@ -234,7 +234,10 @@ export default defineComponent({
 }
 
 .footer .login{
-  color: var(--primary)
+  color: var(--text-secondary);
+  text-decoration: underline;
 }
+
+
   
 </style>
