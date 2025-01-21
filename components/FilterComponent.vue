@@ -245,23 +245,33 @@ const activeOrders = ref({
 });
 
 const toggleOrder = (type) => {
-  // toggle on or off
-  if (activeOrders.value[type]) {
-    activeOrders.value[type] = false;
+  // Reset 
+  Object.keys(activeOrders.value).forEach(key => {
+    activeOrders.value[key] = false;
+  });
+
+  // toogle
+  if (tempFilters.value.orderBy === type) {
     tempFilters.value.orderBy = null;
-  } else {
-    // price + or price -
-    if (type === 'priceDesc') {
-      activeOrders.value.priceAsc = false;
-    } else if (type === 'priceAsc') {
-      activeOrders.value.priceDesc = false;
-    }
-    
-    // filter active
-    activeOrders.value[type] = true;
-    tempFilters.value.orderBy = type;
+    return;
   }
+
+  // new order
+  switch (type) {
+    case 'priceDesc':
+      activeOrders.value.priceDesc = true;
+      break;
+    case 'priceAsc':
+      activeOrders.value.priceAsc = true;
+      break;
+    case 'abc':
+        activeOrders.value.abc = true;
+        break;
+  }
+  
+  tempFilters.value.orderBy = type;
 };
+
 
 
 const activeFilterMultiple = (value, filterType) => {
@@ -310,7 +320,7 @@ const resetFilters = () => {
 
 .btn-filter {
     position: absolute;
-    right: 10px;
+    right: 20px;
     top: 50%;
     transform: translateY(-50%);
     width: 20px;
@@ -393,11 +403,12 @@ const resetFilters = () => {
     padding: 10px 12px;
     border-radius: 5px;
     border: 1px solid var(--primary);
-    font-size: var(--font-size-xsmall);
+    font-size: var(--font-size-small);
+    font-family: var(--font-primary);
 
     white-space: wrap;
 
-    text-transform: capitalize;
+    text-transform: lowercase;
 }
 
 button.btn:not(.apply , .reset) {
@@ -457,14 +468,14 @@ button.btn:not(.apply , .reset) {
 
 .show-toggle {
   cursor: pointer;
-  color: #007bff;
+  color: var(--text-secondary);
   font-size: 0.9em;
   text-decoration: underline;
   padding: 0.5rem;
 }
 
 .show-toggle:hover {
-  color: #0056b3;
+  color: var(--text-secondary);
 }
 
 .filter-controls {

@@ -90,9 +90,7 @@ export const useProductStore = defineStore('product', {
     // FILTRI
     
     applyFilters(filters: any) {
-      console.log('1. Inizio applyFilters');
       const plainFilters = JSON.parse(JSON.stringify(filters));
-      console.log('2. plainFilters creato:', plainFilters);
   
       this.activeFilters = plainFilters;
       const categoryStore = useCategoryStore();
@@ -119,24 +117,17 @@ export const useProductStore = defineStore('product', {
         return priceInRange && categoryMatch && originMatch && grapeMatch && vintageMatch;
       });
 
-      console.log('3. Prima del check orderBy');
-      console.log('4. Valore di orderBy:', plainFilters.orderBy);
-      console.log('5. Tipo di orderBy:', typeof plainFilters.orderBy);
     
       // order
       if (plainFilters.orderBy) {
-        console.log('Tipo di ordinamento:', plainFilters.orderBy);
         
         if (plainFilters.orderBy === 'abc') {
-          console.log('Applico ordinamento alfabetico');
           filteredResults = [...filteredResults].sort((a, b) => a.name.localeCompare(b.name));
         }
         else if (plainFilters.orderBy === 'priceDesc') {
-          console.log('Applico ordinamento prezzo decrescente');
           filteredResults = [...filteredResults].sort((a, b) => Number(b.price) - Number(a.price));
         }
         else if (plainFilters.orderBy === 'priceAsc') {
-          console.log('Applico ordinamento prezzo crescente');
           filteredResults = [...filteredResults].sort((a, b) => Number(a.price) - Number(b.price));
         }
       }

@@ -217,8 +217,12 @@ export default defineComponent({
 /* pulsante chiama ora */
 
 .call-button{
-  color: var(--primary);
+  color: var(--text-secondary);
+  text-decoration: underline;
   border-radius: 5px;
+}
+
+.button-text{
   text-decoration: none;
 }
 
