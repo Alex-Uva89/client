@@ -1,5 +1,10 @@
 export default defineNuxtConfig({
   ssr: true,
+  head: {
+    link: [
+      { rel: 'manifest', href: '/manifest.json' }
+    ]
+  },
   nitro: {
     preset: 'heroku',
     routeRules: {

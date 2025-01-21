@@ -72,23 +72,33 @@ export default defineComponent({
         
         // const searchQuery = computed(() => productStore.searchQuery);
 
-    const filteredProducts = computed(() => {
-      // Se ci sono filtri attivi (incluso l'ordinamento), usa filteredProductsState
-      if (filteredProductsState.value.length > 0) {
-        return filteredProductsState.value;
-      }
+        const filteredProducts = computed(() => {
+          // Se ci sono risultati dai filtri, li mostriamo
+          if (filteredProductsState.value.length > 0) {
+            return filteredProductsState.value;
+          }
 
-      // category filter
-      if (categoryStore.selectedCategory) {
-        const selectedCategoryId = categoryStore.selectedCategory.category.id;
-        return productStore.products.filter(product => 
-          product.category_id === selectedCategoryId
-        );
-      }
+          // Se i filtri sono attivi ma non ci sono risultati, ritorniamo array vuoto
+          if (productStore.activeFilters.subcategory.length > 0 || 
+              productStore.activeFilters.origin.length > 0 || 
+              productStore.activeFilters.grape.length > 0 || 
+              productStore.activeFilters.vintage.length > 0) {
+            return [];
+          }
 
-      // Se non ci sono filtri attivi, ritorna tutti i prodotti
-      return productStore.products;
-    });
+          // Se c'è una categoria selezionata
+          if (categoryStore.selectedCategory) {
+            const selectedCategoryId = categoryStore.selectedCategory.category.id;
+            const filteredByCategory = productStore.products.filter(product => 
+              product.category_id === selectedCategoryId
+            );
+            return filteredByCategory.length > 0 ? filteredByCategory : [];
+          }
+
+          // Se non ci sono filtri attivi, ritorna tutti i prodotti
+          return productStore.products;
+        });
+
 
     const increaseQuantity = (product) => {
       cartStore.addProductToCart(product); 

@@ -276,10 +276,10 @@ const toggleOrder = (type) => {
 
 const activeFilterMultiple = (value, filterType) => {
     if (tempFilters.value[filterType].includes(value)) {
-    tempFilters.value[filterType] = tempFilters.value[filterType].filter(v => v !== value);
-  } else {
-    tempFilters.value[filterType].push(value);
-  }
+        tempFilters.value[filterType] = tempFilters.value[filterType].filter(v => v !== value);
+    } else {
+        tempFilters.value[filterType].push(value);
+    }
 };
 
 
