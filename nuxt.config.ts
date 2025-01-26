@@ -1,15 +1,5 @@
 export default defineNuxtConfig({
   ssr: true,
-  head: {
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'manifest', href: '/manifest.json' }
-    ],
-    meta: [
-      { name: 'theme-color', content: '#ffffff' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
-    ]
-  },
   nitro: {
     preset: 'heroku',
     routeRules: {
